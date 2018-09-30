@@ -39,7 +39,7 @@ exports.CreateNewUser = function (params) {
                     "addedOn" : getDateTime(),
                     "isDeleted" : false,
                     "login" : true
-                }).then(()=>{
+                });/*.then(()=>{
                     SpreadsheetWorker.WriteToSpreadsheet({
                         "ssId" : ssConfig.spreadsheets.records,
                         "sheet" : "Users",
@@ -50,11 +50,11 @@ exports.CreateNewUser = function (params) {
                             `${params.phone}`
                         ]
                     });
-                    resolve({
-                        "success" : true,
-                        "uid" : uid,
-                        "hash" : hash
-                    });
+                });*/
+                resolve({
+                    "success" : true,
+                    "uid" : uid,
+                    "hash" : hash
                 });
             } else {
                 resolve({
