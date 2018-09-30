@@ -1,0 +1,126 @@
+.lightbox {
+    display: flex;
+    flex-flow: column;
+    width: 75%;
+    height: fit-content !important;
+    max-width: 500px;
+    top: 25vh;
+    left: 50%;
+    margin-left: -37.5%;
+    text-align: center;    
+    animation-name: pop-lightbox;
+}
+@keyframes pop-lightbox {
+    from{ opacity: 0 }
+    to{ opacity: 1 }
+}
+
+.cancel-container {
+    padding: 2em;
+    align-self: center;
+}
+
+.textbox {
+    margin-bottom: 1em;
+    font-size: 0.75em; 
+}
+
+.cancel-container .button {
+    padding: 0.75em 0.75em;
+    margin: 0.5em;
+}
+.cancel-container h1 {
+    margin-top: 0;
+}
+
+.confirm {
+    color: #FFF;
+    font-weight: 600;
+    background: linear-gradient(#ff0000,#ff2d2d);
+    border: 1px solid #ff0000;
+
+    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+} .confirm:active {
+    background: linear-gradient(#d60000,#e42929);
+} .confirm:disabled {
+    border: 1px solid #8e8e8e;
+    background: #8e8e8e;
+}
+
+@media (min-width: 600px){
+    .lightbox {
+        width: 500px;
+        left: 50%;
+        height: 20em;
+        margin-left: -250px;
+        animation-name: pop-lightbox;
+    }
+    .textbox {
+        margin-bottom: unset;
+    }
+    .button {
+        padding: 0.5em;
+        margin: 2em 1em;
+    }
+    @keyframes pop-lightbox {
+        from{
+            opacity: 0;
+        }
+        to{
+            opacity: 1;
+        }
+    }
+}
+
+/* ================================================= */
+
+.toggle-bars {
+    width: 100%;
+    height: fit-content;
+    margin-right: 12.5%;
+    grid-column: 2/4;
+    grid-row: 4/5;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 1em;
+}
+
+.toggle-group {
+    width: 100%;
+    text-align: center;
+}
+
+.toggle-btn {
+    display: inline-block;
+    color: #000;
+    border-radius: 20px;
+    text-shadow: none;
+} .toggle-btn.active {
+    font-weight: 600;
+    background: linear-gradient(90deg, #ffd900,#ff7300);
+} .toggle-btn.active.focus {
+    font-weight: 600;
+    background: linear-gradient(90deg, #ffd900,#ff7300);
+}
+
+.duration-bar {
+    height: fit-content;
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+.duration-bar .toggle-btn {
+    width: 50%;
+}
+
+.device-bar {
+    height: fit-content;
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+.device-bar .toggle-btn {
+    width: 33%;
+}

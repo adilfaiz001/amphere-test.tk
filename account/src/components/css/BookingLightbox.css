@@ -1,0 +1,274 @@
+.lightbox {
+    height: 30em;
+    max-width: 500px;
+    top: 15vh; 
+}
+
+.session-settings-holder{
+    display: grid;
+    grid-template-columns: 1fr 3fr 3fr 1fr;
+    grid-template-rows: 2fr fit-content 3fr 2fr 2fr 2fr;
+    grid-gap: 1em;
+
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    position: relative;
+
+    animation-name: options;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+}
+@media (max-width: 360px){
+    .session-settings-holder{
+        grid-template-columns: 0.25fr 3fr 3fr 0.25fr;
+        justify-content: center;
+    }
+}
+
+@keyframes options {
+    0%{ opacity: 0 }
+    90%{ opacity: 0.25 }
+    100%{ opacity: 1 }
+}
+
+.confirm-session-button {
+    background: linear-gradient(90deg, #ffd700,#ff7300);
+    max-width: 500px;
+    grid-column: 1/5;
+    grid-row: 7/8;
+    padding: 1em;
+    color: #FFF;
+    font-size: 1.25em;
+    font-weight: 600;
+    height: 100%;
+    width: 100%;
+
+    border: none;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px; 
+}
+.button-disabled{
+    background: #cccccc;
+}
+
+
+.lightbox-title {
+    font-size: 2em;
+    font-weight: 900;
+    grid-column: 2/4;
+    grid-row: 2/3;
+}
+
+.location {
+    grid-column: 2/4;
+    grid-row: 3/4;
+    height: fit-content;
+
+    margin-top: auto;
+    margin-bottom: auto; 
+}
+.location .location-code {
+    height: fit-content;
+    grid-column: 1/3;
+    grid-row: 1/2;
+}
+
+.promo-holder {
+    grid-column: 2/4;
+    grid-row: 6/7;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*==========================================================================*/
+
+.toggle-bars {
+    width: 100%;
+    height: fit-content;
+    grid-column: 2/4;
+    grid-row: 4/5;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 1em;
+}
+
+.toggle-group {
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+
+.toggle-btn {
+    display: inline-block;
+    color: #000;
+    border-radius: 20px;
+    text-shadow: none;
+} .toggle-btn.active {
+    font-weight: 600;
+    background: linear-gradient(90deg, #ffd900,#ff7300);
+} .toggle-btn.active.focus {
+    font-weight: 600;
+    background: linear-gradient(90deg, #ffd900,#ff7300);
+}
+
+.duration-bar {
+    height: fit-content;
+    grid-column: 1/2;
+    grid-row: 1/2;
+} .duration-bar .toggle-btn {
+    width: 50%;
+}
+
+.device-bar {
+    height: fit-content;
+    grid-column: 1/2;
+    grid-row: 2/3;
+} .device-bar .toggle-btn {
+    width: 33%;
+} 
+@media (max-width: 320px){
+    .device-bar .toggle-btn {
+        font-size: 0.75em;
+    }
+}
+
+
+/*==========================================================================*/
+
+.textbox {
+    font-size: 1em;
+    font-weight: 600;
+    text-align: center;
+}
+
+.textbox-small {
+    width: 75%;
+    font-size: 0.8em;
+    font-weight: 400;
+    text-align: center;
+}
+
+.error {
+    border-color: #ff000080;
+    color: #ff000080 !important;
+} .error::placeholder {
+    color: #ff000080 !important;
+}
+  
+
+.session-settings {
+    text-align: left;
+    max-width: 500px;
+}
+
+/*TYPOGRAPHY================================================================*/
+
+.info {
+    text-align: justify;
+    font-size: 0.8em;
+    line-height: 1em;
+    margin: 1em 0 1em 0;
+    height: 2em;
+    text-overflow: ellipsis;
+
+    grid-column: 2/4;
+    grid-row: 5/6;
+}
+
+.session-settings-detail {
+    position: relative;
+    width: fit-content;
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+    margin-left: 1rem;
+    margin-right: 0;
+    font-size: 0.8em;
+    max-width: 500px;
+}
+
+.session-settings h2 {
+    text-align: center;
+    margin: 2em 0.5em;
+    max-width: 500px;
+}
+
+.session-settings h3 {
+    text-align: center;
+    max-width: 500px;
+    font-size: 1.25em;
+}
+
+/*FROM GLOBAL================================================================*/
+
+.checkmark {
+    grid-column: 3/4;
+    grid-row: 3/4;
+    float: right;
+    margin-top: -4rem;
+    margin-right: 2.5rem;
+}
+
+.crossmark {
+    grid-column: 3/4;
+    grid-row: 3/4;
+    margin-top: -3.4rem;
+    margin-right: 2.25rem;
+}
+
+.spinner {
+    float: right;
+    margin-top: 1rem;
+    margin-right: 1rem;
+}
+
+.cross-button {
+    float: right;
+    margin: 1em 1em 0 0;
+}
+
+/*MEDIA QUERY=================================================================*/
+
+@media (min-width: 700px){
+    .lightbox {
+        width: 500px;
+        left: 50%;
+        margin-left: -250px;
+        animation-name: pop-lightbox;
+    }
+    @keyframes pop-lightbox {
+        from{
+            opacity: 0;
+        }
+        to{
+            opacity: 1;
+        }
+    }
+}
+
+@media (max-width:500px) {
+    .session-settings-holder{
+        grid-gap: 0.5em;
+    }
+    .cross-button {
+        padding: 0.5em;
+    } .cross-button:before , .cross-button:after{
+        width: 1.5em;
+      }
+    .info {
+        font-size: 0.75em;
+        line-height: 1em;
+    }
+    .device-bar .toggle-btn {
+        width: 42.5%;
+    } .device-bar .toggle-btn:first-of-type {
+        width: fit-content;
+    } .device-bar .toggle-btn:last-of-type {
+        width: fit-content;
+    }
+}

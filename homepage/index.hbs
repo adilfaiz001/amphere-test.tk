@@ -1,0 +1,109 @@
+<link rel="stylesheet" href="./css/Homepage.css">
+
+<script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "https://www.amphere.in",
+      "logo": "https://amphere.in/assets/amphere-text.svg",
+      "contactPoint" : [
+            {
+                "@type" : "ContactPoint",
+                "telephone" : "+919811779909",
+                "contactType" : "customer service",
+                "contactOption" : "HearingImpairedSupported"
+            },
+            {
+                "@type" : "ContactPoint",
+                "telephone" : "+918285474175",
+                "contactType" : "technical support",
+                "contactOption" : "HearingImpairedSupported",
+                "areaServed" : "IN"
+            }
+        ],
+       "sameAs" : [ 
+            "https://www.facebook.com/amphere.solutions",
+            "https://twitter.com/amphere.solutions",
+            "https://www.instagram.com/amphere.solutions"
+        ] 
+    }
+</script>
+
+{{> header }}
+
+    <!--===============//// CONTENT ////===============-->
+    <section class="hero">
+        {{!-- HERO --}}
+        <div class="hero-container">
+            {{!-- PAGE SLOGAN --}}
+
+            <img class="graphic" src="/assets/phone-graphic.png" alt="Graphic">
+
+            <div class="page-slogan">
+                <h1>THE WORRIES OF LOW BATTERY END HERE</h1>
+                <p>Instead of venturing into a treasure hunt for charging points,<br>now have a battery backup in your favorite restaurant.</p>
+            </div>
+
+            <div class="hero-action-container">
+                <button class="button" id="signup-button">CREATE ACCOUNT</button>
+                <button class="button btn-white" id="session-button">BOOK SESSION</button>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <!--HOW TO USE-->
+        <div class="instructional">
+            <div class="instructional-container">
+                <div class="instructional-step">
+                    <h2 class="step-title">Sign Up</h2>
+                    <p class="step-info">Create a free account<br>Or sign-in with the existing account</p>
+                </div>
+
+                <div class="instructional-step">
+                    <h2 class="step-title">Book a Session</h2>
+                    <p class="step-info">Use the restaurant code<br>to book a new session</p>
+                </div>
+
+                <div class="instructional-step">
+                    <h2 class="step-title">Enjoy</h2>
+                    <p class="step-info">Enjoy hassle free charging<br>with Amphere</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <!--FEATURES-->
+        <div class="features">
+            <div class="features-container">
+                <div class="feature">
+                    <h2 class="feature-title">Ease the Stuggle</h2>
+                    <p class="feature-text">Leave the struggles of carrying heavy power banks behind</p>
+                </div>
+
+                <div class="feature">
+                    <h2 class="feature-title">Save Energy</h2>
+                    <p class="feature-text">Save the energy in hunting down charging spots and chasing others for chargers.</p>
+                </div>
+
+                <div class="feature">
+                    <h2 class="feature-title">Device Health</h2>
+                    <p class="feature-text">With our certified equipment, you can trust us to never compromise on the health of your device.</p>
+                </div>
+
+                <div class="feature">
+                    <h2 class="feature-title">Get Charging!</h2>
+                    <p class="feature-text">As you munch on tasty treats, we’ll ensure that your phone’s battery too won’t leave the restaurant hungry!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--=============//// END CONTENT ////=============-->
+
+{{> footer }}
+
+<script>
+    document.getElementById("session-button").onclick = () => window.location = "http://account.amphere.in";
+    document.getElementById("signup-button").onclick = () => window.location = "/signup";
+</script>

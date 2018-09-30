@@ -1,0 +1,215 @@
+.hero {
+    text-align: center; 
+    height: fit-content;
+    padding: 5em 2em 2em 2em;
+    background: linear-gradient(135deg,#ffd800,#ff7300);
+}
+
+.hero-container {
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-slogan h1 {
+    font-size: 2em;
+    text-align: center;
+    animation: 0.5s slide-in ease-in-out;
+} .page-slogan p {
+    text-align: center;
+    font-size: 0.85em;    
+}  @keyframes slide-in {
+    from { 
+        transform: translateY(10px);
+        opacity: 0; 
+    } to {
+        opacity: 1; 
+    }
+}
+
+/* GRAPHIC ================================== */
+
+.graphic {
+    display: block;
+    margin: auto;
+    max-width: auto;
+    max-height: 35vh;
+    animation: 0.5s slide ease-in;
+} @keyframes slide {
+    from { opacity: 0 } 
+    to { opacity: 1 }
+}
+
+/* HERO ACTION CONTAINER ================================== */
+
+.hero-action-container .button {
+    margin: 0;
+    margin-bottom: 1em;
+    padding: 1em 3em;
+    font-size: 0.8em;
+    font-weight: 600;
+    
+    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+.hero-action-container {
+    margin: auto;
+    margin-left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* INSTRUCTIONAL ============================= INSTRUCTIONAL */
+
+.instructional {
+    width: 100%;
+    height: fit-content;
+    padding: 4em;
+    background-color: #1c1c1c;
+}
+.instructional-container {
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.instructional-step {
+    margin-bottom: 2em;
+    text-align: center;
+}
+.instructional-step .step-title {
+    font-weight: 200;
+    color: #ffd800;
+}
+.instructional-step p {
+    color: #fff;
+    font-size: 1em;
+    font-weight: 300;
+    line-height: 1.75em;
+}
+
+/* FEATURES ============================= FEATURES */
+
+.features {
+    width: 100%;
+    height: fit-content;
+    padding: 4em;
+}
+.features-container {
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.feature {
+    margin-bottom: 2em;
+    text-align: center;
+}
+.feature .feature-title {
+    font-weight: 400;
+    color: #ff9e00;
+}
+.feature p {
+    color: #000;
+    font-size: 1em;
+    font-weight: 300;
+    line-height: 1.75em;
+}
+
+/* ============================= @MEDIA ============================= */
+
+@media screen and (min-width: 800px) {
+    /*============== HERO ==============*/
+    .hero {
+        height: fit-content;
+        padding: 10em 2em 2em 2em;
+    }
+    
+    .hero-container {
+        max-width: 1000px;
+        margin: auto;
+    
+        display: grid;
+        grid-template-columns: 3fr 2fr;
+        grid-template-rows: auto auto;
+        grid-template-areas: 
+        "slogan graphic-mobile"
+        "action graphic mobile";
+    }
+    
+    .page-slogan h1 {
+        font-weight: 600;
+        font-size: 4em;
+        margin-bottom: 0;
+        text-align: left;
+        grid-area: slogan;
+    } .page-slogan p {
+        text-align: left;
+        font-weight: 400;
+        font-size: 1em;    
+    }
+    /* GRAPHIC ================================== */
+    
+    .graphic {
+        grid-row: 1/3;
+        grid-column: 2/3;
+        margin: 1em;
+        max-height: 30em;
+    }
+    
+    /* HERO ACTION CONTAINER MOBILE ================================== */
+    
+    .hero-action-container .button {
+        margin: 1em;
+        padding: 1em 3em;
+        font-size: 0.8em;
+        font-weight: 600;
+        
+        -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+        -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+    }
+    .hero-action-container {
+        grid-row: 2/3;
+        grid-column: 1/2;
+        margin: 2em;
+        margin-left: 0;
+        width: 50%;
+    
+        display: flex;
+        flex-direction: column;
+    }
+    
+    /*============== INSTRUCTIONAL ==============*/
+
+    .instructional-container {
+        flex-direction: row;
+    }
+    
+    .instructional-step {
+        margin: 0 4em 0 4em;
+        text-align: center;
+    }
+
+    /*============== INSTRUCTIONAL ==============*/
+
+    .features-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-auto-flow: row;
+    }
+
+    .feature {
+        margin: auto;
+        padding: 4em;
+    }
+}
+

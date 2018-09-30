@@ -1,0 +1,253 @@
+
+<div class="merchant-form">
+    <div class="merchant-form-container">
+        <h1>Merchant Addition</h1>
+        <p>Add merchants here</p>
+
+        <button id="logout">LOGOUT</button>
+
+        <input id="_name" type="text" placeholder="Name"><br>
+        <input id="phone" type="text" placeholder="Phone"><br>
+        <input id="mid" type="text" placeholder="Merchant Code"><br>
+        <input id="password" type="text" placeholder="Password">
+
+        <br>
+
+        <button id="submit">SUBMIT</button>
+
+        <div id="status-block">
+            <p id="status">Add a merchant</p>
+            <button id="ok" hidden="true">OK</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- =================================================================================================-->
+<!--@adil-->
+<div style="height:5px;background-color:black;"></div>
+<div class="coupons-admin">
+        <div class="coupons-generate">
+            <h1>Coupons Generation</h1>
+            <h2>Click on the button to generate coupons</h2>
+            <input type="text" class="textbox" id="count" placeholder="Number of Coupons"><br>
+            <input type="text" class="textbox" id="length" placeholder="Length of Coupons"><br>
+            <input type="text" class="textbox" id="pattern" placeholder="Pattern 1111-1111 in accordance with length"><br>
+            <button id="coupons-button">Generate</button>
+        </div>
+        <div class="coupons" id="coupons-check">
+
+        </div>
+</div>
+<!-- =================================================================================================-->
+
+<script>
+    window.onload = () => {
+        if(window.localStorage.getItem('amp-admin-mac')!==null && window.sessionStorage.getItem('amp-admin-pvt')!==null) {
+            let mac = window.localStorage.getItem('amp-admin-mac');
+            let pvt = window.sessionStorage.getItem('amp-admin-pvt');
+
+            const pageReq = new XMLHttpRequest();
+            let url = 'pvt=' + pvt + '&mac=' + mac;
+            pageReq.open('POST', `/u/login/p?${url}`, true);
+            pageReq.send();
+            pageReq.onreadystatechange = () => {
+                if(pageReq.readyState===4 && pageReq.status===200) {
+                    let pageRes = JSON.parse(pageReq.response).verify;
+                    if(pageRes) {
+                        // correct ID
+                    } else {
+                        // wrong ID
+                        window.location = '/';
+                    }
+                }
+            }
+        } else {
+            window.location = '/';
+        }
+    }
+
+    document.getElementById("logout").onclick = () => {
+        let mac = window.localStorage.getItem('amp-admin-mac');
+        let index = window.sessionStorage.getItem('amp-admin-index');
+
+        window.sessionStorage.removeItem('amp-admin-pvt');
+        window.sessionStorage.removeItem('amp-admin-pub');
+
+        const logoutReq = new XMLHttpRequest();
+        logoutReq.open('POST', '/u/logout?mac=' + mac, true);
+        logoutReq.send();
+
+        window.location = '/';
+    }
+</script>
+
+<script>
+    var _name = document.getElementById("_name");
+    var phone = document.getElementById("phone");
+    var mid = document.getElementById("mid");
+    var password = document.getElementById("password");
+
+    document.getElementById("submit").onclick = () => {
+
+        if(name.value!=="" && phone.value!=="" && password.value!=="" && mid.value!=="") {
+            const request = new XMLHttpRequest();
+            let url = `name=${encodeURI(_name.value)}&` +
+            `phone=${encodeURI(phone.value)}&` +
+            `mid=${encodeURI(mid.value)}&` +
+            `password=${encodeURI(password.value)}`;
+
+            request.open('POST', `/u/addMerchant?${url}`, true);
+            request.send();
+
+            request.onreadystatechange = e => {
+                if(request.readyState===4 && request.status===200) {
+                    let response = JSON.parse(request.response);
+                    if (response.state==="SUCCESS") {
+                        document.getElementById("status").innerHTML = "[SUCCESS] Added New Merchant.";
+                        document.getElementById("ok").hidden = false;
+                        document.getElementById("ok").onclick = () => {
+                            clearAll();
+                            document.getElementById("status").innerHTML = "Add a merchant";
+                            document.getElementById("ok").hidden = true;
+                        }
+                    } else {
+                        document.getElementById("status").innerHTML = "[FAILED] :: " + response.error;
+                        document.getElementById("ok").hidden = false;
+                        document.getElementById("ok").onclick = () => {
+                            clearAll();
+                            document.getElementById("status").innerHTML = "Add a merchant";
+                            document.getElementById("ok").hidden = true;
+                        }
+                    }
+                }
+            }
+        } else {
+            document.getElementById("status").innerHTML = "[EMPTY]";
+            document.getElementById("ok").hidden = false;
+            document.getElementById("ok").onclick = () => {
+                clearAll();
+                document.getElementById("status").innerHTML = "Add a merchant";
+                document.getElementById("ok").hidden = true;
+            }
+        }
+        return false;
+    }
+
+    clearAll = () => {
+        name.value="";
+        phone.value="";
+        password.value="";
+        mid.value="";
+    }
+
+</script>
+
+<!-- =================================================================================================-->
+<!--@adil-->
+<script>
+    var count = document.getElementById("count");
+    var len = document.getElementById("length");
+    var pattern = document.getElementById("pattern");
+
+    document.getElementById('coupons-button').onclick = function()
+    {
+        if(count.value!=="" && len.value!=="")
+        {
+            const genReq = new XMLHttpRequest();
+            let url = `count=${encodeURI(count.value)}&` +
+                      `len=${encodeURI(len.value)}&` +
+                      `pattern=${encodeURI(pattern.value)}`;
+
+            genReq.open('POST',`/u/coupons?${url}`,true);
+            genReq.send();
+
+            genReq.onreadystatechange = e => {
+                if(genReq.readyState === 4 && genReq.status === 200){
+                    let gen = JSON.parse(genReq.response);
+                    if (gen.state === "SUCCESS")
+                    {
+                        var coupons = gen.coupons;
+                        for(var i=0;i<coupons.length;i++)
+                        {
+                            var div = document.createElement('div');
+                            var text = document.createTextNode(coupons[i]);
+                            div.appendChild(text);
+                            document.getElementById('coupons-check').appendChild(div);
+                        }
+
+                    } else {
+                        var div = document.createElement('div');
+                        var text = document.createTextNode("FAIL TO GENERATE");
+                        div.appendChild(text);
+                        document.getElementById('coupons-check').appendChild(div);
+
+                    }
+                }
+            }
+        }
+      }
+</script>
+<!-- =================================================================================================-->
+
+
+<style>
+    .merchant-form {
+        padding: 2em;
+        max-width: 500px;
+    }
+    .merchant-form-container {
+        display: flex;
+        flex-direction: column;
+    }
+    input {
+        padding: 1em;
+        border-radius: 10px;
+        border: 1px solid #000;
+    }
+    button {
+        padding: 1em;
+        margin: 1em;
+    }
+    #logout {
+        width: fit-content;
+        height: fit-content;
+    }
+    #ok {
+        padding: 0.5em;
+        width: fit-content;
+    }
+    #status-block {
+        display: flex;
+        margin: 1em;
+        flex-direction: row;
+    }
+
+/*=================================================================================================--*/
+/*@adil*/
+.coupons-admin
+{
+
+}
+.coupons-generate
+{
+    padding: 2em;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+.coupons
+{
+    padding: 2em;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+.coupons div
+{
+    margin: 2% 0%;
+    font-size: 30px;
+}
+
+/*=================================================================================================--*/
+</style>

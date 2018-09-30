@@ -1,0 +1,17 @@
+{
+    "PORT" : "8080",
+    "ServerState" : "NORMAL",
+    "data_mode" : "TESTING",
+    "AdminPassword" : {
+        "pwd" : "a13c01bda560e5e9da456eace0f1f89977c1d670c72d9e030aa43ccefca4662f1ee9db86cfb85236bf08f29425c19b46b06ff50a59e342c946e665b909907981",
+        "salt" : "amphere"
+    },
+    "firebase" : {
+        "apiKey": "AIzaSyAxTbo5u0iMrTmOGlmDytBh2GH9SQIicjY",
+        "authDomain": "amphere-d8b85.firebaseapp.com",
+        "databaseURL": "https://amphere-d8b85.firebaseio.com",
+        "projectId": "amphere-d8b85",
+        "storageBucket": "amphere-d8b85.appspot.com",
+        "messagingSenderId": "856580942502"
+    }
+}

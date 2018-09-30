@@ -1,0 +1,32 @@
+<link rel="stylesheet" type="text/css" href="./css/LoginPage.css" />
+
+<!--=================== SIGN UP FORM ===================-->
+<div class="cover">
+    <div class="login-container">
+        <div>
+            <p class="form-title">Sign In</p>
+
+            <input id="password" type="password" class="textbox password" placeholder="Password" required autocomplete="new-password"/>
+
+            <button id="signup-btn" class="button">SIGN IN</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    var password = document.getElementById("password");
+    
+    document.getElementById("signup-btn").onclick = function () {
+            //const request = new XMLHttpRequest();
+            //let url = `/login?q=verify&vfypwd=${btoa(password.value)}`;
+            
+            window.location = `/login?q=verify&vfypwd=${btoa(password.value)}`;
+
+            //const request = new XMLHttpRequest();
+            //let url = `vfypwd=${btoa(password.value)}`;
+
+            //request.open('GET', `/login?q=verify&${url}`, true);
+            //request.send();
+            return false;
+    }
+</script>

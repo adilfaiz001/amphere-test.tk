@@ -1,0 +1,82 @@
+header {
+    background: transparent;
+}
+
+footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    padding: 1em;
+    text-align: center;
+}
+
+.cover {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(180deg,#00ff80, #e5ff0080);
+    text-align: center;
+    z-index: 5000;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    flex-flow: column;
+}
+
+.login-container{
+    height: fit-content;
+    max-width: 500px;
+    margin: auto;
+    font-weight: 300;
+    text-align: center;
+    padding: 2em 4em;
+}
+
+.login-container .button {
+    padding: 1em 0.75em;
+    margin: 1em 0 0 0;
+    font-weight: 600;
+    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.page-title{
+    margin: 0 auto 1rem auto;
+    width: fit-content;
+    font-weight: 200;
+    font-size: 3em;
+    text-align: center;
+}
+
+.textbox {
+    margin: 0.5rem 0;
+    padding: 0.8em 1em;
+    font-size: 1.25em;
+    font-weight: 400;
+    background: #fff;
+}
+
+.textbox::placeholder {
+    color: #b1b1b1;
+}
+
+/*===================   @MEDIA   =======================*/
+
+@media (min-width: 500px) {
+    .login-container {
+        position: relative;
+        width: 500px;
+        left: 50%;
+        margin-left: -250px;
+    }
+}
+
+@media (max-width: 360px) {
+    .login-container{
+        padding: 2em;
+    }
+    .textbox {
+        padding: 0.5em 2em;
+        margin: 0.5rem 0;
+    }
+}
