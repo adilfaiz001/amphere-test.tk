@@ -511,11 +511,11 @@ amphere.use(vhost('account.amphere.in', account));
 amphere.use(vhost('merchant.amphere.in', merchant));
 amphere.use(vhost('admin.amphere.in', admin));
 */
-amphere.use(vhost('amphere', homepage));
-amphere.use(vhost('homepage', homepage));
-amphere.use(vhost('account', account));
-amphere.use(vhost('merchant', merchant));
-amphere.use(vhost('admin', admin));
+amphere.use(vhost('amphere-test.tk', homepage));
+amphere.use(vhost('www.amphere-test.tk', homepage));
+amphere.use(vhost('account.amphere-test.tk', account));
+amphere.use(vhost('merchant.amphere-test.tk', merchant));
+amphere.use(vhost('admin.amphere-test.tk', admin));
 //------------------------------------------------------------------------------------------------------//
 // S E R V E R =============================== L E G A C Y ================================ S E R V E R //
 //------------------------------------------------------------------------------------------------------//
