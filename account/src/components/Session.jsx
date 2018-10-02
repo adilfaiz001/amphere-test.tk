@@ -197,14 +197,14 @@ class Session extends Component {
         //-----//
         if(promoValid)
         {
-            amt = amt - promoAmount ; 
-            console.log(promoCode);
-            console.log(promoAmount);
-            console.log(amt);
-        }
-        if(amt<0)
-        {
-            amt=0;
+            if (amt<promoAmount)
+            {
+                amt=0;
+            }
+            else
+            {
+                amt = amt - promoAmount ;
+            }
         }
         //------//
 
