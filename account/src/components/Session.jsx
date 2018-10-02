@@ -156,6 +156,7 @@ class Session extends Component {
 
     cancelConfirmationDialog = (state) => {
         this.CalculateAmount();
+        console.log(this.state.amount);
         this.setState({ cancelLightboxOpen: state });
     }
 
