@@ -226,7 +226,12 @@ account.post('/sessionsWorker', (req, res) => {
         "name" : decodeURI(params.name),
         "location" : params.location,
         "duration" : params.duration,
-        "device" : params.device
+        "device" : params.device,
+        //-----//
+        "promoValid":decodeURI(params.promoValid),
+        "promoCode":decodeURI(params.promoCode),
+        "promoAmount":decodeURI(params.promoAmount)
+        //-----//
     }).then( _res => {
         if(_res.success===true){
             res.status(200).json({
@@ -276,6 +281,37 @@ account.post('/userCancelActiveSession', (req, res)=> {
         }
     });
 });
+
+ /********************
+  --- Adil Faiz ---
+ ********************/
+account.post('/validatePromo',(req,res)=>{
+
+    CouponWorker.validateCoupon({
+        "code":decodeURI(req.query.code)
+    }).then((_res)=>{
+        
+        if(_res.success === true)
+        {
+            
+            res.status(200).json({
+                "state":"SUCCESS",
+                "valid":true,
+                "promoCode":_res.promoCode,
+                "amount":_res.amount
+            });
+        }
+        else
+        {
+            res.status(200).json({
+                "state":"ERROR",
+                "valid":false
+            });
+        }
+    });
+});
+
+
 //===================================================================//
 
 

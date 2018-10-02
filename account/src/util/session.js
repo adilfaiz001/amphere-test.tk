@@ -8,6 +8,11 @@ exports.addNewSession = (params) => {
         `location=${params.location}&` +
         `duration=${params.duration}&` +
         `device=${params.device}&` +
+        //------//
+        `promoValid=${encode(params.promoValid)}&` +
+        `promoCode=${encode(params.promoCode)}&` +
+        `promoAmount=${encode(params.promoAmount)}&` +
+        //-----//
         `verify=true`
         
         request.open('POST', `/sessionsWorker?${url}`, true);

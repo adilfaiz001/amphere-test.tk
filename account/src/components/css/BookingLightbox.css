@@ -160,6 +160,14 @@
 } .error::placeholder {
     color: #ff000080 !important;
 }
+.success {
+    border-color: green;
+    border-width: 2px;
+    color: green !important;
+} .success::placeholder {
+    color: green !important;
+}
+  
   
 
 .session-settings {

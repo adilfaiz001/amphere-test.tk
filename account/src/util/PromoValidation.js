@@ -1,4 +1,38 @@
 export default function validatePromoCode (code) {
+
+    return new Promise((resolve,reject)=>{
+
+        if (code!=="")
+        {
+            const promoReq = new XMLHttpRequest();
+
+            promoReq.open('POST',`/validatePromo?code=${encodeURI(code)}`,true);
+            promoReq.send();
+
+            promoReq.onreadystatechange = (event) =>{
+            if(promoReq.readyState===4 && promoReq.status === 200)
+            {
+                let promo = JSON.parse(promoReq.response);
+                    if(promo.state==="SUCCESS")
+                    {
+                        resolve({
+                            "valid":promo.valid, 
+                            "promoCode":promo.promoCode,
+                            "amount" : promo.amount
+                        });
+                    }
+                    else
+                    {
+                        resolve({
+                            "valid" : promo.valid
+                        });
+                    }
+                }
+            }
+        }
+        
+    });
+    /*
     if(code === "AMP"){
         return true;
     } else if(code==="") {
@@ -6,6 +40,7 @@ export default function validatePromoCode (code) {
     } else {
         return false;
     }
+    */
 }
 
 /*

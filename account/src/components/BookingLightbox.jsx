@@ -6,6 +6,7 @@ import $ from 'jquery';
 
 import LocationValidation from '../util/LocationValidation';
 import validatePromoCode from '../util/PromoValidation';
+import RemovePromocode from '../util/PromoCode';
 
 class BookingLightbox extends Component {
     constructor(){
@@ -16,14 +17,21 @@ class BookingLightbox extends Component {
             location: null,
             locCodeValid: null,
             device: "microUSB",
+            //------//
             promoCode: null,
-            promoValid: null
+            promoValid: false,
+            promoAmount:null
+            //------//
         };
     }
 
     confirmSession = () => {
         this.props.paramsHandler(this.state);
+        //-----//
+        RemovePromocode(this.state.promoCode,this.props.user);
+        //-----//
     }
+
 
     closeLightbox = () => {
         this.props.aborter();
@@ -80,23 +88,37 @@ class BookingLightbox extends Component {
     }
 
     promoValidator = (_code) => {
-        let result = validatePromoCode(_code.target.value);
-        if(result){
-            this.setState({
-                promoCode: "Amphere Solutions",
-                promoValid: true
-            })
-        } else if (result===null) {
+        //-------//
+        _code.persist();
+        if(_code.target.value===""){
+            $(_code.target).removeClass('error');
             this.setState({
                 promoCode: null,
-                promoValid: null
-            })
-        }else {
-            this.setState({
-                promoCode: "Invalid Code",
-                promoValid: false
-            })
-        }
+                promoAmount: null,
+                promoValid:false
+            });
+        } else{
+            validatePromoCode(_code.target.value).then((result)=>{
+                console.log(result);
+                if(result.valid){
+                    $(_code.target).addClass("success");
+                    this.setState({
+                        promoCode: result.promoCode,
+                        promoAmount:result.amount,
+                        promoValid: true
+                    });
+                } else {
+                    $(_code.target).removeClass("success");
+                    $(_code.target).addClass("error");
+                    this.setState({
+                        promoCode: "Invalid Code",
+                        promoValid: false,
+                        promoAmount:null
+                    });
+                }
+            });
+        }    
+        //------//  
     }
 
     render() {

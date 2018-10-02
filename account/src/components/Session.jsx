@@ -22,7 +22,12 @@ class Session extends Component {
             startTime: 0,
             timeRemain: 0,
             cancelLightboxOpen: false,
-            amount: 10
+            amount: 10,
+            //------//
+            promoValid:false,
+            promoCode:null,
+            promoAmount:null
+            //------//
         }
     }    
 
@@ -52,6 +57,25 @@ class Session extends Component {
             expired: this.props.expired,
             amount: this.props.amount
         });
+        //------//
+        if(this.props.promoValid==='true')
+        {
+            this.setState({
+                promoValid:true,
+                promoCode:this.props.promoCode,
+                promoAmount:this.props.promoAmount
+            });
+            console.log("True chech",this.state);
+        }
+        else
+        {
+            this.setState({
+                promoValid:false,
+                promoCode:this.props.promoCode,
+                promoAmount:this.props.promoAmount
+            });
+        }
+        //------//
     }
 
     componentDidMount() {
@@ -154,6 +178,11 @@ class Session extends Component {
         let device = this.state.device;
         let duration = this.state.duration;
         let timeRemain = this.state.timeRemain;
+        //----//
+        let promoCode = this.state.promoCode;
+        let promoValid = this.state.promoValid;
+        let promoAmount = this.state.promoAmount;
+        //----//
 
         if( timeRemain <= (duration-5) ) {
             if(device==="iOS") {
@@ -164,6 +193,20 @@ class Session extends Component {
                 else amt = 30
             }
         }
+        //-----//
+        if(promoValid)
+        {
+            amt = amt - promoAmount ; 
+            console.log(promoCode);
+            console.log(promoAmount);
+            console.log(amt);
+        }
+        if(amt<0)
+        {
+            amt=0;
+        }
+        //------//
+
 
         return amt;
     }
@@ -181,6 +224,17 @@ class Session extends Component {
                     
                     <p className="session-detail-location"><b>Location Code:</b> {this.state.mid}</p>
                     <p className="session-detail-duration"><b>Duration:</b> {this.state.duration} mins</p>
+                    
+                    {
+                        this.state.promoValid ? 
+                        ( 
+                            <div>
+                                <p className="session-detail-promocode"><b>Promo Code:</b>{this.state.promoCode}</p>
+                                <p className="session-detail-promoamount"><b>Promo Amount:</b>{this.state.promoAmount}</p>
+                            </div>             
+                        ) : (console.log())
+
+                    }
 
                     <div className="session-detail-time">
                         <p className="session-time-counter"><b>{this.state.timeRemain}</b></p>

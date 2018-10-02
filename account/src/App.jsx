@@ -41,7 +41,12 @@ class App extends Component {
           startTime: session.val().startTime,
           activated:session.val().activated,
           expired: session.val().expired,
-          amount: session.val().amount
+          amount: session.val().amount,
+          //--------//
+          promoValid:session.val().promoValid,
+          promoCode:session.val().promoCode,
+          promoAmount:session.val().promoAmount
+          //--------//
         });
       }
     });
@@ -62,7 +67,12 @@ class App extends Component {
         "name" : this.state.name,
         "location" : params.locCode,
         "device" : params.device,
-        "duration" : params.duration
+        "duration" : params.duration,
+        //-------//
+        "promoValid": params.promoValid,
+        "promoCode":params.promoCode,
+        "promoAmount":params.promoAmount
+        //-------//
     }).then((response)=>{
         // this.SessionsHolder.addNewSession({
         //   sid : response.sid,
@@ -94,7 +104,8 @@ class App extends Component {
         {
           this.state.lightboxOpen ? (
             <BookingLightbox paramsHandler={this.paramsHandler.bind(this)} 
-                             aborter={this.lightboxAborter.bind(this)} /> 
+                             aborter={this.lightboxAborter.bind(this)} 
+                             user={this.state.phone} /> 
           ) : console.log()
         }
         <Footer />
