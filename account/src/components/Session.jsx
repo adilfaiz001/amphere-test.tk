@@ -156,8 +156,11 @@ class Session extends Component {
     }
 
     cancelConfirmationDialog = (state) => {
-        this.CalculateAmount();
-        this.setState({ cancelLightboxOpen: state });
+        let amt = this.CalculateAmount();
+        this.setState({ 
+            cancelLightboxOpen: state,
+            amount:amt 
+        });
     }
 
     //  ================================== SESSION TIMING FUNCTION ================================== //
