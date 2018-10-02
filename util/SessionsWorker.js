@@ -1,8 +1,8 @@
 const firebaseSessions = require('./Database');
-const SMSWorker = require('./SMSWorker');
-const SpreadsheetWorker = require('./SpreadsheetWorker');
+//const SMSWorker = require('./SMSWorker');
+//const SpreadsheetWorker = require('./SpreadsheetWorker');
 const ssConfig = require('../config.json');
-const SMSConfig = require('../config.json').smsService;
+//const SMSConfig = require('../config.json').smsService;
 
 var SessionsData = firebaseSessions.firebase.database();
 
@@ -32,16 +32,21 @@ exports.BookSession = function (params) {
                     "isDeleted" : false,
                     "status" : `BOOKED : ${getDateTime()}`,
                     "table" : null,
-                    "amount" : 10
+                    "amount" : 10,
+                    //-----//
+                    "promoValid":params.promoValid,
+                    "promoCode":params.promoCode,
+                    "promoAmount":params.promoAmount
+                    //-----//
                 });
                 
-                SMSWorker.SendSMSSessionOTP(otp, params.phone, SMSConfig.senders.otp).then(()=>{
+                /*SMSWorker.SendSMSSessionOTP(otp, params.phone, SMSConfig.senders.otp).then(()=>{
                     resolve({
                         "success": true,
                         "sid" : sid,
                         "startDate" : date,
                     });
-                });
+                });*/
             }
         });
     });
@@ -133,7 +138,7 @@ exports.CancelSession = function (sid, exp) {
             "isDeleted" : true,
             "status" : `CANCELLED : ${getDateTime()} : ${decodeURI(exp)}`
         });
-        SessionsData.ref().child('sessions').orderByChild('sid').equalTo(sid).once('child_added', (snapshot)=>{
+        /*SessionsData.ref().child('sessions').orderByChild('sid').equalTo(sid).once('child_added', (snapshot)=>{
             SpreadsheetWorker.WriteToSpreadsheet({
                 "ssId" : ssConfig.spreadsheets.records,
                 "sheet" : "Sessions",
@@ -152,7 +157,7 @@ exports.CancelSession = function (sid, exp) {
                     `TTC :: N/A`
                 ]
             });
-        });
+        });*/
         resolve({
             "success":true
         });
@@ -166,7 +171,7 @@ exports.CompleteSession = function (sid) {
             "isDeleted" : true,
             "status" : `COMPLETED : ${getDateTime()}`
         });
-        SessionsData.ref().child('sessions').orderByChild('sid').equalTo(sid).once('child_added', (snapshot)=>{
+        /*SessionsData.ref().child('sessions').orderByChild('sid').equalTo(sid).once('child_added', (snapshot)=>{
             let time = [], ttc = [];
             let date = new Date();
 
@@ -193,7 +198,7 @@ exports.CompleteSession = function (sid) {
                     `TTC :: ${ttc[0]} Hours, ${ttc[1]} Minutes`
                 ]
             });
-        });
+        });*/
         resolve({
             "success":true
         });
