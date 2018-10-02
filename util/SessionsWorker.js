@@ -47,6 +47,11 @@ exports.BookSession = function (params) {
                         "startDate" : date,
                     });
                 });*/
+                resolve({
+                    "success": true,
+                    "sid" : sid,
+                    "startDate" : date,
+                });
             }
         });
     });
