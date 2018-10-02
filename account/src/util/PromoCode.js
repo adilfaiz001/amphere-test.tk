@@ -2,12 +2,12 @@ const firebaseLogin = require('./Database');
 
 export default function RemovePromoCode(code,user)
 {
-    const cpn_db = firebaseLogin.firebase.database();
+    const CouponData = firebaseLogin.firebase.database();
 
     if(code!==null){
 
-        cpn_db.ref().child('coupans').orderByChild('code').equalTo(code).limitToFirst(1).once('child_added',(coupan)=>{
-            cpn_db.ref('coupans/cid-'+code).update({
+        CouponData.ref().child('coupons').orderByChild('code').equalTo(code).limitToFirst(1).once('child_added',(coupon)=>{
+            CouponData.ref('coupons/cid-'+code).update({
                 "code" : null,
                 "amount" : null,
                 "expireDate" : null,

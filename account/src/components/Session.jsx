@@ -65,7 +65,6 @@ class Session extends Component {
                 promoCode:this.props.promoCode,
                 promoAmount:this.props.promoAmount
             });
-            console.log("True chech",this.state);
         }
         else
         {
@@ -75,6 +74,7 @@ class Session extends Component {
                 promoAmount:this.props.promoAmount
             });
         }
+        console.log("True check",this.state);
         //------//
     }
 
@@ -119,6 +119,7 @@ class Session extends Component {
     
     cancelSession = () => {
         this.cancelConfirmationDialog(false);
+        console.log("True check",this.state);
         if(this.state.activated===true){
             if(this.state.timeRemain <= (this.state.duration - 5)){
                 alert("Session cannot be cancelled after more than 5 minutes of activation");
@@ -156,7 +157,6 @@ class Session extends Component {
 
     cancelConfirmationDialog = (state) => {
         this.CalculateAmount();
-        console.log(this.state.amount);
         this.setState({ cancelLightboxOpen: state });
     }
 
@@ -184,7 +184,7 @@ class Session extends Component {
         let promoValid = this.state.promoValid;
         let promoAmount = this.state.promoAmount;
         //----//
-
+        
         if( timeRemain <= (duration-5) ) {
             if(device==="iOS") {
                 if(duration < 50 ) amt = 30;
@@ -195,6 +195,7 @@ class Session extends Component {
             }
         }
         //-----//
+        console.log("Calculate Amount",promoCode,promoValid,promoAmount);
         if(promoValid)
         {
             if (amt<promoAmount)
