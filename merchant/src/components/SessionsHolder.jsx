@@ -107,7 +107,7 @@ class SessionsHolder extends Component {
                         //---------------//
                         promoValid={this.state.sessions[index].promoValid}
                         promoCode={this.state.sessions[index].promoCode}
-                        promoAmount={this.state.session[index].promoAmount}
+                        promoAmount={this.state.sessions[index].promoAmount}
                         //----------------//
                         key={index}
                         complete = {()=>{this.completeSession(index)}}
