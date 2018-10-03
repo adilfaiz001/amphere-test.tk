@@ -12,7 +12,7 @@ class BookingLightbox extends Component {
     constructor(){
         super();
         this.state = {
-            duration: 42,
+            duration: 5,   //testing
             locCode: null,
             location: null,
             locCodeValid: null,
@@ -40,7 +40,7 @@ class BookingLightbox extends Component {
 
     setDuration = (_value) => {
         let set = 0;
-        if(_value===1) set = 42;
+        if(_value===1) set = 5;
         else if(_value===2) set = 62;
 
         this.setState({ duration: set });
@@ -150,7 +150,7 @@ class BookingLightbox extends Component {
                         <div className="toggle-bars">
                             <ButtonToolbar className="duration-bar">
                                 <ToggleButtonGroup onChange={this.setDuration} type="radio" name="options" defaultValue={1} className="toggle-group">
-                                    <ToggleButton className="toggle-btn" value={1}>40 mins</ToggleButton>
+                                    <ToggleButton className="toggle-btn" value={1}>5 mins</ToggleButton>
                                     <ToggleButton className="toggle-btn" value={2}>60 mins</ToggleButton>
                                 </ToggleButtonGroup>
                             </ButtonToolbar>
