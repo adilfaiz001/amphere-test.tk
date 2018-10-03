@@ -19,7 +19,7 @@
 
             <button id="signup-btn" class="button">SIGN UP</button>
 
-            <p>Already have an account? <a href="http://account.amphere.in">Sign In</a></p>
+            <p>Already have an account? <a href="http://account.amphere-test.tk">Sign In</a></p>
         </div>
     </div>
 </div>
@@ -55,7 +55,7 @@
                     if(response.state==="SUCCESS"){
                         console.log("SUCCESS");
                         createLoginToken(response).then(()=> {
-                            window.location = 'http://account.amphere.in/';
+                            window.location = 'http://account.amphere-test.tk/';
                         });
                     } else if(response.state==="PHONE-EXISTS"){
                         $(phone).addClass('error');
