@@ -104,6 +104,11 @@ class SessionsHolder extends Component {
                         dead={this.state.sessions[index].dead}
                         table={this.state.sessions[index].table}
                         amount={this.state.sessions[index].amount}
+                        //---------------//
+                        promoValid={this.state.sessions[index].promoValid}
+                        promoCode={this.state.sessions[index].promoCode}
+                        promoAmount={this.state.session[index].promoAmount}
+                        //----------------//
                         key={index}
                         complete = {()=>{this.completeSession(index)}}
                         cancel = {() => this.cancelSession(index)}

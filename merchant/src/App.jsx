@@ -46,7 +46,12 @@ class App extends Component {
           otp: session.val().otp,
           dead: session.val().dead,
           table: session.val().table,
-          amount: session.val().amount
+          amount: session.val().amount,
+          //--------------//
+          promoValid:session.val().promoValid,
+          promoCode:session.val().promoCode,
+          promoAmount:session.val().promoAmount
+          //-------------//
         });
         // payload.push(session.val());
         // payload = this.sortSessions(payload.slice());
