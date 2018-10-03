@@ -270,6 +270,14 @@ class Session extends Component {
                 else amt = 30
             }
         }
+        SessionUpdates.ref('sessions/session-' + this.state.sid).on('value',(session)=>{
+            let promoValid = session.child('promoValid').val();
+            console.log('Merchant'+session.child('promoCode').val());
+            if(promoValid=='true')
+            {
+                amt = amt - session.child('promoAmount').val();
+            }
+        });
 
         return amt;
     }
