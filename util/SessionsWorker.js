@@ -48,10 +48,10 @@ exports.BookSession = function (params) {
                     });
                 });*/
                 resolve({
-                    "success": true,
-                    "sid" : sid,
-                    "startDate" : date,
-                });
+                        "success": true,
+                        "sid" : sid,
+                        "startDate" : date,
+                    });
             }
         });
     });

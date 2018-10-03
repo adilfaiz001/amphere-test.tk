@@ -74,7 +74,6 @@ class Session extends Component {
                 promoAmount:this.props.promoAmount
             });
         }
-        console.log("True check",this.state);
         //------//
     }
 
@@ -198,10 +197,9 @@ class Session extends Component {
             }
         }
         //-----//
-        console.log("Calculate Amount",promoCode,promoValid,promoAmount);
         if(promoValid)
         {
-            if (amt<promoAmount)
+            if (amt<=promoAmount)
             {
                 amt=0;
             }
