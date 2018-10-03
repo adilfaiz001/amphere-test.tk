@@ -30,7 +30,12 @@ class Session extends Component {
             preCancelLightboxOpen: false,
             table: null,
             collected: false,
-            amount: 10
+            amount: 10,
+            //-------//
+            promoValid: false,
+            promoCode:null,
+            promoAmount:null
+            //-------//
         }
     }
 
@@ -75,6 +80,24 @@ class Session extends Component {
             table: table_set,
             amount: this.props.amount
         });
+        //------//
+        if(this.props.promoValid==='true')
+        {
+            this.setState({
+                promoValid:true,
+                promoCode:this.props.promoCode,
+                promoAmount:this.props.promoAmount
+            });
+        }
+        else
+        {
+            this.setState({
+                promoValid:false,
+                promoCode:this.props.promoCode,
+                promoAmount:this.props.promoAmount
+            });
+        }
+        //------//
     }
 
     componentDidMount() {
@@ -235,8 +258,10 @@ class Session extends Component {
     }
 
     cancelConfirmationDialog = (state) => {
-        this.CalculateAmount();
-        this.setState({ cancelLightboxOpen: state });
+        let amt = this.CalculateAmount();
+        this.setState({ 
+            cancelLightboxOpen: state,
+            amount : amt });
     }
 
     preCancelConfirmationDialog = (state) => this.setState({preCancelLightboxOpen: state})
@@ -270,15 +295,21 @@ class Session extends Component {
                 else amt = 30
             }
         }
-        SessionUpdates.ref('sessions/session-' + this.state.sid).on('value',(session)=>{
+        //--------------------------------//
+        //@adil//
+        /*SessionUpdates.ref('sessions/session-' + this.state.sid).on('value',(session)=>{
             let promoValid = session.child('promoValid').val();
             console.log('Merchant'+session.child('promoCode').val());
             if(promoValid=='true')
             {
                 amt = amt - session.child('promoAmount').val();
             }
-        });
-
+        });*/
+        if(this.state.promoValid)
+        {
+            amt = amt - this.state.promoAmount;
+        }
+        //---------------------------------//
         return amt;
     }
 
@@ -302,6 +333,11 @@ class Session extends Component {
                                 <button className="button" onClick={() => this.setCollected()}>EQUIPMENT COLLECTED</button> 
                                 : 
                                 <h2><b>Amount :</b> Rs {this.state.amount}</h2>
+                            }
+                            {
+                                this.state.promoValid ? (
+                                <h2><b>Promo Code :</b>{this.state.promoCode}</h2>
+                                ) : console.log()
                             }
 
                         </div>

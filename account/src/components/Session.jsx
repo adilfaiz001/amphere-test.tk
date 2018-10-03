@@ -109,6 +109,9 @@ class Session extends Component {
     expire = () => {
         Timer.ref('time').off('value');
         let amt = this.CalculateAmount();
+        //------//
+        SessionFirebase.firebase.database().ref('sessions/session-' + this.state.sid).update({ "amount" : amt });
+        //------//
         this.setState({
             expired: true,
             timeRemain: 0,
