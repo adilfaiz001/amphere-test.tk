@@ -60,6 +60,11 @@ footer {
     color: #b1b1b1;
 }
 
+.textbox:focus
+{
+    outline: none;
+}
+
 /*===================   @MEDIA   =======================*/
 
 @media (min-width: 500px) {
