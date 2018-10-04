@@ -110,6 +110,7 @@ class Session extends Component {
         Timer.ref('time').off('value');
         let amt = this.CalculateAmount();
         //------//
+        console.log("True check",this.state);
         SessionFirebase.firebase.database().ref('sessions/session-' + this.state.sid).update({ "amount" : amt });
         //------//
         this.setState({
@@ -121,7 +122,6 @@ class Session extends Component {
     
     cancelSession = () => {
         this.cancelConfirmationDialog(false);
-        console.log("True check",this.state);
         if(this.state.activated===true){
             if(this.state.timeRemain <= (this.state.duration - 5)){
                 alert("Session cannot be cancelled after more than 5 minutes of activation");
