@@ -9,9 +9,9 @@ exports.addNewSession = (params) => {
         `duration=${params.duration}&` +
         `device=${params.device}&` +
         //------//
-        `promoValid=${encode(params.promoValid)}&` +
-        `promoCode=${encode(params.promoCode)}&` +
-        `promoAmount=${encode(params.promoAmount)}&` +
+        `promoValid=${encodeURI(params.promoValid)}&` +
+        `promoCode=${encodeURI(params.promoCode)}&` +
+        `promoAmount=${encodeURI(params.promoAmount)}&` +
         //-----//
         `verify=true`
         
