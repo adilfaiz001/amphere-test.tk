@@ -26,6 +26,7 @@ const ConsoleScreen = require('./util/ConsoleScreen');
 const Hasher = require('./util/PasswordHasher');
 const Admin = require('./util/Admin');
 const CouponWorker = require('./util/CouponWorker');
+const PasswordWorker = require('./util/PasswordWorker');
 
 //------------------------------------------------------------------------------------------------------//
 // S E R V E R ============================== E X P R E S S =============================== S E R V E R //
@@ -282,9 +283,11 @@ account.post('/userCancelActiveSession', (req, res)=> {
     });
 });
 
- /********************
-  --- Adil Faiz ---
- ********************/
+/********************
+ --- Adil Faiz ---
+********************/
+//-------------------------------------------------------------//
+//coupon worker//
 account.post('/validatePromo',(req,res)=>{
 
     CouponWorker.validateCoupon({
@@ -310,6 +313,49 @@ account.post('/validatePromo',(req,res)=>{
         }
     });
 });
+
+//forget Password Worker//
+account.get('/forget',(req,res)=>{
+    res.render('forget');
+});
+
+account.post('/resetPassword',(req,res,next)=>{
+    PasswordWorker.ResetPassword(req,res,next);
+});
+
+account.get('/reset/:token',(req,res)=>{
+
+    var userData = firebaseSignup.firebase.database();
+    var timestamp = Date.now();
+
+    userData.ref().child('users').orderByChild('resetPasswordToken').equalTo(req.params.token).limitToFirst(1).once('value',(userch)=>{
+
+        if (userch.val()===null)
+        {
+            console.log("Invalid token");
+            req.flash('error', 'Password reset token is invalid or has expired.');
+            return res.redirect('/forget');
+        }
+        else if(userch.child('resetPasswordExpires'.val())<timestamp){
+            console.log('Token Expires');
+            req.flash('error','Password reset token expires');
+            return res.redirect('/forget');
+        }
+        else {
+            console.log("Success! Render to reset page");
+            res.render('reset', {token: req.params.token});
+        }
+        //console.log(userch.val().resetPasswordExpires+"   "+timestamp);
+    });
+});
+
+account.post('/reset/:token',(req,res)=>{
+
+    console.log(req.params.token);
+    console.log(req.body.password+'  '+req.body.confirm);
+    PasswordWorker.UpdatePassword(req,res);
+});
+
 
 
 //===================================================================//

@@ -331,7 +331,9 @@ class Session extends Component {
                             {
                                 !this.state.collected ? 
                                 <button className="button" onClick={() => this.setCollected()}>EQUIPMENT COLLECTED</button> 
-                                : (
+                                : 
+                                //--------------//
+                                (
                                     <div>
                                         <h2><b>Amount :</b> Rs {this.state.amount}</h2>
                                         {
@@ -341,7 +343,8 @@ class Session extends Component {
                                             ) : console.log()
                                         }
                                     </div>
-                                )       
+                                )    
+                                //--------------//   
                             }
                             
 
