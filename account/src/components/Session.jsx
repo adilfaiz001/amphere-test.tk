@@ -109,10 +109,6 @@ class Session extends Component {
     expire = () => {
         Timer.ref('time').off('value');
         let amt = this.CalculateAmount();
-        //------//
-        console.log("True check",this.state);
-        SessionFirebase.firebase.database().ref('sessions/session-' + this.state.sid).update({ "amount" : amt });
-        //------//
         this.setState({
             expired: true,
             timeRemain: 0,
@@ -159,6 +155,10 @@ class Session extends Component {
 
     cancelConfirmationDialog = (state) => {
         let amt = this.CalculateAmount();
+        //------//
+        console.log("True check",this.state);
+        SessionFirebase.firebase.database().ref('sessions/session-' + this.state.sid).update({ "amount" : amt });
+        //------//
         this.setState({ 
             cancelLightboxOpen: state,
             amount:amt 
