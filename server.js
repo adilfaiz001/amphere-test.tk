@@ -320,6 +320,8 @@ account.post('/validatePromo',(req,res)=>{
 });
 
 //forget Password Worker//
+
+//--------------------------middleware------------------------------//
 account.set('views',path.join(__dirname,'account/account-view'));
 account.set('view engine', 'ejs');
 
@@ -335,6 +337,9 @@ account.use(function(req,res,next){
     res.locals.error = req.flash('error');
     next();
 });
+account.use(express.static(path.join(__dirname,'account/account-view')));
+//--------------------------------------------------------------------//
+
 account.get('/forget',(req,res)=>{
     res.render('forget');
 });
