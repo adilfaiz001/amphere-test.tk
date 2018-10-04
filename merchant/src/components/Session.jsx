@@ -328,16 +328,16 @@ class Session extends Component {
                             <h3><b>Phone:</b> {this.state.userphone}</h3>
                             <p>This session has expired. Please collect the equipment from the user.</p>
 
-                            {
+                            {   
                                 !this.state.collected ? 
                                 <button className="button" onClick={() => this.setCollected()}>EQUIPMENT COLLECTED</button> 
-                                : 
-                                <h2><b>Amount :</b> Rs {this.state.amount}</h2>
-                                {
-                                    this.state.promoValid ? (
-                                    <h2><b>Promo Code :</b>{this.state.promoCode}</h2>
-                                    ) : console.log()
-                                }
+                                : (
+                                    <h2><b>Amount :</b> Rs {this.state.amount}</h2>
+                                    
+                                    this.state.promoValid ? ( <h2><b>Promo Code :</b>{this.state.promoCode}</h2>) : console.log()
+                                    
+                                )
+
                             }
                             
 
