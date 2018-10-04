@@ -333,12 +333,13 @@ class Session extends Component {
                                 <button className="button" onClick={() => this.setCollected()}>EQUIPMENT COLLECTED</button> 
                                 : 
                                 <h2><b>Amount :</b> Rs {this.state.amount}</h2>
+                                {
+                                    this.state.promoValid ? (
+                                    <h2><b>Promo Code :</b>{this.state.promoCode}</h2>
+                                    ) : console.log()
+                                }
                             }
-                            {
-                                this.state.promoValid ? (
-                                <h2><b>Promo Code :</b>{this.state.promoCode}</h2>
-                                ) : console.log()
-                            }
+                            
 
                         </div>
                     ) : console.log()
