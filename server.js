@@ -4,6 +4,11 @@ const path = require('path');
 const handle = require('express-handlebars');
 const express = require('express');
 const vhost = require('vhost');
+//-----//
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const flash = require('express-flash');
+//-----//
 
 const ServerConfig = require('./config.json');
 const ServerState = ServerConfig.ServerState;
@@ -315,6 +320,21 @@ account.post('/validatePromo',(req,res)=>{
 });
 
 //forget Password Worker//
+account.set('views',path.join(__dirname,'account/account-view'));
+account.set('view engine', 'ejs');
+
+account.use(cookieParser('secret'));
+account.use(session({
+    secret: "Once again Rusty wins dog!",
+    resave: false,
+    saveUninitialized : false
+}));
+account.use(flash());
+account.use(function(req,res,next){
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+});
 account.get('/forget',(req,res)=>{
     res.render('forget');
 });
@@ -324,7 +344,7 @@ account.post('/resetPassword',(req,res,next)=>{
 });
 
 account.get('/reset/:token',(req,res)=>{
-
+    const firebaseSignup = require('./util/Database');
     var userData = firebaseSignup.firebase.database();
     var timestamp = Date.now();
 
@@ -350,7 +370,6 @@ account.get('/reset/:token',(req,res)=>{
 });
 
 account.post('/reset/:token',(req,res)=>{
-
     console.log(req.params.token);
     console.log(req.body.password+'  '+req.body.confirm);
     PasswordWorker.UpdatePassword(req,res);
