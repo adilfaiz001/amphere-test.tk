@@ -21,18 +21,12 @@
             <% include partials/flash %>
             <div>
               <p class="reset">Enter your email to reset password</p>
-              <form class="form-group" action="/resetPassword" method="post"></form>
+              <form class="form-group" action="/resetPassword" method="post">
                   <input id="email" type="text" name="email" value="" placeholder="Email" autofocus spellcheck="false">
-                  <input id="reset-button" type="submit" name="reset" value="Reset Passowrd">
+                  <input id="reset-button" type="submit" name="reset" value="Reset Password">
               </form>
             </div>
           </div>
     </div>
 </body>
-<script>
-  document.getElementById('reset-button').onclick = function()
-  {
-    console.log(document.getElementById('email').value);
-  }
-</script>
 </html>
