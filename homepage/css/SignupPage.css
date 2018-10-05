@@ -67,7 +67,10 @@ p {
     background: #fff;
 } .textbox::placeholder {
     color: #b1b1b1;
-}  
+}  .textbox:focus
+{
+    outline: none;
+}
 
 .error {
     border-color: #ff0000;
