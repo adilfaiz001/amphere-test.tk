@@ -1,6 +1,6 @@
 function generateSignupQueryURL(query) {
     return (
-        `email=${query.email}&`
+        `email=${query.email}&` +
         `phone=${query.phone}&` +
         `name=${encodeURI(query.name)}&` +
         `password=${encodeURI(query.password)}&` +
