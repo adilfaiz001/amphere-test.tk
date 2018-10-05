@@ -18,7 +18,6 @@ exports.ResetPassword = function(req,res,next){
     function(token,done){
       console.log('Password Reset Initialize');
       userData.ref().child('users').orderByChild('email').equalTo(req.body.email).once('value',(userch,err)=>{
-        console.log(userch.val());
         if(userch.val() === null)
         {
           console.log('No user account');
@@ -30,6 +29,7 @@ exports.ResetPassword = function(req,res,next){
         {
           let uid = userch.child('uid').val();  
           let email = userch.child('email').val();
+          console.log(uid,email)
           userData.ref('users/user-'+uid).update({
             "resetPasswordToken" : token,
             "resetPasswordExpires" : Date.now() + 3600000

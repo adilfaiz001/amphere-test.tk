@@ -350,7 +350,6 @@ account.get('/forget',(req,res)=>{
 });
 
 account.post('/resetPassword',(req,res,next)=>{
-    console.log(req.body);
     PasswordWorker.ResetPassword(req,res,next);
 });
 
