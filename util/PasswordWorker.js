@@ -36,7 +36,6 @@ exports.ResetPassword = function(req,res,next){
           }
           var uid = user[key]['uid'];
           var email = user[key]['email'];
-          console.log(uid,email);
 
           userData.ref('users/user-'+uid).update({
             "resetPasswordToken" : token,
@@ -54,6 +53,7 @@ exports.ResetPassword = function(req,res,next){
           pass: 'ArpitGujjar@123'
         }
       });
+      console.log(email);
       var mailOptions = {
         to: email,
         from: 'amphere.solutions@gmail.com',
