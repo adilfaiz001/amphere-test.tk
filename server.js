@@ -8,6 +8,7 @@ const vhost = require('vhost');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const flash = require('express-flash');
+const bodyParser = require('body-parser');
 //-----//
 
 const ServerConfig = require('./config.json');
@@ -328,6 +329,7 @@ account.post('/validatePromo',(req,res)=>{
 account.set('views',path.join(__dirname,'account/account-view'));
 account.set('view engine', 'ejs');
 
+account.use(bodyParser.urlencoded({extended:true}));
 account.use(cookieParser('secret'));
 account.use(session({
     secret: "Once again Rusty wins dog!",
@@ -348,7 +350,7 @@ account.get('/forget',(req,res)=>{
 });
 
 account.post('/resetPassword',(req,res,next)=>{
-    console.log(req,res);
+    console.log(req.body);
     PasswordWorker.ResetPassword(req,res,next);
 });
 
