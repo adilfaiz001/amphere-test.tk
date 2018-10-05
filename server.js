@@ -175,7 +175,7 @@ homepage.post('/onboarding', (req, res) => {
 });
 homepage.post('/signupWorker', (req, res) => {
     let params = getParameters(req);
-    console.log(params)
+    console.log(params);
     SignupWorker.CreateNewUser({
         "email": params.email,
         "phone" : params.phone,
@@ -183,6 +183,7 @@ homepage.post('/signupWorker', (req, res) => {
         "password" : params.password,
         "verify" : params.verify
     }).then( _res => {
+        console.log(_res);
         if(_res.success===true){
             res.status(200).json({
                 "state" : "SUCCESS",

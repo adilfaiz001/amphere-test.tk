@@ -33,7 +33,7 @@
     
     document.getElementById("signup-btn").onclick = function () {
         validityState = validateInputs(phone.value, _name.value, password.value, confPassword.value);
-        
+        console.log("Validate",validityState);
         if(validityState===true){
             $(email).removeClass('error');
             $(phone).removeClass('error');
@@ -48,7 +48,7 @@
                 "name" : _name.value,
                 "password" : password.value
             });
-
+            console.log(url);
             request.open('POST', `/signupWorker?${url}`, true);
             request.send();
 
