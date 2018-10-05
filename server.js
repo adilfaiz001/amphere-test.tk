@@ -366,7 +366,7 @@ account.get('/reset/:token',(req,res)=>{
             req.flash('error', 'Password reset token is invalid or has expired.');
             return res.redirect('/forget');
         }
-        else if(userch.child('resetPasswordExpires'.val())<timestamp){
+        else if(userch.val().resetPasswordExpires<timestamp){
             console.log('Token Expires');
             req.flash('error','Password reset token expires');
             return res.redirect('/forget');

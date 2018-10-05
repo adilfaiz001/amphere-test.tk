@@ -28,9 +28,16 @@ exports.ResetPassword = function(req,res,next){
 
         else
         {
-          let uid = userch.child('uid').val();  
-          let email = userch.child('email').val();
-          console.log(uid,email)
+          var user = userch.val();
+          var key;
+          for(var field in user)
+          {
+            key = field;
+          }
+          var uid = user[key]['uid'];
+          var email = user[key]['email'];
+          console.log(uid,email);
+
           userData.ref('users/user-'+uid).update({
             "resetPasswordToken" : token,
             "resetPasswordExpires" : Date.now() + 3600000
@@ -81,16 +88,22 @@ exports.UpdatePassword = function(req,res)
           req.flash('error', 'Password reset token is invalid.');
           return res.redirect('back');
         }
-        else if(userch.child('resetPasswordExpires').val()<timestamp){
+        else if(userch.val().resetPasswordExpires<timestamp){
           console.log('Token Expires');
           req.flash('error','Password reset token expires');
           return res.redirect('/forget');
         }
         else if(req.body.password === req.body.confirm){
 
-          let uid = userch.child('uid').val();
-          let email = userch.child('email').val();
-          let salt = userch.child('salt').val();
+          var user = userch.val();
+          var key;
+          for(var field in user)
+          {
+            key = field;
+          }
+          var uid = user[key]['uid'];
+          var email = user[key]['email'];
+          var salt = user[key]['salt'];
           let hash = Hasher.generateHash(req.body.password,salt);
 
           userData.ref('users/user-'+uid).update({
