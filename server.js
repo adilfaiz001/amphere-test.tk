@@ -619,7 +619,7 @@ admin.post('/u/coupons',(req,res)=>{
                 });
             } else {
                 res.status(200).json({
-                    "state":"FAILED"
+                    "state":"EXISTS"
                 });
             }
         });
