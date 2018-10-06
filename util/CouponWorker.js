@@ -23,13 +23,6 @@ exports.generateCoupons = function(params)
         });
 
         if(coupons!==null) {
-            //for(var i =0;i<count;i++)
-            /**
-             * @author Alisamar Husain
-             * Deprecated traditional for loops
-             * Use forEach instead
-            */
-
             coupons.forEach(coupon => {
                 CouponsData.ref('coupons/cid-' + coupon).set({
                     "addedOn": getDateTime(),
@@ -52,6 +45,26 @@ exports.generateCoupons = function(params)
     });
 }
 
+exports.generateSelfCoupon = function()
+{
+    let coupon = params.coupon;
+
+    return new Promise((resolve,reject)=>{
+        let cid = generateCID();
+        if(coupon !== null || coupon !== "")
+        {
+            CouponData.ref('coupons/cid-' + cid).set({
+                "addedOn": getDateTime(),
+                "code" : coupon,
+                "amount" : 20,
+                "expireDate" : null,
+                "isActive" : true,
+                "isDeleted": false
+            });
+        }
+    });
+
+}
 
 exports.validateCoupon = function(params)
 {
@@ -100,4 +113,39 @@ function getDateTime() {
     var day  = (date.getDate() < 10 ? "0" : "") + date.getDate();
 
     return ( `${hour}:${min}:${sec} ${day}/${month}/${year}`);
+}
+
+function generateCID() {
+    var userId = "";
+    var date = new Date();
+
+    var min  = (date.getMinutes() < 10 ? "0" : "") + date.getMinutes();
+    var sec  = (date.getSeconds() < 10 ? "0" : "") + date.getSeconds();
+    var mon = ((date.getMonth() + 1) < 10 ? "0" : "") + (date.getMonth() + 1);
+    var day  = (date.getDate() < 10 ? "0" : "") + date.getDate();
+
+    var dateOrder = [ mon, day, min, sec ];
+
+        // GEN 8 RANDOM HEX
+        for(var i=0 ; i<8 ; i++){
+            userId = userId + Math.floor(Math.random()*16).toString(16); 
+        }
+        // GEN 2 DEFINED DATE
+        for(var i=0 ; i<2 ; i++){
+            userId = userId + dateOrder[Math.floor(Math.random()*2)].toString(); 
+        }
+        // GEN 8 RANDOM HEX
+        for(var i=0 ; i<8 ; i++){
+            userId = userId + Math.floor(Math.random()*16).toString(16); 
+        }
+        // GEN 2 DEFINED DATE
+        for(var i=0 ; i<2 ; i++){
+            userId = userId + dateOrder[Math.floor(Math.random()*2 + 2)].toString(); 
+        }
+
+    // if(){
+
+    // } else {
+        return userId;
+    //}
 }

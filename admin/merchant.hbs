@@ -29,7 +29,7 @@
 <div class="coupons-admin">
         <div class="coupons-generate">
             <h1>Coupons Generation</h1>
-            <h2>Click on the button to generate coupons</h2>
+            <h2>Click on the button to generate random coupons</h2>
             <input type="text" class="textbox" id="count" placeholder="Number of Coupons"><br>
             <input type="text" class="textbox" id="length" placeholder="Length of Coupons"><br>
             <input type="text" class="textbox" id="pattern" placeholder="Pattern 1111-1111 in accordance with length"><br>
@@ -38,6 +38,17 @@
         <div class="coupons" id="coupons-check">
 
         </div>
+</div>
+
+<div style="height:5px;background-color:black;"></div>
+<div class="coupons-admin">
+    <div class="coupons-generate">
+        <h1>Coupons Generation II</h1>
+        <h2>Input coupon and click generate</h2>
+        <input type="text" class="textbox" id="self-coupon" placeholder="Input Coupon">
+        <button id="self-coupon-btn">Generate</button>
+    </div>
+    <div class="coupons" id="coupon-status"></div>
 </div>
 <!-- =================================================================================================-->
 
@@ -157,7 +168,8 @@
             const genReq = new XMLHttpRequest();
             let url = `count=${encodeURI(count.value)}&` +
                       `len=${encodeURI(len.value)}&` +
-                      `pattern=${encodeURI(pattern.value)}`;
+                      `pattern=${encodeURI(pattern.value)}&` +
+                      `class=1`;
 
             genReq.open('POST',`/u/coupons?${url}`,true);
             genReq.send();
@@ -187,6 +199,35 @@
             }
         }
       }
+</script>
+
+<script>
+    var coupon = document.getElementById('self-coupon');
+
+    if (coupon.value !== "")
+    {
+        const request = new XMLHttpRequest();
+        let url = `coupon=${encodeURI()}&` +
+                  `class=2`;
+
+        request.open('POST',`/u/coupons?${url}`,true);
+        request.send();
+
+        request.onreadystatechange = e => {
+            if(request.readyState === 4 && request.status === 200){
+                let _res = JSON.parse(request.response);
+                if(_res.state === "SUCCESS"){
+                    var div = document.createElement('div');
+                    var text = document.createTextNode("SUCCESS! Coupon Saved in Database");
+                    div.appendChild(text);
+                    document.getElementById('coupon-status').appendChild(div);
+                }
+            }
+        }
+
+
+    }
+
 </script>
 <!-- =================================================================================================-->
 
