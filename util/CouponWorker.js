@@ -54,7 +54,7 @@ exports.generateSelfCoupon = function(params)
         let cid = generateCID();
         if(coupon !== null || coupon !== "")
         {
-            CouponData.ref('coupons/cid-' + cid).set({
+            CouponsData.ref('coupons/cid-' + cid).set({
                 "addedOn": getDateTime(),
                 "code" : coupon,
                 "amount" : 20,

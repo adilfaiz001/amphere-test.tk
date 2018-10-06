@@ -209,7 +209,7 @@
         if (coupon.value !== "")
         {
             const request = new XMLHttpRequest();
-            let url = `coupon=${encodeURI(coupon)}&` +
+            let url = `coupon=${encodeURI(coupon.value)}&` +
                     `class=2`;
 
             request.open('POST',`/u/coupons?${url}`,true);
