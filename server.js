@@ -590,7 +590,7 @@ admin.post( '/u/addMerchant', (req, res)=>{
 admin.post('/u/coupons',(req,res)=>{
     let params = getParameters(req);
     console.log(params);
-    if (params.class === 1) {
+    if (params.class === '1') {
         CouponWorker.generateCoupons({
             "len":decodeURI(params.len),
             "count":decodeURI(params.count),
@@ -608,10 +608,21 @@ admin.post('/u/coupons',(req,res)=>{
             }
         });
     } 
-    else if(params.class === 2){
+    else if(params.class === '2'){
         CouponWorker.generateSelfCoupon({
             "coupon":decodeURI(params.coupon)
-        })
+        }).then((_res)=>{
+            if(_res.success === true)
+            {
+                res.status(200).json({
+                    "state":"SUCCESS"
+                });
+            } else {
+                res.status(200).json({
+                    "state":"FAILED"
+                });
+            }
+        });
     } 
   });
 //-------------------------------------------------------------------//

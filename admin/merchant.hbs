@@ -209,7 +209,7 @@
         if (coupon.value !== "")
         {
             const request = new XMLHttpRequest();
-            let url = `coupon=${encodeURI()}&` +
+            let url = `coupon=${encodeURI(coupon)}&` +
                     `class=2`;
 
             request.open('POST',`/u/coupons?${url}`,true);
@@ -223,6 +223,8 @@
                         var text = document.createTextNode("SUCCESS! Coupon Saved in Database");
                         div.appendChild(text);
                         document.getElementById('coupon-status').appendChild(div);
+                    } else {
+                        alert("ERROR: Coundn't store coupon in database, contact developer.")
                     }
                 }
             }

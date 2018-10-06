@@ -61,6 +61,13 @@ exports.generateSelfCoupon = function()
                 "isActive" : true,
                 "isDeleted": false
             });
+            resolve({
+                'success':true
+            });
+        } else {
+            resolve({
+                'success':false
+            })
         }
     });
 
