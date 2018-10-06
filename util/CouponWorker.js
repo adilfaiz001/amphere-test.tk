@@ -56,8 +56,8 @@ exports.generateSelfCoupon = function(params)
         let cid = generateCID();
         if(coupon !== null || coupon !== "")
         {
-            CouponsData.ref().child('coupons').orderByChild('code').equalTo(coupon).limitToFirst(1).on('value',(couponch)=>{
-                if(couponch === null)
+            CouponsData.ref().child('coupons').orderByChild('code').equalTo(coupon).limitToFirst(1).on('value',(couponres)=>{
+                if(couponres.val() === null)
                 {
                     CouponsData.ref('coupons/cid-' + cid).set({
                         "addedOn": getDateTime(),
