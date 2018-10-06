@@ -52,11 +52,11 @@ exports.generateSelfCoupon = function(params)
     let coupon = params.coupon;
 
     return new Promise((resolve,reject)=>{
-        console.log(coupon)
         let cid = generateCID();
         if(coupon !== null || coupon !== "")
         {
             CouponsData.ref().child('coupons').orderByChild('code').equalTo(coupon).limitToFirst(1).on('value',(couponres)=>{
+                console.log(couponres);
                 if(couponres.val() === null)
                 {
                     CouponsData.ref('coupons/cid-' + cid).set({
@@ -70,10 +70,12 @@ exports.generateSelfCoupon = function(params)
                     resolve({
                         'success':true
                     });
-                } else {
+                } 
+                else
+                {
                     resolve({
                         'success':false
-                    })
+                    });
                 }
             });      
         }
