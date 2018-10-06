@@ -18,7 +18,6 @@ exports.ResetPassword = function(req,res,next){
     function(token,done){
       console.log('Password Reset Initialize');
       userData.ref().child('users').orderByChild('email').equalTo(req.body.email).once('value',(userch,err)=>{
-        console.log(userch.val());
         if(userch.val() === null)
         {
           console.log('No user account');
@@ -53,7 +52,7 @@ exports.ResetPassword = function(req,res,next){
           pass: 'ArpitGujjar@123'
         }
       });
-      console.log(email);
+      console.log(smtpTransport);
       var mailOptions = {
         to: email,
         from: 'amphere.solutions@gmail.com',
