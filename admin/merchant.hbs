@@ -204,29 +204,32 @@
 <script>
     var coupon = document.getElementById('self-coupon');
 
-    if (coupon.value !== "")
+    document.getElementById('self-coupon-btn').onclick = function()
     {
-        const request = new XMLHttpRequest();
-        let url = `coupon=${encodeURI()}&` +
-                  `class=2`;
+        if (coupon.value !== "")
+        {
+            const request = new XMLHttpRequest();
+            let url = `coupon=${encodeURI()}&` +
+                    `class=2`;
 
-        request.open('POST',`/u/coupons?${url}`,true);
-        request.send();
+            request.open('POST',`/u/coupons?${url}`,true);
+            request.send();
 
-        request.onreadystatechange = e => {
-            if(request.readyState === 4 && request.status === 200){
-                let _res = JSON.parse(request.response);
-                if(_res.state === "SUCCESS"){
-                    var div = document.createElement('div');
-                    var text = document.createTextNode("SUCCESS! Coupon Saved in Database");
-                    div.appendChild(text);
-                    document.getElementById('coupon-status').appendChild(div);
+            request.onreadystatechange = e => {
+                if(request.readyState === 4 && request.status === 200){
+                    let _res = JSON.parse(request.response);
+                    if(_res.state === "SUCCESS"){
+                        var div = document.createElement('div');
+                        var text = document.createTextNode("SUCCESS! Coupon Saved in Database");
+                        div.appendChild(text);
+                        document.getElementById('coupon-status').appendChild(div);
+                    }
                 }
             }
         }
-
-
     }
+
+    
 
 </script>
 <!-- =================================================================================================-->
