@@ -45,11 +45,12 @@ exports.generateCoupons = function(params)
     });
 }
 
-exports.generateSelfCoupon = function()
+exports.generateSelfCoupon = function(params)
 {
     let coupon = params.coupon;
 
     return new Promise((resolve,reject)=>{
+        console.log(coupon)
         let cid = generateCID();
         if(coupon !== null || coupon !== "")
         {
@@ -67,7 +68,7 @@ exports.generateSelfCoupon = function()
         } else {
             resolve({
                 'success':false
-            })
+            });
         }
     });
 
