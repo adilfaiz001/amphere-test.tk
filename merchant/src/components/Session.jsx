@@ -307,7 +307,14 @@ class Session extends Component {
         });*/
         if(this.state.promoValid)
         {
-            amt = amt - this.state.promoAmount;
+            if (amt<=this.state.promoAmount)
+            {
+                amt=0;
+            }
+            else
+            {
+                amt = amt - this.state.promoAmount ;
+            }
         }
         //---------------------------------//
         return amt;
