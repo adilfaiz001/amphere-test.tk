@@ -610,7 +610,7 @@ admin.post('/u/coupons',(req,res)=>{
     } 
     else if(params.class === 2){
         CouponWorker.generateSelfCoupon({
-            "coupon":decodeURI(params.coupon);
+            "coupon":decodeURI(params.coupon)
         })
     } 
   });
