@@ -1,7 +1,7 @@
 const firebaseLogin = require('./Database');
-const async = require('../node_modules/async');
+const async = require('async');
 const crypto = require('crypto');
-const nodemailer = require('../node_modules/nodemailer');
+const nodemailer = require('nodemailer');
 const Hasher = require('./PasswordHasher');
 
 const userData = firebaseLogin.firebase.database();
