@@ -339,7 +339,7 @@ class Session extends Component {
                                         {
                                             this.state.promoValid ?
                                             ( 
-                                                <h2><b>Promo Code :</b>{this.state.promoCode}</h2>
+                                                <h3><b>Promo Code :</b>{this.state.promoCode}</h3>
                                             ) : console.log()
                                         }
                                     </div>
