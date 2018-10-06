@@ -23,8 +23,9 @@ exports.generateCoupons = function(params)
         });
 
         if(coupons!==null) {
-            let cid = generateCID();
+            
             coupons.forEach(coupon => {
+                let cid = generateCID();
                 CouponsData.ref('coupons/cid-' + cid).set({
                     "addedOn": getDateTime(),
                     "code" : coupon,
