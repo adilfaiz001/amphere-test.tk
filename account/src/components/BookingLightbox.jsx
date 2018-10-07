@@ -12,7 +12,7 @@ class BookingLightbox extends Component {
     constructor(){
         super();
         this.state = {
-            duration: 5,   //testing
+            duration: 42,   //testing
             locCode: null,
             location: null,
             locCodeValid: null,
@@ -40,7 +40,7 @@ class BookingLightbox extends Component {
 
     setDuration = (_value) => {
         let set = 0;
-        if(_value===1) set = 5;
+        if(_value===1) set = 42;
         else if(_value===2) set = 62;
 
         this.setState({ duration: set });
