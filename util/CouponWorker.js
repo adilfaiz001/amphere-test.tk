@@ -54,7 +54,7 @@ exports.generateSelfCoupon = function(params)
     return new Promise((resolve,reject)=>{
         let cid = generateCID();
         CouponsData.ref().child('coupons').orderByChild('code').equalTo(coupon).limitToFirst(1).once('value',(couponres)=>{
-            console.log(couponres.val());
+        
             if(couponres.val() === null)
             {
                 CouponsData.ref('coupons/cid-' + cid).set({
@@ -63,7 +63,8 @@ exports.generateSelfCoupon = function(params)
                     "amount" : 20,
                     "expireDate" : null,
                     "isActive" : true,
-                    "isDeleted": false
+                    "isDeleted": false,
+                    "cid" : cid
                 });
                 resolve({
                     'success':true
