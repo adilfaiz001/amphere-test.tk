@@ -5,8 +5,9 @@ export default function RemovePromoCode(code,user)
     const CouponData = firebaseLogin.firebase.database();
 
     if(code!==null){
-        CouponData.ref().child('coupons').orderByChild('code').equalTo(code).limitToFirst(1).once('value',(coupon)=>{
+        CouponData.ref().child('coupons').orderByChild('code').equalTo(code).limitToFirst(1).once('child_added',(coupon)=>{
             console.log(coupon.val());
+            console.log(coupon.child('cid').val());
             CouponData.ref('coupons/cid-'+coupon.val().cid).update({
                 "code" : null,
                 "amount" : null,

@@ -32,7 +32,8 @@ exports.generateCoupons = function(params)
                     "amount" : 20,
                     "expireDate" : null,
                     "isActive" : true,
-                    "isDeleted": false
+                    "isDeleted": false,
+                    "cid" : cid
                 });
             });
             resolve({
