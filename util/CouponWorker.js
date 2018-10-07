@@ -53,32 +53,31 @@ exports.generateSelfCoupon = function(params)
 
     return new Promise((resolve,reject)=>{
         let cid = generateCID();
-        if(coupon !== null || coupon !== "")
-        {
-            CouponsData.ref().child('coupons').orderByChild('code').equalTo(coupon).limitToFirst(1).on('value',(couponres)=>{
-                console.log(couponres);
-                if(couponres.val() === null)
-                {
-                    CouponsData.ref('coupons/cid-' + cid).set({
-                        "addedOn": getDateTime(),
-                        "code" : coupon,
-                        "amount" : 20,
-                        "expireDate" : null,
-                        "isActive" : true,
-                        "isDeleted": false
-                    });
-                    resolve({
-                        'success':true
-                    });
-                } 
-                else
-                {
-                    resolve({
-                        'success':false
-                    });
-                }
-            });      
-        }
+        
+        CouponsData.ref().child('coupons').orderByChild('code').equalTo(coupon).limitToFirst(1).once('value',(couponres)=>{
+            console.log(couponres);
+            if(couponres.val() === null)
+            {
+                CouponsData.ref('coupons/cid-' + cid).set({
+                    "addedOn": getDateTime(),
+                    "code" : coupon,
+                    "amount" : 20,
+                    "expireDate" : null,
+                    "isActive" : true,
+                    "isDeleted": false
+                });
+                resolve({
+                    'success':true
+                });
+            } 
+            else
+            {
+                resolve({
+                    'success':false
+                });
+            }
+        });      
+        
     });
 
 }
