@@ -18,6 +18,7 @@ class BookingLightbox extends Component {
             locCodeValid: null,
             device: "microUSB",
             //------//
+            user:null,
             promoCode: null,
             promoValid: false,
             promoAmount:null
@@ -56,6 +57,12 @@ class BookingLightbox extends Component {
         }
         this.setState({
             device: set
+        });
+    }
+
+    setUser = () => {
+        this.setState({
+            user:this.props.user
         });
     }
 
@@ -168,7 +175,7 @@ class BookingLightbox extends Component {
                                 required="true"
                                 className="textbox-small"
                                 placeholder="Promo Code (Optional)"
-                                onChange={(code) => this.promoValidator(code,this.props.user)}/>
+                                onChange={(code) => {this.setDevice; this.promoValidator(code,this.state.user); }}/>
                         </div>
 
                         <p className="info">After booking the session, you will receive
