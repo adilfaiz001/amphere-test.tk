@@ -67,7 +67,7 @@ class LoginPage extends Component {
                     <a id="forget-btn" href="/forget">Forgot Password?</a>
                     <button className="button" onClick={this.validateLogin.bind(this)}>SIGN IN</button>
 
-                    <p>Don't have an account? <a href="https://amphere-test.tk/signup">Sign Up</a></p>
+                    <p>Don't have an account? <a href="http://amphere-test.tk/signup">Sign Up</a></p>
                 </div>
             </div>
             
