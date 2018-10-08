@@ -8,7 +8,7 @@ export default function RemovePromoCode(code,user)
             var count = coupon.child('count').val();
             if(count>0)
             {
-                CouponsData.ref('coupons/cid-' + coupon.child('cid').val()).update({
+                CouponData.ref('coupons/cid-' + coupon.child('cid').val()).update({
                     "count":count-1
                 });
             }
