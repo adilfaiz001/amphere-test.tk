@@ -150,6 +150,7 @@ exports.validateCoupon = function(params)
                 }
                 else if(user_type === 'general')
                 {
+                    console.log(coupons.val());
                     UserData.ref().child('users').orderByChild('phone').equalTo(phone).limitToFirst(1).once('child_added',(userch)=>{
                         var coupon_count = userch.child('coupon-count').val();
                         console.log(userch.val());
