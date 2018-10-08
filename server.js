@@ -296,7 +296,7 @@ account.post('/userCancelActiveSession', (req, res)=> {
 //<adil>
 //coupon routes//
 account.post('/validatePromo',(req,res)=>{
-
+    console.log(req.query);
     CouponWorker.validateCoupon({
         "code":decodeURI(req.query.code),
         "userphone" : decodeURI(req.query.user)
