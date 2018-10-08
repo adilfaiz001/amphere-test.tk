@@ -124,7 +124,6 @@ exports.validateCoupon = function(params)
 {
     let promoCode = params.code;
     let phone = params.userphone;
-    console.log(phone);
     return new Promise((resolve,reject)=>{
         CouponsData.ref().child('coupons').orderByChild('code').equalTo(promoCode).limitToFirst(1)
         .once('value').then((coupons)=>{
@@ -149,9 +148,9 @@ exports.validateCoupon = function(params)
                 }
                 else if(user_type === 'general')
                 {
-                    CouponsData.ref().child('users').orderByChild('phone').equalTo(phone).limitToFirst(1).once('child_added',(userch)=>{
+                    UserData.ref().child('users').orderByChild('phone').equalTo(phone).limitToFirst(1).once('child_added',(userch)=>{
                         var coupon_count = userch.child('coupon-count').val();
-                        console.log(userch.val());
+                        console.log(coupon_count);
                         if (coupon_count > 0 )
                         {
                             resolve({
