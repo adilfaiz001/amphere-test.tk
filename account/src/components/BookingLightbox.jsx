@@ -12,7 +12,7 @@ class BookingLightbox extends Component {
     constructor(){
         super();
         this.state = {
-            duration: 42,   //testing
+            duration: 42,  
             locCode: null,
             location: null,
             locCodeValid: null,
