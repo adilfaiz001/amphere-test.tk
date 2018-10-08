@@ -202,9 +202,9 @@ class Session extends Component {
         //-----//
         if(promoValid)
         {
-            if (amt<=promoAmount)
+            if (duration === 40 || amt <= promoAmount)
             {
-                amt=0;
+                amt = 0;
             }
             else
             {
