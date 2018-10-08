@@ -148,7 +148,7 @@ class BookingLightbox extends Component {
                         <div className="toggle-bars">
                             <ButtonToolbar className="duration-bar">
                                 <ToggleButtonGroup onChange={this.setDuration} type="radio" name="options" defaultValue={1} className="toggle-group">
-                                    <ToggleButton className="toggle-btn" value={1}>42 mins</ToggleButton>
+                                    <ToggleButton className="toggle-btn" value={1}>40 mins</ToggleButton>
                                     <ToggleButton className="toggle-btn" value={2}>60 mins</ToggleButton>
                                 </ToggleButtonGroup>
                             </ButtonToolbar>
