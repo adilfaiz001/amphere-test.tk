@@ -1,7 +1,6 @@
 export default function validatePromoCode (code,user) {
     
     return new Promise((resolve,reject)=>{
-        console.log(code,user);
         if (code!=="")
         {
             const promoReq = new XMLHttpRequest();

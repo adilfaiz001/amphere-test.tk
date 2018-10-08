@@ -177,6 +177,8 @@ exports.validateCoupon = function(params)
                 });
             }
         });
+    }).catch((err)=>{
+        console.log(err);
     });
 }
 
