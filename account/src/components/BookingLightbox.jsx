@@ -169,7 +169,7 @@ class BookingLightbox extends Component {
                                 required="true"
                                 className="textbox-small"
                                 placeholder="Promo Code (Optional)"
-                                onChange={(_user) => this.promoValidator(_code,this.state.user)}/>
+                                onChange={(_user) => this.promoValidator(this.state.user)}/>
                         </div>
 
                         <p className="info">After booking the session, you will receive
