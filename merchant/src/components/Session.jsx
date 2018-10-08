@@ -285,6 +285,11 @@ class Session extends Component {
         let device = this.state.device;
         let duration = this.state.duration;
         let timeRemain = this.state.timeRemain;
+        //------//
+        let promoCode = this.state.promoCode;
+        let promoValid = this.state.promoValid;
+        let promoAmount = this.state.promoAmount;
+        //------//
 
         if( timeRemain <= (duration-5) ) {
             if(device==="iOS") {
@@ -295,28 +300,19 @@ class Session extends Component {
                 else amt = 30
             }
         }
-        //--------------------------------//
-        //@adil//
-        /*SessionUpdates.ref('sessions/session-' + this.state.sid).on('value',(session)=>{
-            let promoValid = session.child('promoValid').val();
-            console.log('Merchant'+session.child('promoCode').val());
-            if(promoValid=='true')
-            {
-                amt = amt - session.child('promoAmount').val();
-            }
-        });*/
-        if(this.state.promoValid)
+        //------//
+        if(promoValid)
         {
-            if (amt<=this.state.promoAmount)
+            if (duration < 50 || amt <= promoAmount)
             {
-                amt=0;
+                amt = 0;
             }
             else
             {
-                amt = amt - this.state.promoAmount ;
+                amt = amt - promoAmount ;
             }
         }
-        //---------------------------------//
+        //-------//
         return amt;
     }
 
