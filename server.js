@@ -298,7 +298,8 @@ account.post('/userCancelActiveSession', (req, res)=> {
 account.post('/validatePromo',(req,res)=>{
 
     CouponWorker.validateCoupon({
-        "code":decodeURI(req.query.code)
+        "code":decodeURI(req.query.code),
+        "userphone" : decodeURI(req.query.phone)
     }).then((_res)=>{
         
         if(_res.success === true)

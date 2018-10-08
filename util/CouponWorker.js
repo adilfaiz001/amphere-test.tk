@@ -3,6 +3,8 @@
 ********************/
 
 const CouponsData = require('./Database').firebase.database();
+const UserData = require('/Database').firebase.database();
+
 const voucher_codes = require('voucher-code-generator');
 
 exports.generateCoupons = function(params)
@@ -121,13 +123,14 @@ exports.generateGenCoupon = function(params)
 exports.validateCoupon = function(params)
 {
     let promoCode = params.code;
+    let phone = params.phone;
 
     return new Promise((resolve,reject)=>{
 
         CouponsData.ref().child('coupons').orderByChild('code').equalTo(promoCode).limitToFirst(1)
         .once('value').then((coupons)=>{
             if (coupons.val()!==null)
-            {
+            {   
                 var coupon = coupons.val();
                 var key;
                 for(var field in coupon){
@@ -135,18 +138,41 @@ exports.validateCoupon = function(params)
                 }
                 var code = coupon[key]['code'];
                 var amount = coupon[key]['amount'];
+                var user_type = coupon[key]['user'];
 
-                resolve({
-                    "success": true,
-                    "promoCode":code,
-                    "amount":amount
-                });
+                if(user_type === 'unique')
+                {
+                    resolve({
+                        "success": true,
+                        "promoCode":code,
+                        "amount":amount
+                    });
+                }
+                else if(user_type === 'general')
+                {
+                    UserData.ref().child('users').orderByChild('phone').equalTo(phone).limitToFirst(1).once('child_added',(userch)=>{
+                        var coupon_count = userch.child('coupon-count').val();
+                        if (coupon_count > 0 )
+                        {
+                            resolve({
+                                "success": true,
+                                "promoCode":code,
+                                "amount":amount
+                            });
+                        }
+                        else{
+                            resolve({
+                                "success":false,
+                            });
+                        }
+                    });
+                }  
             }
             else
             {
                 resolve({
                     "success":false,
-                })
+                });
             }
         });
     });
