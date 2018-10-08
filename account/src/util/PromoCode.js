@@ -1,6 +1,6 @@
 const firebaseLogin = require('./Database');
 
-export default function RemovePromoCode(code,user)
+export default function RemovePromoCode(code,username)
 {
     const CouponData = firebaseLogin.firebase.database();
     const UserData = firebaseLogin.firebase.database();
@@ -9,7 +9,7 @@ export default function RemovePromoCode(code,user)
         CouponData.ref().child('coupons').orderByChild('code').equalTo(code).limitToFirst(1).once('child_added',(coupon)=>{
             
             var user = coupon.child('user').val();
-
+            console.log(user);
             if(user === 'unique')
             {
                 var count = coupon.child('count').val();
@@ -28,7 +28,7 @@ export default function RemovePromoCode(code,user)
                                 "expireDate" : null,
                                 "isActive" : false,
                                 "isDeleted":true,
-                                "username":user,
+                                "username":username,
                                 "count":0
                             });
                         }
