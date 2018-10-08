@@ -64,6 +64,7 @@ class BookingLightbox extends Component {
         this.setState({
             user:this.props.user
         });
+        console.log(this.props.user);
     }
 
     locCodeValidator = (_code) => {
@@ -175,7 +176,7 @@ class BookingLightbox extends Component {
                                 required="true"
                                 className="textbox-small"
                                 placeholder="Promo Code (Optional)"
-                                onChange={(code) => {this.setDevice; this.promoValidator(code,this.state.user); }}/>
+                                onChange={(code) => {this.setUser; this.promoValidator(code,this.state.user); }}/>
                         </div>
 
                         <p className="info">After booking the session, you will receive
