@@ -123,7 +123,7 @@ exports.generateGenCoupon = function(params)
 exports.validateCoupon = function(params)
 {
     let promoCode = params.code;
-    let phone = params.user;
+    let phone = params.userphone;
     console.log(phone);
     return new Promise((resolve,reject)=>{
         CouponsData.ref().child('coupons').orderByChild('code').equalTo(promoCode).limitToFirst(1)
