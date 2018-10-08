@@ -37,7 +37,9 @@ export default function RemovePromoCode(code,user)
             }
             else if(user === 'general')
             {
+                console.log('User-'+user);
                 UserData.ref().child('users').orderByChild('phone').equalTo(user).limitToFirst(1).once('child_added',(userch)=>{
+                    console.log(userch.val());
                     if(userch.val() !== null)
                     {
                         UserData.ref('users/user-' + userch.child('uid')).update({
