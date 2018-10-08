@@ -64,7 +64,7 @@ class BookingLightbox extends Component {
         this.setState({
             user:this.props.user
         });
-        console.log(this.props.user);
+        console.log('this',this.props.user);
     }
 
     locCodeValidator = (_code) => {
@@ -98,6 +98,8 @@ class BookingLightbox extends Component {
     promoValidator = (_code,_user) => {
         //-------//
         _code.persist();
+        console.log(this.state.user);
+        console.log(this.props.user);
         if(_code.target.value===""){
             $(_code.target).removeClass('error');
             this.setState({
