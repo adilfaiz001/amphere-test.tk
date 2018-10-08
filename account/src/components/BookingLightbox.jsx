@@ -99,7 +99,6 @@ class BookingLightbox extends Component {
             });
         } else{
             validatePromoCode(_code.target.value,this.props.user).then((result)=>{
-                console.log(result);
                 if(result.valid){
                     $(_code.target).addClass("success");
                     this.setState({
