@@ -38,10 +38,10 @@ export default function RemovePromoCode(code,userphone)
             else if(user === 'general')
             {
                 UserData.ref().child('users').orderByChild('phone').equalTo(userphone).limitToFirst(1).once('child_added',(userch)=>{
-                    console.log(userch.val());
+                    console.log('Here',userch.val());
                     if(userch.val() !== null)
                     {
-                        UserData.ref('users/user-' + userch.child('uid')).update({
+                        UserData.ref('users/user-' + userch.child('uid').val()).update({
                             "coupon-test":userch.child('coupon-test').val() - 1 
                         });
                     }
