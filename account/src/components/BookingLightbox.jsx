@@ -87,7 +87,7 @@ class BookingLightbox extends Component {
         }
     }
 
-    promoValidator = (_code) => {
+    promoValidator = (_code,_user) => {
         //-------//
         _code.persist();
         if(_code.target.value===""){
@@ -168,7 +168,7 @@ class BookingLightbox extends Component {
                                 required="true"
                                 className="textbox-small"
                                 placeholder="Promo Code (Optional)"
-                                onChange={this.promoValidator}/>
+                                onChange={(code) => this.promoValidator(code,this.props.user)}/>
                         </div>
 
                         <p className="info">After booking the session, you will receive
