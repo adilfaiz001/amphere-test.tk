@@ -3,7 +3,7 @@
 ********************/
 
 const CouponsData = require('./Database').firebase.database();
-const UserData = require('/Database').firebase.database();
+const UserData = require('./Database').firebase.database();
 
 const voucher_codes = require('voucher-code-generator');
 
