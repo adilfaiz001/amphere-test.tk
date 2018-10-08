@@ -38,12 +38,14 @@ export default function RemovePromoCode(code,userphone)
             else if(user === 'general')
             {
                 UserData.ref().child('users').orderByChild('phone').equalTo(userphone).limitToFirst(1).once('child_added',(userch)=>{
-                    console.log('Here',userch.val());
                     if(userch.val() !== null)
                     {
-                        UserData.ref('users/user-' + userch.child('uid').val()).update({
-                            "coupon-test":userch.child('coupon-test').val() - 1 
-                        });
+                        if(userch.child('coupon-count').val()>0)
+                        {
+                            UserData.ref('users/user-' + userch.child('uid').val()).update({
+                                "coupon-test":userch.child('coupon-test').val() - 1 
+                            });
+                        }   
                     }
                 });
             }     

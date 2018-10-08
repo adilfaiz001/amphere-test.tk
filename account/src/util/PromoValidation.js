@@ -1,5 +1,6 @@
-export default function validatePromoCode (code) {
+export default function validatePromoCode (code,userphone) {
 
+    console.log(code,userphone)
     return new Promise((resolve,reject)=>{
 
         if (code!=="")
