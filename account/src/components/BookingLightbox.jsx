@@ -26,6 +26,12 @@ class BookingLightbox extends Component {
         };
     }
 
+    componentWillMount(){
+        this.setState({
+            user:this.props.user
+        });
+    }
+
     confirmSession = () => {
         this.props.paramsHandler(this.state);
         //-----//
@@ -178,7 +184,7 @@ class BookingLightbox extends Component {
                                 required="true"
                                 className="textbox-small"
                                 placeholder="Promo Code (Optional)"
-                                onChange={(code) => {this.setUser; this.promoValidator(code,this.props.user); }}/>
+                                onChange={(code) => this.promoValidator(code,this.state.user)}/>
                         </div>
 
                         <p className="info">After booking the session, you will receive
