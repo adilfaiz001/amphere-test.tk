@@ -47,6 +47,7 @@ exports.CreateNewUser = function (params) {
                             "password" : hash,
                             "addedOn" : getDateTime(),
                             "isDeleted" : false,
+                            "coupon-test":3,
                             "login" : true
                         });
                         /*.then(()=>{

@@ -1,6 +1,6 @@
-//author @adil
-
-//author @adil
+/********************
+ --- Adil Faiz ---
+********************/
 
 const CouponsData = require('./Database').firebase.database();
 const voucher_codes = require('voucher-code-generator');
@@ -34,7 +34,8 @@ exports.generateCoupons = function(params)
                     "isActive" : true,
                     "isDeleted": false,
                     "cid" : cid,
-                    "count":1
+                    "count":1,
+                    "user":"unique"
                 });
             });
             resolve({
@@ -67,7 +68,8 @@ exports.generateSelfCoupon = function(params)
                     "isActive" : true,
                     "isDeleted": false,
                     "cid" : cid,
-                    "count":3
+                    "count":3,
+                    "user":"unique"
                 });
                 resolve({
                     'success':true
@@ -82,7 +84,38 @@ exports.generateSelfCoupon = function(params)
         });      
         
     });
+}
 
+exports.generateGenCoupon = function(params)
+{
+    let coupon = params.coupon;
+    return new Promise((resolve,reject)=>{
+        let cid = generateCID();
+        CouponsData.ref().child('coupons').orderByChild('code').equalTo(coupon).limitToFirst(1).once('value',(couponres)=>{ 
+            if(couponres.val() === null)
+            {
+                CouponsData.ref('coupons/cid-' + cid).set({
+                    "addedOn": getDateTime(),
+                    "code" : coupon,
+                    "amount" : 20,
+                    "expireDate" : null,
+                    "isActive" : true,
+                    "isDeleted": false,
+                    "cid" : cid,
+                    "user":"general"
+                });
+                resolve({
+                    'success':true
+                });
+            } 
+            else
+            {
+                resolve({
+                    'success':false
+                });
+            }
+        });        
+    });
 }
 
 exports.validateCoupon = function(params)
