@@ -28,7 +28,6 @@ class BookingLightbox extends Component {
     confirmSession = () => {
         this.props.paramsHandler(this.state);
         //-----//
-        console.log(this.state);
         RemovePromocode(this.state.promoCode,this.props.user);
         //-----//
     }

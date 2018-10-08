@@ -33,7 +33,8 @@ exports.generateCoupons = function(params)
                     "expireDate" : null,
                     "isActive" : true,
                     "isDeleted": false,
-                    "cid" : cid
+                    "cid" : cid,
+                    "count":1
                 });
             });
             resolve({
@@ -65,7 +66,8 @@ exports.generateSelfCoupon = function(params)
                     "expireDate" : null,
                     "isActive" : true,
                     "isDeleted": false,
-                    "cid" : cid
+                    "cid" : cid,
+                    "count":3
                 });
                 resolve({
                     'success':true
