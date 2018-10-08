@@ -11,18 +11,20 @@ export default function RemovePromoCode(code,user)
                 CouponData.ref('coupons/cid-' + coupon.child('cid').val()).update({
                     "count":count-1
                 });
-            }
-            else{
-                CouponData.ref('coupons/cid-' + coupon.child('cid').val()).update({
-                    "coupon" : coupon.child('code').val(),
-                    "code" : null,
-                    "expireDate" : null,
-                    "isActive" : false,
-                    "isDeleted":true,
-                    "user":user,
-                    "count":0
-                });
-            }  
+                count = count - 1;
+                if(count === 0)
+                {
+                    CouponData.ref('coupons/cid-' + coupon.child('cid').val()).update({
+                        "coupon" : coupon.child('code').val(),
+                        "code" : null,
+                        "expireDate" : null,
+                        "isActive" : false,
+                        "isDeleted":true,
+                        "user":user,
+                        "count":0
+                    });
+                }
+            } 
         });
     }
 }
