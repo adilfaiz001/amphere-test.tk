@@ -18,18 +18,11 @@ class BookingLightbox extends Component {
             locCodeValid: null,
             device: "microUSB",
             //------//
-            user:null,
             promoCode: null,
             promoValid: false,
             promoAmount:null
             //------//
         };
-    }
-
-    componentWillMount(){
-        this.setState({
-            user:this.props.user
-        });
     }
 
     confirmSession = () => {
@@ -66,13 +59,6 @@ class BookingLightbox extends Component {
         });
     }
 
-    setUser = () => {
-        this.setState({
-            user:this.props.user
-        });
-        console.log('this',this.props.user);
-    }
-
     locCodeValidator = (_code) => {
         _code.persist();
         if(_code.target.value===""){
@@ -101,11 +87,9 @@ class BookingLightbox extends Component {
         }
     }
 
-    promoValidator = (_code,_user) => {
+    promoValidator = (_code) => {
         //-------//
         _code.persist();
-        console.log(this.state.user);
-        console.log(this.props.user);
         if(_code.target.value===""){
             $(_code.target).removeClass('error');
             this.setState({
@@ -114,7 +98,7 @@ class BookingLightbox extends Component {
                 promoValid:false
             });
         } else{
-            validatePromoCode(_code.target.value).then((result)=>{
+            validatePromoCode(_code.target.value,this.props.user).then((result)=>{
                 console.log(result);
                 if(result.valid){
                     $(_code.target).addClass("success");
@@ -184,7 +168,7 @@ class BookingLightbox extends Component {
                                 required="true"
                                 className="textbox-small"
                                 placeholder="Promo Code (Optional)"
-                                onChange={(code) => this.promoValidator(code,this.state.user)}/>
+                                onChange={(code) => this.promoValidator(code)}/>
                         </div>
 
                         <p className="info">After booking the session, you will receive
