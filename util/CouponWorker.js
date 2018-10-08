@@ -124,7 +124,7 @@ exports.validateCoupon = function(params)
 {
     let promoCode = params.code;
     let phone = params.phone;
-
+    console.log(promoCode,phone);
     return new Promise((resolve,reject)=>{
 
         CouponsData.ref().child('coupons').orderByChild('code').equalTo(promoCode).limitToFirst(1)
