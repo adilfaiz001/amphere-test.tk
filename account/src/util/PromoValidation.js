@@ -1,12 +1,13 @@
-export default function validatePromoCode (code) {
+export default function validatePromoCode (code,user) {
     
     return new Promise((resolve,reject)=>{
 
         if (code!=="")
         {
             const promoReq = new XMLHttpRequest();
-
-            promoReq.open('POST',`/validatePromo?code=${encodeURI(code)}`,true);
+            const url = `code=${encodeURI(code)}&` + 
+                        `user=${encodeURI(user)}`
+            promoReq.open('POST',`/validatePromo?${url}`,true);
             promoReq.send();
 
             promoReq.onreadystatechange = (event) =>{

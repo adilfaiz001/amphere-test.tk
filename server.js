@@ -299,7 +299,7 @@ account.post('/validatePromo',(req,res)=>{
 
     CouponWorker.validateCoupon({
         "code":decodeURI(req.query.code),
-        "userphone" : decodeURI(req.query.phone)
+        "userphone" : decodeURI(req.query.user)
     }).then((_res)=>{
         
         if(_res.success === true)
