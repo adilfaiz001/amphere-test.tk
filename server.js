@@ -292,11 +292,9 @@ account.post('/userCancelActiveSession', (req, res)=> {
     });
 });
 
-/********************
- --- Adil Faiz ---
-********************/
-//-------------------------------------------------------------//
-//coupon worker//
+//---------------------------------------------------------------------------------//
+//<adil>
+//coupon routes//
 account.post('/validatePromo',(req,res)=>{
 
     CouponWorker.validateCoupon({
@@ -323,8 +321,8 @@ account.post('/validatePromo',(req,res)=>{
     });
 });
 
-//forget Password Worker//
 
+//forget Password route//
 //--------------------------middleware------------------------------//
 account.set('views',path.join(__dirname,'account/account-view'));
 account.set('view engine', 'ejs');
@@ -385,7 +383,8 @@ account.post('/reset/:token',(req,res)=>{
     PasswordWorker.UpdatePassword(req,res);
 });
 
-
+//</adil>
+//-------------------------------------------------------------------//
 
 //===================================================================//
 
@@ -623,6 +622,23 @@ admin.post('/u/coupons',(req,res)=>{
             }
         });
     } 
+    else if(params.class === '3')
+    {
+        CouponWorker.generateGenCoupon({
+            "coupon":decodeURI(params.coupon)
+        }).then((_res)=>{
+            if(_res.success === true)
+            {
+                res.status(200).json({
+                    "state":"SUCCESS"
+                });
+            } else {
+                res.status(200).json({
+                    "state":"EXISTS"
+                });
+            }
+        });
+    }
   });
 //-------------------------------------------------------------------//
 
