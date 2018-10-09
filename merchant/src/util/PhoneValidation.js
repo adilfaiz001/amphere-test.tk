@@ -13,7 +13,7 @@ exports.ValidatePhone = (user) => {
             request.onreadystatechange = (event) => {
                 if(request.readyState === 4 && request.status === 200)
                 {
-                    let response = JSON.parse(request.reponse);
+                    let response = JSON.parse(request.response);
                     console.log(response);
                     if(response.state === 'SUCCESS')
                     {
