@@ -4,7 +4,7 @@ import '../GlobalStyles.css';
 import { ButtonToolbar, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 import $ from 'jquery';
 
-import PhoneValidatation from './util/PhoneValidation'; 
+import PhoneValidation from '../util/PhoneValidation'; 
 
 class BookingLightbox extends Component {
     constructor(){
