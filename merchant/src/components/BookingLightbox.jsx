@@ -13,6 +13,7 @@ class BookingLightbox extends Component {
             duration: 42,
             phone: null,
             phoneValid: false,
+            username:null,
             device: "microUSB",
         };
     }
@@ -79,7 +80,8 @@ class BookingLightbox extends Component {
                     $(_phone.target).addClass("success");
                     this.setState({
                         phone:result.user,
-                        phoneValid:true
+                        phoneValid:true,
+                        username: result.username
                     });
                 } else {
                     $(_phone.target).removeClass("success");

@@ -73,8 +73,15 @@ exports.ValidatePhone = function (params) {
     return new Promise((resolve,reject)=>{
         UserData.ref().child('users').orderByChild('phone').equalTo(user).limitToFirst(1).once('value').then((userch)=>{
             if(userch.val() !== null){
+                var user = userch.val();
+                var key;
+                for(var field in user){
+                    key = field;
+                }
+                var username = user[key]['name'];
                 resolve({
-                    "success":true
+                    "success":true,
+                    "username":username
                 });
             }
             else

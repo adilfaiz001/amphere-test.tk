@@ -502,7 +502,8 @@ merchant.post('/validatePhone',(req,res)=>{
         if(_res.success === true)
         {     
             res.status(200).json({
-                "state":"SUCCESS"
+                "state":"SUCCESS",
+                "username":_res.username
             });
         }
         else
