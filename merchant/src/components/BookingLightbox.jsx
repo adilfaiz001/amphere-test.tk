@@ -72,9 +72,10 @@ class BookingLightbox extends Component {
                 phoneValid:false
             });
         } else if(_phone.target.value!=="" && /^\d+$/.test(_phone.target.value) && _phone.target.value.length === 10){
-            console.log('Phone Validation Starts')
+            console.log('Phone Validation Starts');
             PhoneValidation.ValidatePhone(_phone.target.value).then((result)=>{
                 if(result.valid){
+                    $(_phone.target).removeClass("error");
                     $(_phone.target).addClass("success");
                     this.setState({
                         phone:result.user,
@@ -83,11 +84,13 @@ class BookingLightbox extends Component {
                 } else {
                     $(_phone.target).removeClass("success");
                     $(_phone.target).addClass("error");
+                    console.log('Invalid Number');
                     this.setState({
                         phoneValid:false,
                         phone:null
                     }).then(()=>{
-                        alert("User does not exist with this phone number");
+                        console.log("then block");
+                        window.alert("User does not exist with this phone number");
                     });
                     
                 }
