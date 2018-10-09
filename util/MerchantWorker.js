@@ -15,6 +15,7 @@
 
 const Hasher = require('./PasswordHasher');
 const MerchantFirebaseCreds = require('./Database').firebase.database();
+const UserData = require('./Database').firebase.database();
 const SpreadsheetWorker = require('./SpreadsheetWorker');
 const ssConfig = require('../config.json');
 
@@ -64,6 +65,25 @@ exports.MerchantOnboard = function (params) {
             ]
         });
         resolve(true);
+    });
+}
+
+exports.ValidatePhone = function (params) {
+    let user = params.user;
+    return new Promise((resolve,reject)=>{
+        UserData.ref().child('users').orderByChild('phone').equalTo(user).limitToFirst(1).once('child_added').then((userch)=>{
+            if(userch.val() !== null){
+                resolve({
+                    "success":true
+                });
+            }
+            else
+            {
+                resolve({
+                    "success":false
+                });
+            }
+        });
     });
 }
 

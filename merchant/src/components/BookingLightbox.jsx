@@ -4,6 +4,8 @@ import '../GlobalStyles.css';
 import { ButtonToolbar, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 import $ from 'jquery';
 
+import PhoneValidatation from './util/PhoneValidation'; 
+
 class BookingLightbox extends Component {
     constructor(){
         super();
@@ -61,6 +63,36 @@ class BookingLightbox extends Component {
         }
     }
 
+    phoneValidator = (_phone) => {
+        _phone.persist();
+        if(_phone.target.value===""){
+            $(_phone.target).removeClass('error');
+            this.setState({
+                phone:null,
+                phoneValid:false
+            });
+        } else if(_phone.target.value!=="" && /^\d+$/.test(_phone.target.value) && _phone.target.value.length === 10){
+            console.log('Phone Validation Starts')
+            PhoneValidation.ValidatePhone(_phone.target.value).then((result)=>{
+                if(result.valid){
+                    $(_code.target).addClass("success");
+                    this.setState({
+                        phone:result.user,
+                        phoneValid:true
+                    });
+                } else {
+                    $(_code.target).removeClass("success");
+                    $(_code.target).addClass("error");
+                    this.setState({
+                        phoneValid:false,
+                        phone:null
+                    });
+                    alert("User does not exist with this phone number");
+                }
+            });
+        }
+    }
+
     render() {
         return (
             <div className="lightbox-shadow">
@@ -74,7 +106,7 @@ class BookingLightbox extends Component {
                         <div className="location">
 
                             <div className="location-code">
-                                <input id="phone" required className="textbox" placeholder="Enter Phone" onChange={this.addPhone}/>
+                                <input id="phone" required className="textbox" placeholder="Enter Phone" onChange={this.phoneValidator}/>
                             </div>
                         </div>
 

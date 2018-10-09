@@ -296,7 +296,7 @@ account.post('/userCancelActiveSession', (req, res)=> {
 //<adil>
 //coupon routes//
 account.post('/validatePromo',(req,res)=>{
-    CouponWorker.validateCoupon({
+    CouponWorker.ValidateCoupon({
         "code":decodeURI(req.query.code),
         "userphone" : decodeURI(req.query.user)
     }).then((_res)=>{
@@ -493,6 +493,26 @@ merchant.post('/merchantCompleteSession', (req, res)=> {
         }
     });
 });
+
+//------------------------------------------------------------------//
+merchant.post('/validatePhone',(req,res)=>{
+    MerchantWorker.ValidatePhone({
+        "user" : decodeURI(req.query.user)
+    }).then((_res)=>{
+        if(_res.success === true)
+        {     
+            res.status(200).json({
+                "state":"SUCCESS"
+            });
+        }
+        else
+        {
+            res.status(200).json({
+                "state":"ERROR"
+            });
+        }
+    });
+})
 //===================================================================//
 
 
