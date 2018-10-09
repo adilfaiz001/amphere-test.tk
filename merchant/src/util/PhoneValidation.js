@@ -18,7 +18,8 @@ exports.ValidatePhone = (user) => {
                     if(response.state === 'SUCCESS')
                     {
                         resolve({
-                            'valid':true,
+                            "valid":true,
+                            "username":response.username,
                             user
                         });
                     }
