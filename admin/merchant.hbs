@@ -218,7 +218,7 @@
     console.log("Self",coupon.value);
     document.getElementById('self-coupon-btn').onclick = function()
     {
-        console.log("Here inside button");
+        console.log("Here inside button",coupon.value);
         if (coupon.value !== "")
         {
             const request = new XMLHttpRequest();
