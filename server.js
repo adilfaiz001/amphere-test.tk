@@ -496,6 +496,7 @@ merchant.post('/merchantCompleteSession', (req, res)=> {
 
 //------------------------------------------------------------------//
 merchant.post('/validatePhone',(req,res)=>{
+    console.log(req.query);
     MerchantWorker.ValidatePhone({
         "user" : decodeURI(req.query.user)
     }).then((_res)=>{
