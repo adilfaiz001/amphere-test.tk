@@ -86,9 +86,19 @@ class BookingLightbox extends Component {
                     this.setState({
                         phoneValid:false,
                         phone:null
+                    }).then(()=>{
+                        alert("User does not exist with this phone number");
                     });
-                    alert("User does not exist with this phone number");
+                    
                 }
+            });
+        } else 
+        {
+            $(_phone.target).removeClass("success");
+            $(_phone.target).addClass("error");
+            this.setState({
+                phoneValid:false,
+                phone:null
             });
         }
     }
