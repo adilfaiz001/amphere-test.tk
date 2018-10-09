@@ -59,7 +59,7 @@ exports.generateSelfCoupon = function(params)
     return new Promise((resolve,reject)=>{
         let cid = generateCID();
         CouponsData.ref().child('coupons').orderByChild('code').equalTo(coupon).limitToFirst(1).once('value',(couponres)=>{
-        
+            console.log(couponres.val());
             if(couponres.val() === null)
             {
                 CouponsData.ref('coupons/cid-' + cid).set({
