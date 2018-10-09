@@ -120,7 +120,7 @@ exports.generateGenCoupon = function(params)
     });
 }
 
-exports.validateCoupon = function(params)
+exports.ValidateCoupon = function(params)
 {
     let promoCode = params.code;
     let phone = params.userphone;

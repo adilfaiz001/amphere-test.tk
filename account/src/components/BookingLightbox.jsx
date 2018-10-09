@@ -5,7 +5,7 @@ import { ButtonToolbar, ToggleButton, ToggleButtonGroup } from 'react-bootstrap'
 import $ from 'jquery';
 
 import LocationValidation from '../util/LocationValidation';
-import validatePromoCode from '../util/PromoValidation';
+import PromoCodeValidate from '../util/PromoCodeValidation';
 import RemovePromocode from '../util/PromoCode';
 
 class BookingLightbox extends Component {
@@ -98,7 +98,7 @@ class BookingLightbox extends Component {
                 promoValid:false
             });
         } else{
-            validatePromoCode(_code.target.value,this.props.user).then((result)=>{
+            PromoCodeValidate(_code.target.value,this.props.user).then((result)=>{
                 if(result.valid){
                     $(_code.target).addClass("success");
                     this.setState({
