@@ -117,7 +117,7 @@ class BookingLightbox extends Component {
                         <div className="location">
 
                             <div className="location-code">
-                                <input id="phone" required className="textbox" placeholder="Enter Phone" onChange={this.phoneValidator}/>
+                                <input id="phone" required className="textbox" placeholder="Enter Phone" onChange={this.phoneValidator} autoComplete="off"/>
                             </div>
                         </div>
 
