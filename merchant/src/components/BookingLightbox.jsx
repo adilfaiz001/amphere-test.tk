@@ -75,14 +75,14 @@ class BookingLightbox extends Component {
             console.log('Phone Validation Starts')
             PhoneValidation.ValidatePhone(_phone.target.value).then((result)=>{
                 if(result.valid){
-                    $(_code.target).addClass("success");
+                    $(_phone.target).addClass("success");
                     this.setState({
                         phone:result.user,
                         phoneValid:true
                     });
                 } else {
-                    $(_code.target).removeClass("success");
-                    $(_code.target).addClass("error");
+                    $(_phone.target).removeClass("success");
+                    $(_phone.target).addClass("error");
                     this.setState({
                         phoneValid:false,
                         phone:null
