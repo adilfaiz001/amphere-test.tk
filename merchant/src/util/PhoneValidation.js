@@ -14,6 +14,7 @@ exports.ValidatePhone = (user) => {
                 if(request.readyState === 4 && request.status === 200)
                 {
                     let response = JSON.parse(request.reponse);
+                    console.log(response);
                     if(response.state === 'SUCCESS')
                     {
                         resolve({

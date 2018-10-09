@@ -72,6 +72,7 @@ exports.ValidatePhone = function (params) {
     let user = params.user;
     return new Promise((resolve,reject)=>{
         UserData.ref().child('users').orderByChild('phone').equalTo(user).limitToFirst(1).once('child_added').then((userch)=>{
+            console.log(userch.val());
             if(userch.val() !== null){
                 resolve({
                     "success":true
