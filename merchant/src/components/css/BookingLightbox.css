@@ -137,6 +137,18 @@
     text-align: left;
     max-width: 500px;
 }
+.error {
+    border-color: #ff000080;
+    color: #ff000080!important;
+}
+.success{
+    border-color: green;
+    color: green!important;
+}
+.textbox:focus
+{
+    outline: none;
+}
 
 /*TYPOGRAPHY================================================================*/
 

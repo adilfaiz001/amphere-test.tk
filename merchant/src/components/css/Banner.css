@@ -21,3 +21,6 @@
     line-height: 1em;
     margin: 0;
 }
+.button:focus{
+    outline: none;
+}

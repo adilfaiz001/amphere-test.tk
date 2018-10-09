@@ -83,6 +83,12 @@
     top: 1em;
     right: 0;
 }
+button:focus{
+    outline: none;
+}
+input:focus{
+    outline: none;
+}
 
 /* ==========================================================*/
 
