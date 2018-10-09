@@ -214,8 +214,7 @@
 </script>
 
 <script>
-    var coupon = document.getElementById('self-coupon');
-    console.log("Self",coupon.value);
+    var coupon = document.getElementById("self-coupon");
     document.getElementById('self-coupon-btn').onclick = function()
     {
         console.log("Here inside button",coupon.value);
@@ -246,15 +245,15 @@
 </script>
 
 <script>
-    var coupon = document.getElementById('gen-coupon');
-    var pass = document.getElementById('gen-password');
+    var gen_coupon = document.getElementById('gen-coupon');
+    var gen_pass = document.getElementById('gen-password');
 
     document.getElementById('gen-coupon-btn').onclick = function()
     {
-        if (coupon.value !== "")
+        if (gen_coupon.value !== "")
         {
             const request = new XMLHttpRequest();
-            let url = `coupon=${encodeURI(coupon.value)}&` +
+            let url = `coupon=${encodeURI(gen_coupon.value)}&` +
                     `class=3`;
 
             request.open('POST',`/u/coupons?${url}`,true);
