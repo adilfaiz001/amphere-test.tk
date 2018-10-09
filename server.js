@@ -609,6 +609,7 @@ admin.post( '/u/addMerchant', (req, res)=>{
 //author @adil
 admin.post('/u/coupons',(req,res)=>{
     let params = getParameters(req);
+    console.log(params);
     if (params.class === '1') {
         CouponWorker.generateCoupons({
             "len":decodeURI(params.len),
