@@ -81,7 +81,11 @@ exports.ValidatePhone = function (params) {
                     key = field;
                 }
                 var username = user[key]['name'];
-                
+                var uid = user[key]['uid'];
+                var coupons;
+                userch.child('user-' + uid).startAt('coupon-').on('value',(coupon)=>{
+                    console.log(coupon.val());
+                });
                 resolve({
                     "success":true,
                     "username":username
