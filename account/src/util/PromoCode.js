@@ -44,7 +44,7 @@ export default function RemovePromoCode(code,phone)
                         if(coupon_count>0)
                         {
                             UserData.ref('users/user-' + userch.child('uid').val() + '/coupons').update({
-                                [coupon_key]:userch.child('coupon-' + code).val() - 1 
+                                [coupon_key]:userch.child('coupons/coupon-' + code).val() - 1 
                             });
                         }   
                     }
