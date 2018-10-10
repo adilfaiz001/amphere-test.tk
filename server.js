@@ -526,6 +526,31 @@ merchant.post('/validatePhone',(req,res)=>{
             });
         }
     });
+});
+
+merchant.post('/validateCoupon',(req,res)=>{
+    MerchantWorker.ValidateCoupon({
+        "user" : decodeURI(req.query.user)
+    }).then((_res)=>{
+        if(_res.success === true)
+        {    
+            if(_res.CouponValid === true)
+            {
+                res.status(200).json({
+                    "state":"SUCCESS",
+                    "CouponValid":true,
+                    "Coupon":_res.Coupon,
+                    "Amount":_res.Amount
+                })
+            }
+        }
+        else
+        {
+            res.status(200).json({
+                "state":"ERROR"
+            });
+        }
+    });
 })
 //===================================================================//
 

@@ -120,6 +120,51 @@ exports.ValidatePhone = function (params) {
     });
 }
 
+exports.ValidateCoupon = function(params) {
+    let user = params.user;
+    return new Promise((resolve,reject)=>{
+        UserData.ref().child('users').orderByChild('phone').equalTo(user).limitToFirst(1).once('value').then((userch)=>{
+            if(userch.val() !== null){
+                var user = userch.val();
+                var key;
+                for(var field in user){
+                    key = field;
+                }
+                var uid = user[key]['uid'];
+                var DeadSessionCoupon;
+                UserData.ref().child('users/user-' + uid + '/coupons').once('value',(coupons)=>{
+                    var Coupons = coupons.val();
+                    for(var coupon in Coupons){
+                       var count = Coupons[coupon];
+                       if (count > 0)
+                       {
+                        DeadSessionCoupon = coupon;
+                        UserData.ref('users/user-' +uid+ '/coupons/').update({
+                            [coupon] : coupons.child(coupon).val() - 1 
+                        });
+                        resolve({
+                            "success":true,
+                            "CouponValid":true,
+                            "Coupon":DeadSessionCoupon,
+                            "Amount":20
+                        });
+                       }
+                       
+                    }
+                });
+            }
+            else
+            {
+                resolve({
+                    "success":false
+                });
+            }
+        });
+    });
+}
+
+//=============================================================================================================//
+
 function getDateTime() {
     var date = new Date();
 

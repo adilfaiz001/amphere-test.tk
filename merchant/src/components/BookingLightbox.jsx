@@ -5,6 +5,7 @@ import { ButtonToolbar, ToggleButton, ToggleButtonGroup } from 'react-bootstrap'
 import $ from 'jquery';
 
 import PhoneValidation from '../util/PhoneValidation'; 
+import CouponValidation from '../util/PhoneValidation';
 
 class BookingLightbox extends Component {
     constructor(){
@@ -24,6 +25,7 @@ class BookingLightbox extends Component {
     }
 
     confirmSession = () => {
+        this.couponvalidate(this.state.phone);
         this.props.paramsHandler(this.state);
     }
 
@@ -81,30 +83,15 @@ class BookingLightbox extends Component {
             console.log('Phone Validation Starts');
             PhoneValidation.ValidatePhone(_phone.target.value).then((result)=>{
                 if(result.valid){
-                    if(result.promoValid)
-                    {
-                        $(_phone.target).removeClass("error");
-                        $(_phone.target).addClass("success");
-                        this.setState({
-                            phone:result.user,
-                            phoneValid:true,
-                            username: result.username,
-                            promoValid:true,
-                            promoCode:result.promoCode,
-                            promoAmount:result.promoAmount
-                        });
-                    }
-                    else
-                    {
-                        $(_phone.target).removeClass("error");
-                        $(_phone.target).addClass("success");
-                        this.setState({
-                            phone:result.user,
-                            phoneValid:true,
-                            username: result.username
-                        });
-                    }   
-                } else {
+                    $(_phone.target).removeClass("error");
+                    $(_phone.target).addClass("success");
+                    this.setState({
+                        phone:result.user,
+                        phoneValid:true,
+                        username: result.username
+                    });
+                }   
+                else {
                     $(_phone.target).removeClass("success");
                     $(_phone.target).addClass("error");
                     console.log('Invalid Number');
@@ -125,6 +112,27 @@ class BookingLightbox extends Component {
                 phone:null
             });
         }
+    }
+
+    couponvalidate = (user) => {
+        CouponValidation.ValidateCoupon(user).then((result)=>{
+            if(result.valid)
+            {
+                this.setState({
+                    promoValid:true,
+                    promoCode:result.promoCode,
+                    promoAmount:result.promoAMount
+                });
+            }
+            else
+            {
+                this.setState({
+                    promoValid:false,
+                    promoCode:null,
+                    promoAmount:null
+                });
+            }
+        });
     }
 
     render() {
