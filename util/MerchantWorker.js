@@ -90,9 +90,8 @@ exports.ValidatePhone = function (params) {
                        if (count > 0)
                        {
                         DeadSessionCoupon = coupon;
-                        coupon_key = "coupon-" + coupon;
                         UserData.ref('users/user-' +uid+ '/coupons/').update({
-                            [coupon_key] : coupons.child('coupon-'+coupon).val() - 1 
+                            [coupon] : coupons.child('coupon-'+coupon).val() - 1 
                         });
                         break
                        }
