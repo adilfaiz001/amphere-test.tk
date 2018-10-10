@@ -398,6 +398,7 @@ merchant.get('/', (req, res) => {
 });
 merchant.post('/sessionsWorker', (req, res) => {
     let params = getParameters(req);
+    console.log(params);
     SessionsWorker.BookDeadSession({
         "uid" : params.uid,
         "phone" : params.phone,
