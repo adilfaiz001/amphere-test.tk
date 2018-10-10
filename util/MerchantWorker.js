@@ -81,7 +81,7 @@ exports.ValidatePhone = function (params) {
                     key = field;
                 }
                 var username = user[key]['name'];
-                var coupon_count = user[key]['coupon-test'];
+                
                 resolve({
                     "success":true,
                     "username":username
