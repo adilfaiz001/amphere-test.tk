@@ -124,7 +124,7 @@ class BookingLightbox extends Component {
                     this.setState({
                         promoValid:true,
                         promoCode:result.promoCode,
-                        promoAmount:result.promoAMount
+                        promoAmount:result.promoAmount
                     });
                     resolve({
                         "success":true
