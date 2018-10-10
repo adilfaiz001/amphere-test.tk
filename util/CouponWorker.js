@@ -104,7 +104,7 @@ exports.generateGenCoupon = function(params)
                     "cid" : cid,
                     "user":"general"
                 });
-                UserData.ref().child('users').on('value',(users)=>{
+                UserData.ref().child('users').once('value',(users)=>{
                     let Users = users.val();
                     for (var key in Users) {
                         if (Users.hasOwnProperty(key)) {
