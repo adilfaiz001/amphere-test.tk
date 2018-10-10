@@ -14,7 +14,7 @@ exports.addNewSession = (params) => {
         `promoAmount=${encodeURI(params.promoAmount)}&` +
         //-----//
         `verify=true`
-        
+        console.log("url",url);
         request.open('POST', `/sessionsWorker?${url}`, true);
         request.send();
 

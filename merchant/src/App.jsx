@@ -78,6 +78,7 @@ class App extends Component {
   paramsHandler = (params) => {
     this.setState({lightboxOpen: false});
     this.addNewSession(params);
+    console.log("params",params)
   }
 
   addNewSession = (params) => {    
