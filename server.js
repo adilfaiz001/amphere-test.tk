@@ -535,7 +535,7 @@ merchant.post('/validateCoupon',(req,res)=>{
         else
         {
             res.status(200).json({
-                "state":"ERROR"
+                "state":"NO-COUPON"
             });
         }
     });
