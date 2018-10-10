@@ -112,7 +112,7 @@ exports.generateGenCoupon = function(params)
                           if (key !== 'user-model')
                           {
                               UserData.ref('users/user-' + Users[key]['uid']).update({
-                                  coupon_key : 3
+                                  [coupon_key] : 3
                               });
                           }
                         }
