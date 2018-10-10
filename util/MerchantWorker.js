@@ -112,6 +112,7 @@ exports.ValidateCoupon = function(params) {
                 UserData.ref().child('users/user-' + uid + '/coupons').once('value',(coupons)=>{
                     var Coupons = coupons.val();
                     for(var coupon in Coupons){
+                        console.log(coupon);
                        var count = Coupons[coupon];
                        if (count > 0)
                        {
@@ -127,6 +128,7 @@ exports.ValidateCoupon = function(params) {
                             "Coupon":DeadSessionCoupon,
                             "Amount":20
                         });
+                        break
                        }
                        
                     }
