@@ -19,7 +19,6 @@ exports.ValidatePhone = (user) => {
                         resolve({
                             "valid":true,
                             "username":response.username,
-                            "promoValid":false,
                             user
                         });
                     }
