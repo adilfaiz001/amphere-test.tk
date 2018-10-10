@@ -39,11 +39,11 @@ export default function RemovePromoCode(code,phone)
                 UserData.ref().child('users').orderByChild('phone').equalTo(phone).limitToFirst(1).once('child_added',(userch)=>{
                     if(userch.val() !== null)
                     {   
-                        var coupon_count = userch.child('coupon-' + code).val();
+                        var coupon_count = userch.child('coupons/coupon-' + code).val();
                         var coupon_key = 'coupon-' + code;
                         if(coupon_count>0)
                         {
-                            UserData.ref('users/user-' + userch.child('uid').val()).update({
+                            UserData.ref('users/user-' + userch.child('uid').val() + '/coupons').update({
                                 [coupon_key]:userch.child('coupon-' + code).val() - 1 
                             });
                         }   
