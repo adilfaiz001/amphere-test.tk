@@ -500,11 +500,24 @@ merchant.post('/validatePhone',(req,res)=>{
         "user" : decodeURI(req.query.user)
     }).then((_res)=>{
         if(_res.success === true)
-        {     
-            res.status(200).json({
-                "state":"SUCCESS",
-                "username":_res.username
-            });
+        {    
+            if(_res.CouponValid === true)
+            {
+                res.status(200).json({
+                    "state":"SUCCESS",
+                    "username":_res.username,
+                    "CouponValid":true,
+                    "Coupon":_res.Coupon,
+                    "Amount":_res.Amount
+                })
+            }
+            else{
+                res.status(200).json({
+                    "state":"SUCCESS",
+                    "username":_res.username,
+                    "CouponValid":false
+                });
+            }
         }
         else
         {

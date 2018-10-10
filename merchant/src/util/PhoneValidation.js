@@ -17,9 +17,21 @@ exports.ValidatePhone = (user) => {
                     console.log(response);
                     if(response.state === 'SUCCESS')
                     {
+                        if(response.CouponValid === true)
+                        {
+                            resolve({
+                                "valid":true,
+                                "username":response.username,
+                                "promoValid":true,
+                                "promoCode":response.Coupon,
+                                "promoAmount":response.Amount,
+                                user
+                            })
+                        }
                         resolve({
                             "valid":true,
                             "username":response.username,
+                            "promoValid":false,
                             user
                         });
                     }

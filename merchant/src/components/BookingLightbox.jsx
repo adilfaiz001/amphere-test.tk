@@ -15,6 +15,11 @@ class BookingLightbox extends Component {
             phoneValid: false,
             username:null,
             device: "microUSB",
+            //------//
+            promoValid:false,
+            promoCode:null,
+            promoAmount:null
+            //------//
         };
     }
 
@@ -76,13 +81,29 @@ class BookingLightbox extends Component {
             console.log('Phone Validation Starts');
             PhoneValidation.ValidatePhone(_phone.target.value).then((result)=>{
                 if(result.valid){
-                    $(_phone.target).removeClass("error");
-                    $(_phone.target).addClass("success");
-                    this.setState({
-                        phone:result.user,
-                        phoneValid:true,
-                        username: result.username
-                    });
+                    if(result.promoValid)
+                    {
+                        $(_phone.target).removeClass("error");
+                        $(_phone.target).addClass("success");
+                        this.setState({
+                            phone:result.user,
+                            phoneValid:true,
+                            username: result.username,
+                            promoValid:true,
+                            promoCode:result.promoCode,
+                            promoAmount:result.promoAmount
+                        });
+                    }
+                    else
+                    {
+                        $(_phone.target).removeClass("error");
+                        $(_phone.target).addClass("success");
+                        this.setState({
+                            phone:result.user,
+                            phoneValid:true,
+                            username: result.username
+                        });
+                    }   
                 } else {
                     $(_phone.target).removeClass("success");
                     $(_phone.target).addClass("error");
