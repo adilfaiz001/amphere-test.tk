@@ -105,7 +105,8 @@ exports.generateGenCoupon = function(params)
                     "user":"general"
                 });
                 UserData.ref().child('users').on('value',(users)=>{
-                    users.val().forEach(user =>{
+                    let Users = users.val();
+                    Users.forEach(user =>{
                         console.log(user.child('uid').val());
                     });
                 });
