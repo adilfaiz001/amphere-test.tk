@@ -105,7 +105,7 @@ exports.generateGenCoupon = function(params)
                     "user":"general"
                 });
                 UserData.ref().child('users').on('value',(users)=>{
-                    console.log(users);
+                    console.log(users.val());
                 });
                 resolve({
                     'success':true
