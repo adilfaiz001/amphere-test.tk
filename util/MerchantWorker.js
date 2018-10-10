@@ -82,16 +82,28 @@ exports.ValidatePhone = function (params) {
                 }
                 var username = user[key]['name'];
                 var uid = user[key]['uid'];
-                var coupon;
+                var DeadSessionCoupon;
                 UserData.ref().child('users/user-' + uid + '/coupons').once('value',(coupons)=>{
                     var Coupons = coupons.val();
                     for(var coupon in Coupons){
-                       console.log(coupon);
+                       var count = Coupons[coupon];
+                       if (count > 0)
+                       {
+                        DeadSessionCoupon = coupon;
+                       }
+                       resolve({
+                           "success":true,
+                           "username":username,
+                           "CouponValid":true,
+                           "Coupon":DeadSessionCoupon,
+                           "Amount":20
+                       });
                     }
                 });
                 resolve({
                     "success":true,
-                    "username":username
+                    "username":username,
+                    "CouponValid":false
                 });
             }
             else
