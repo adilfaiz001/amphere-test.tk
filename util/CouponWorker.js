@@ -109,7 +109,7 @@ exports.generateGenCoupon = function(params)
                     for (var key in Users) {
                         if (Users.hasOwnProperty(key)) {
                           console.log(key + ": " + Users[key]);
-                          console.log(uid + ": "+ Users[key]['uid']);
+                          console.log("uid : "+ Users[key]['uid']);
                         }
                       }
                 });
