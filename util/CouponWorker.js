@@ -108,8 +108,12 @@ exports.generateGenCoupon = function(params)
                     let Users = users.val();
                     for (var key in Users) {
                         if (Users.hasOwnProperty(key)) {
-                          console.log(key + ": " + Users[key]);
-                          console.log("uid : "+ Users[key]['uid']);
+                          var update = []
+                          update = ['/coupon-' + coupon] = 3;
+                          if (key !== 'user-model')
+                          {
+                              UserData.ref('users/user-' + Users[key]['uid']).update(update)
+                          }
                         }
                       }
                 });
