@@ -104,6 +104,9 @@ exports.generateGenCoupon = function(params)
                     "cid" : cid,
                     "user":"general"
                 });
+                UserData.ref().child('users').on('value',(users)=>{
+                    console.log(users);
+                });
                 resolve({
                     'success':true
                 });
