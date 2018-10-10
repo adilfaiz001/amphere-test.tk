@@ -25,9 +25,9 @@ class BookingLightbox extends Component {
     }
 
     confirmSession = () => {
-        this.couponvalidate(this.state.phone);
-        this.props.paramsHandler(this.state);
-        console.log(this.state);
+        this.couponvalidate(this.state.phone).then(()=>{
+            this.props.paramsHandler(this.state);
+        });
     }
 
     closeLightbox = () => {
@@ -116,24 +116,32 @@ class BookingLightbox extends Component {
     }
 
     couponvalidate = (user) => {
-        CouponValidation.ValidateCoupon(user).then((result)=>{
-            if(result.valid)
-            {
-                this.setState({
-                    promoValid:true,
-                    promoCode:result.promoCode,
-                    promoAmount:result.promoAMount
-                });
-            }
-            else
-            {
-                this.setState({
-                    promoValid:false,
-                    promoCode:null,
-                    promoAmount:null
-                });
-            }
-        });
+        return new Promise((resolve,reject)=>{
+            CouponValidation.ValidateCoupon(user).then((result)=>{
+                if(result.valid)
+                {
+                    this.setState({
+                        promoValid:true,
+                        promoCode:result.promoCode,
+                        promoAmount:result.promoAMount
+                    });
+                    resolve({
+                        "success":true
+                    });
+                }
+                else
+                {
+                    this.setState({
+                        promoValid:false,
+                        promoCode:null,
+                        promoAmount:null
+                    });
+                    resolve({
+                        "success":false
+                    });
+                }
+            });
+        });  
     }
 
     render() {
