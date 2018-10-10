@@ -106,9 +106,12 @@ exports.generateGenCoupon = function(params)
                 });
                 UserData.ref().child('users').on('value',(users)=>{
                     let Users = users.val();
-                    Users.forEach(user =>{
-                        console.log(user.child('uid').val());
-                    });
+                    for (var key in Users) {
+                        if (Users.hasOwnProperty(key)) {
+                          console.log(key + ": " + Users[key]);
+                          console.log(uid + ": "+ Users[key]['uid']);
+                        }
+                      }
                 });
                 resolve({
                     'success':true
