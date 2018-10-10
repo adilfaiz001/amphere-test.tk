@@ -82,9 +82,9 @@ exports.ValidatePhone = function (params) {
                 }
                 var username = user[key]['name'];
                 var uid = user[key]['uid'];
-                var coupons;
-                UserData.ref().child('users/user-' + uid).orderByChild('coupons').on('value',(coupon)=>{
-                    console.log(coupon.val());
+                
+                UserData.ref().child('users/user-' + uid + '/coupons').once('value',(coupons)=>{
+                    console.log(coupons.val());
                 });
                 resolve({
                     "success":true,
