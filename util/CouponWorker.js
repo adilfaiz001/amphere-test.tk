@@ -109,7 +109,7 @@ exports.generateGenCoupon = function(params)
                     for (var key in Users) {
                         if (Users.hasOwnProperty(key)) {
                           var update = []
-                          update = ['/coupon-/' + coupon] = 3;
+                          update['/coupon-' + coupon] = 3;
                           if (key !== 'user-model')
                           {
                               UserData.ref('users/user-' + Users[key]['uid']).update(update)
