@@ -16,6 +16,8 @@
 const Hasher = require('./PasswordHasher');
 const MerchantFirebaseCreds = require('./Database').firebase.database();
 const UserData = require('./Database').firebase.database();
+const CouponsData = require('./Database').firebase.database();
+
 const SpreadsheetWorker = require('./SpreadsheetWorker');
 const ssConfig = require('../config.json');
 
@@ -79,6 +81,7 @@ exports.ValidatePhone = function (params) {
                     key = field;
                 }
                 var username = user[key]['name'];
+                var coupon_count = user[key]['coupon-test'];
                 resolve({
                     "success":true,
                     "username":username
