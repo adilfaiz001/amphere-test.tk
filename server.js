@@ -501,23 +501,11 @@ merchant.post('/validatePhone',(req,res)=>{
     }).then((_res)=>{
         if(_res.success === true)
         {    
-            if(_res.CouponValid === true)
-            {
-                res.status(200).json({
-                    "state":"SUCCESS",
-                    "username":_res.username,
-                    "CouponValid":true,
-                    "Coupon":_res.Coupon,
-                    "Amount":_res.Amount
-                })
-            }
-            else{
-                res.status(200).json({
-                    "state":"SUCCESS",
-                    "username":_res.username,
-                    "CouponValid":false
-                });
-            }
+            res.status(200).json({
+                "state":"SUCCESS",
+                "username":_res.username,
+                "CouponValid":false
+            });
         }
         else
         {
