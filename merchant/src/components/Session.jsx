@@ -81,7 +81,7 @@ class Session extends Component {
             amount: this.props.amount
         });
         //------//
-        if(this.props.promoValid==='true')
+        if(this.props.promoValid==='true' || this.props.promovalid === true)
         {
             this.setState({
                 promoValid:true,

@@ -404,7 +404,12 @@ merchant.post('/sessionsWorker', (req, res) => {
         "name" : decodeURI(params.name),
         "location" : params.location,
         "duration" : params.duration,
-        "device" : params.device
+        "device" : params.device,
+        //-----//
+        "promoValid":decodeURI(params.promoValid),
+        "promoCode":decodeURI(params.promoCode),
+        "promoAmount":decodeURI(params.promoAmount)
+        //-----//
     }).then( _res => {
         if(_res.success===true){
             res.status(200).json({
