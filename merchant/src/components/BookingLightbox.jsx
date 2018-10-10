@@ -27,6 +27,7 @@ class BookingLightbox extends Component {
     confirmSession = () => {
         this.couponvalidate(this.state.phone).then(()=>{
             this.props.paramsHandler(this.state);
+            console.log(this.state);
         });
     }
 
