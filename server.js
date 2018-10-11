@@ -522,10 +522,12 @@ merchant.post('/validatePhone',(req,res)=>{
 });
 
 merchant.post('/validateCoupon',(req,res)=>{
+    console.log("Req",req.query);
     MerchantWorker.ValidateCoupon({
         "user" : decodeURI(req.query.user)
     }).then((_res)=>{
-        if(_res.success === true)
+        console.log(_res);
+        if("Res",_res.success === true)
         {    
             if(_res.CouponValid === true)
             {
