@@ -118,8 +118,6 @@ exports.ValidateCoupon = function(params) {
                        if (count > 0)
                        {
                         DeadSessionCoupon = coupon;
-                        console.log("Update in coupons");
-                        console.log(coupons.child(coupon).val());
                         UserData.ref('users/user-' +uid+ '/coupons/').update({
                             [coupon] : coupons.child(coupon).val() - 1 
                         });
