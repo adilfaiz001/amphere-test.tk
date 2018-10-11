@@ -129,14 +129,10 @@ exports.ValidateCoupon = function(params) {
                         });
                         break
                        }
-                       else
-                       {
-                           resolve({
-                               "success":false
-                           })
-                       }
-                       
                     }
+                    resolve({
+                        "success":false
+                    });
                 });
             }
             else
