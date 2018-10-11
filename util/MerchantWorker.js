@@ -114,7 +114,7 @@ exports.ValidateCoupon = function(params) {
                     var Coupons = coupons.val();
                     for(var coupon in Coupons){
                        var count = Coupons[coupon];
-                       console.log(coupon,"=",count);
+                       
                        if (count > 0)
                        {
                         DeadSessionCoupon = coupon;
