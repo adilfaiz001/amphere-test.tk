@@ -67,7 +67,7 @@ exports.CreateNewUser = function (params) {
                                 "hash" : hash
                             });
                         });*/
-                        CouponsData.ref().child('coupons').orderByChild('user').equalTo('general').once('child_added',(coupons)=>{
+                        CouponsData.ref().child('coupons').orderByChild('user').equalTo('general').on('child_added',(coupons)=>{
                             if(coupons.val() !== null)
                             {
                                 console.log(coupons.val());
