@@ -16,6 +16,7 @@
 
 const Hasher = require('./PasswordHasher');
 const firebaseSignup = require('./Database');
+const CouponsData = require('./Database').firebase.database();
 const SpreadsheetWorker = require('./SpreadsheetWorker');
 const ssConfig = require('../config.json');
 
@@ -47,7 +48,6 @@ exports.CreateNewUser = function (params) {
                             "password" : hash,
                             "addedOn" : getDateTime(),
                             "isDeleted" : false,
-                            "coupon-test":3,
                             "login" : true
                         });
                         /*.then(()=>{
@@ -67,6 +67,12 @@ exports.CreateNewUser = function (params) {
                                 "hash" : hash
                             });
                         });*/
+                        CouponsData.ref().child('coupons').orderByChild('user').equalTo('general').once('child_added',(coupons)=>{
+                            if(coupons.val() !== null)
+                            {
+                                console.log(coupons.val());
+                            }
+                        });
                         resolve({
                             "success" : true,
                             "uid" : uid,
