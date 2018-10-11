@@ -17,6 +17,7 @@
 const Hasher = require('./PasswordHasher');
 const firebaseSignup = require('./Database');
 const CouponsData = require('./Database').firebase.database();
+const UsersData = require('./Database').firebase.database();
 const SpreadsheetWorker = require('./SpreadsheetWorker');
 const ssConfig = require('../config.json');
 
@@ -35,7 +36,6 @@ exports.CreateNewUser = function (params) {
             if(searchres.val()===null)
             {
                 usersData.ref().child('users').orderByChild('email').equalTo(params.email).once('value',(user)=>{
-                    console.log(user.val());
                     if (user.val()===null)
                     {
                         usersData.ref('users/user-' + uid).set({
@@ -71,6 +71,13 @@ exports.CreateNewUser = function (params) {
                             if(coupons.val() !== null)
                             {
                                 console.log(coupons.val());
+                                var Coupons = coupons.val();
+                                for(key in Coupons){
+                                    var coupon = Coupons[key]['code'];
+                                    UsersData.ref('users/user-' + uid + '/coupons').set({
+                                        [coupon]:3
+                                    });
+                                }
                             }
                         });
                         resolve({
