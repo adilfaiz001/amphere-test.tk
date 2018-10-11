@@ -74,7 +74,7 @@ exports.CreateNewUser = function (params) {
                                 var Coupons = coupons.val();
                                 for(key in Coupons){
                                     var coupon = Coupons[key]['code'];
-                                    UsersData.ref('users/user-' + uid + '/coupons').set({
+                                    UsersData.ref('users/user-' + uid + '/coupons').update({
                                         [coupon]:3
                                     });
                                 }
