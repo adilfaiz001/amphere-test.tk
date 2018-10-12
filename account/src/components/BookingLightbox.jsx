@@ -3,6 +3,7 @@ import './css/BookingLightbox.css';
 import '../GlobalStyles.css';
 import { ButtonToolbar, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 import $ from 'jquery';
+import SessionConfirmLightbox from './SessionConfirmLightbox';
 
 import LocationValidation from '../util/LocationValidation';
 import PromoCodeValidate from '../util/PromoCodeValidation';
@@ -22,16 +23,28 @@ class BookingLightbox extends Component {
             promoValid: false,
             promoAmount:null,
             amount40:null,
-            amount60:null
+            amount60:null,
+            confirmBox:false
             //------//
         };
     }
 
-    confirmSession = () => {
+    confirmSession = (promoValid) => {
+        if(promoValid)
+        {
+            this.setState({
+                confirmBox:true
+            });
+        }
+        else
+        {
+            this.props.paramsHandler(this.state);
+        }
+    }
+
+    confirmPromoSession = () =>{
         this.props.paramsHandler(this.state);
-        //-----//
         RemovePromocode(this.state.promoCode,this.props.user);
-        //-----//
     }
 
 
@@ -103,18 +116,11 @@ class BookingLightbox extends Component {
             PromoCodeValidate(_code.target.value,this.props.user).then((result)=>{
                 if(result.valid){
                     $(_code.target).addClass("success");
-                    return new Promise((resolve,reject)=>{
                         this.setState({
                             promoCode: result.promoCode,
                             promoAmount:result.amount,
                             promoValid: true
                         });
-                        resolve({
-                            "success":true
-                        });
-                    }).then(()=>{
-                        this.couponAmount(20);
-                    });
                     
                 } else {
                     $(_code.target).removeClass("success");
@@ -156,6 +162,13 @@ class BookingLightbox extends Component {
             });
         });   
     } 
+
+    cancelConfirmationDialog = (state) => {
+        let amt = this.CalculateAmount();
+        this.setState({ 
+            confirmBox: state
+        });
+    }
 
     render() {
         return (
@@ -206,18 +219,6 @@ class BookingLightbox extends Component {
                                 spellCheck="false"
                                 placeholder="Promo Code (Optional)"
                                 onChange={(code) => this.promoValidator(code)}/>
-                                {
-                                    this.state.promoValid ? (
-                                        <div>
-                                            <p>Duration 40min : {this.state.amount40}</p>
-                                            <p>Duration 60min : {this.state.amount60}</p>
-                                        </div>
-                                        
-                                    ) : console.log()
-                                }
-
-                                
-                                
                         </div>
 
                         <p className="info">After booking the session, you will receive
@@ -233,6 +234,15 @@ class BookingLightbox extends Component {
                                         onClick={this.confirmSession}
                                         disabled>CONFIRM SESSION</button>
                             )
+                        }
+                        {
+                            (this.state.confirmBox) ? (
+                                <SessionConfirmLightbox 
+                                    confirm={()=>this.confirmPropSession()} 
+                                    decline={() => this.cancelConfirmationDialog(false)}
+                                    duration={this.state.duration}
+                                    amount={this.state.amount}/>
+                            ) : console.log()
                         }
                     </div>
                 </div>
