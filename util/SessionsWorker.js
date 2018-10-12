@@ -1,8 +1,8 @@
 const firebaseSessions = require('./Database');
-//const SMSWorker = require('./SMSWorker');
+const SMSWorker = require('./SMSWorker');
 //const SpreadsheetWorker = require('./SpreadsheetWorker');
-const ssConfig = require('../config.json');
-//const SMSConfig = require('../config.json').smsService;
+//const ssConfig = require('../config.json');
+const SMSConfig = require('../config.json').smsService;
 
 var SessionsData = firebaseSessions.firebase.database();
 
@@ -38,20 +38,14 @@ exports.BookSession = function (params) {
                     "promoCode":params.promoCode,
                     "promoAmount":params.promoAmount
                     //-----//
-                });
-                
-                /*SMSWorker.SendSMSSessionOTP(otp, params.phone, SMSConfig.senders.otp).then(()=>{
+                });              
+                SMSWorker.SendSMSSessionOTP(otp, params.phone).then(()=>{
                     resolve({
                         "success": true,
                         "sid" : sid,
                         "startDate" : date,
                     });
-                });*/
-                resolve({
-                        "success": true,
-                        "sid" : sid,
-                        "startDate" : date,
-                    });
+                });
             }
         });
     });
