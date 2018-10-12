@@ -22,8 +22,6 @@ class BookingLightbox extends Component {
             promoCode: null,
             promoValid: false,
             promoAmount:null,
-            amount40:null,
-            amount60:null,
             confirmBox:false
             //------//
         };
@@ -32,7 +30,7 @@ class BookingLightbox extends Component {
     confirmSession = (promoValid) => {
         if(promoValid)
         {
-            this.couponAmount(this.state.promoAmount);
+            this.couponAmount(20);
             this.setState({
                 confirmBox:true
             });
@@ -159,7 +157,7 @@ class BookingLightbox extends Component {
         });   
     } 
 
-    cancelConfirmationDialog = (state) => {
+    cancelConfirmLightbox = (state) => {
         this.setState({ 
             confirmBox: state
         });
@@ -223,10 +221,10 @@ class BookingLightbox extends Component {
                         {
                             (this.state.locCodeValid) ? (
                                 <button className="confirm-session-button"
-                                        onClick={this.confirmSession(this.state.promoValid)}>CONFIRM SESSION</button>
+                                        onClick={() => this.confirmSession(this.state.promoValid)}>CONFIRM SESSION</button>
                             ) : (
                                 <button className="confirm-session-button button-disabled"
-                                        onClick={this.confirmSession(this.state.promoValid)}
+                                        onClick={() => this.confirmSession(this.state.promoValid)}
                                         disabled>CONFIRM SESSION</button>
                             )
                         }
