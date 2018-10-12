@@ -110,7 +110,8 @@ class BookingLightbox extends Component {
                             promoValid: true
                         });
                     }).then(()=>{
-                        this.couponAmount(this.state.promoAmount).then((_res)=>{
+                        this.couponAmount(20).then((_res)=>{
+                            console.log("Res",_res);
                             this.setState({
                                 amount40:_res.amt40,
                                 amount60:_res.amt60
@@ -151,8 +152,7 @@ class BookingLightbox extends Component {
                 "amt40":amt40,
                 "amt60":amt60
             });
-        });
-        
+        });   
     } 
 
     render() {
