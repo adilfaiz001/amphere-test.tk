@@ -32,6 +32,7 @@ class BookingLightbox extends Component {
     confirmSession = (promoValid) => {
         if(promoValid)
         {
+            this.couponAmount(this.state.promoAmount);
             this.setState({
                 confirmBox:true
             });
@@ -138,24 +139,19 @@ class BookingLightbox extends Component {
 
     couponAmount = (promoAmount) => {
         var amt = 10;
-        var amt40 = 0;
-        var amt60 = 0;
         var device = this.state.device;
         var duration = this.state.duration;
 
-        console.log(promoAmount);
         return new Promise((resolve,reject)=>{
-            console.log(this.state);
             if(device==="iOS") {
-                if(duration < 50 ) amt40 = 0;
-                else amt60 = 40 - promoAmount;
+                if(duration < 50 ) amt = 0;
+                else amt = 40 - promoAmount;
             } else if (device==="microUSB" || device==="USB-C") {
-                if(duration < 50 ) amt40 = 0;
+                if(duration < 50 ) amt = 0;
                 else amt = 30 - promoAmount;
             }
             this.setState({
-                amount40:amt40,
-                amount60:amt60
+                amount:amt
             });
             resolve({
                 "success":true
@@ -164,7 +160,6 @@ class BookingLightbox extends Component {
     } 
 
     cancelConfirmationDialog = (state) => {
-        let amt = this.CalculateAmount();
         this.setState({ 
             confirmBox: state
         });
@@ -228,17 +223,17 @@ class BookingLightbox extends Component {
                         {
                             (this.state.locCodeValid) ? (
                                 <button className="confirm-session-button"
-                                        onClick={this.confirmSession}>CONFIRM SESSION</button>
+                                        onClick={this.confirmSession(this.state.promoValid)}>CONFIRM SESSION</button>
                             ) : (
                                 <button className="confirm-session-button button-disabled"
-                                        onClick={this.confirmSession}
+                                        onClick={this.confirmSession(this.state.promoValid)}
                                         disabled>CONFIRM SESSION</button>
                             )
                         }
                         {
                             (this.state.confirmBox) ? (
                                 <SessionConfirmLightbox 
-                                    confirm={()=>this.confirmPropSession()} 
+                                    confirm={()=>this.confirmPromoSession()} 
                                     decline={() => this.cancelConfirmationDialog(false)}
                                     duration={this.state.duration}
                                     amount={this.state.amount}/>
