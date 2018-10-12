@@ -109,6 +109,9 @@ class BookingLightbox extends Component {
                             promoAmount:result.amount,
                             promoValid: true
                         });
+                        resolve({
+                            "success":true
+                        });
                     }).then(()=>{
                         this.couponAmount(20).then((_res)=>{
                             console.log("Res",_res);
