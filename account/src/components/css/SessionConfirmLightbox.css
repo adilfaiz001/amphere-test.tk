@@ -53,7 +53,7 @@
     .confirm-lightbox {
         width: 500px;
         left: 50%;
-        top: 35vh;
+        top: 30vh;
         margin-left: -250px;
         animation-name: pop-lightbox;
     }
