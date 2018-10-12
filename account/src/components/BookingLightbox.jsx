@@ -113,13 +113,7 @@ class BookingLightbox extends Component {
                             "success":true
                         });
                     }).then(()=>{
-                        this.couponAmount(20).then((_res)=>{
-                            console.log("Res",_res);
-                            this.setState({
-                                amount40:_res.amt40,
-                                amount60:_res.amt60
-                            });
-                        });
+                        this.couponAmount(20);
                     });
                     
                 } else {
@@ -143,8 +137,9 @@ class BookingLightbox extends Component {
         var device = this.state.device;
         var duration = this.state.duration;
 
+        console.log(promoAmount);
         return new Promise((resolve,reject)=>{
-            console.log("State",this.state);
+            console.log(this.state);
             if(device==="iOS") {
                 if(duration < 50 ) amt40 = 0;
                 else amt60 = 40 - promoAmount;
@@ -152,9 +147,12 @@ class BookingLightbox extends Component {
                 if(duration < 50 ) amt40 = 0;
                 else amt = 30 - promoAmount;
             }
+            this.setState({
+                amount40:amt40,
+                amount60:amt60
+            });
             resolve({
-                "amt40":amt40,
-                "amt60":amt60
+                "success":true
             });
         });   
     } 
