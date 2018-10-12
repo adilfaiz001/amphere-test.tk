@@ -144,6 +144,7 @@ class BookingLightbox extends Component {
         var duration = this.state.duration;
 
         return new Promise((resolve,reject)=>{
+            console.log("State",this.state);
             if(device==="iOS") {
                 if(duration < 50 ) amt40 = 0;
                 else amt60 = 40 - promoAmount;
