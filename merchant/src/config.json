@@ -7,11 +7,11 @@
         "salt" : "amphere"
     },
     "firebase" : {
-        "apiKey": "AIzaSyBvTE_bZkQheSwc_ZzFjBEd2FZXRTxByho",
-        "authDomain": "amphere-beta.firebaseapp.com",
-        "databaseURL": "https://amphere-beta.firebaseio.com",
-        "projectId": "amphere-beta",
-        "storageBucket": "amphere-beta.appspot.com",
-        "messagingSenderId": "1075861366411"
-      }
+        "apiKey": "AIzaSyAxTbo5u0iMrTmOGlmDytBh2GH9SQIicjY",
+        "authDomain": "amphere-d8b85.firebaseapp.com",
+        "databaseURL": "https://amphere-d8b85.firebaseio.com",
+        "projectId": "amphere-d8b85",
+        "storageBucket": "amphere-d8b85.appspot.com",
+        "messagingSenderId": "856580942502"
+    }
 }
