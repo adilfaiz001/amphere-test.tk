@@ -1,4 +1,4 @@
-/*const SMSConfig = require('../config.json').smsService;
+const SMSConfig = require('../config.json').smsService;
 const http = require('http');
 const qs = require('querystring');
 
@@ -27,20 +27,5 @@ exports.SendSMSSessionOTP = (otp, phone, sender) => {
         req.write(qs.stringify({}));
         req.end();
         resolve();
-    });
-}
-*/
-const client = require('twilio')('ACa7ddf72898846fbf0222e5bfe5f8779a','0cfee3e9d4c46eb240b191183a733783')
-
-exports.SendSMSSessionOTP = (otp, phone) => {
-    return new Promise((resolve,reject)=>{
-        client.sendMessage({
-            to:phone,
-            from: '+18508058852',
-            body:'Amphere Beta Solutions,your session otp :' +otp
-        },function(err,data){
-            if(err)
-                console.log(err);
-        });
     });
 }
