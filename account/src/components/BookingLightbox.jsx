@@ -141,20 +141,11 @@ class BookingLightbox extends Component {
 
         return new Promise((resolve,reject)=>{
             if(device==="iOS") {
-                if(duration < 50 ) amt = 30;
-                else amt = 40
+                if(duration < 50 ) amt40 = 0;
+                else amt60 = 40 - promoAmount;
             } else if (device==="microUSB" || device==="USB-C") {
-                if(duration < 50 ) amt = 20;
-                else amt = 30
-            }
-        }).then(()=>{
-            if (duration < 50 || amt <= promoAmount)
-            {
-                amt40 = 0;
-            }
-            else
-            {
-                amt60 = amt - promoAmount ;
+                if(duration < 50 ) amt40 = 0;
+                else amt = 30 - promoAmount;
             }
             resolve({
                 "amt40":amt40,
