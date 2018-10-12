@@ -639,7 +639,7 @@ admin.post( '/u/addMerchant', (req, res)=>{
 } );
 
 //-------------------------------------------------------------------//
-//author @adil
+//@adil
 admin.post('/u/coupons',(req,res)=>{
     let params = getParameters(req);
     if (params.class === '1') {

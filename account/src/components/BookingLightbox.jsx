@@ -20,7 +20,9 @@ class BookingLightbox extends Component {
             //------//
             promoCode: null,
             promoValid: false,
-            promoAmount:null
+            promoAmount:null,
+            amount40:null,
+            amount60:null
             //------//
         };
     }
@@ -101,11 +103,21 @@ class BookingLightbox extends Component {
             PromoCodeValidate(_code.target.value,this.props.user).then((result)=>{
                 if(result.valid){
                     $(_code.target).addClass("success");
-                    this.setState({
-                        promoCode: result.promoCode,
-                        promoAmount:result.amount,
-                        promoValid: true
+                    return new Promise((resolve,reject)=>{
+                        this.setState({
+                            promoCode: result.promoCode,
+                            promoAmount:result.amount,
+                            promoValid: true
+                        });
+                    }).then(()=>{
+                        this.couponAmount(this.state.promoAmount).then((_res)=>{
+                            this.setState({
+                                amount40:_res.amt40,
+                                amount60:_res.amt60
+                            });
+                        });
                     });
+                    
                 } else {
                     $(_code.target).removeClass("success");
                     $(_code.target).addClass("error");
@@ -119,6 +131,38 @@ class BookingLightbox extends Component {
         }    
         //------//  
     }
+
+    couponAmount = (promoAmount) => {
+        var amt = 10;
+        var amt40 = 0;
+        var amt60 = 0;
+        var device = this.state.device;
+        var duration = this.state.duration;
+
+        return new Promise((resolve,reject)=>{
+            if(device==="iOS") {
+                if(duration < 50 ) amt = 30;
+                else amt = 40
+            } else if (device==="microUSB" || device==="USB-C") {
+                if(duration < 50 ) amt = 20;
+                else amt = 30
+            }
+        }).then(()=>{
+            if (duration < 50 || amt <= promoAmount)
+            {
+                amt40 = 0;
+            }
+            else
+            {
+                amt60 = amt - promoAmount ;
+            }
+            resolve({
+                "amt40":amt40,
+                "amt60":amt60
+            });
+        });
+        
+    } 
 
     render() {
         return (
@@ -166,8 +210,21 @@ class BookingLightbox extends Component {
                             <input id="promo-code"
                                 required="true"
                                 className="textbox-small"
+                                spellCheck="false"
                                 placeholder="Promo Code (Optional)"
                                 onChange={(code) => this.promoValidator(code)}/>
+                                {
+                                    this.state.promoValid ? (
+                                        <div>
+                                            <p>Duration 40min : {this.state.amount40}</p>
+                                            <p>Duration 60min : {this.state.amount60}</p>
+                                        </div>
+                                        
+                                    ) : console.log()
+                                }
+
+                                
+                                
                         </div>
 
                         <p className="info">After booking the session, you will receive
