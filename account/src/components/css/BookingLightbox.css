@@ -182,6 +182,11 @@
     max-width: 500px;
 }
 
+.promo-holder div
+{
+    display: flex;
+    flex-flow: row;
+}
 /*TYPOGRAPHY================================================================*/
 
 .info {
