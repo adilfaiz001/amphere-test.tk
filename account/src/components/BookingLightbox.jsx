@@ -232,7 +232,7 @@ class BookingLightbox extends Component {
                             (this.state.confirmBox) ? (
                                 <SessionConfirmLightbox 
                                     confirm={()=>this.confirmPromoSession()} 
-                                    decline={() => this.cancelConfirmationDialog(false)}
+                                    decline={() => this.cancelConfirmLightbox(false)}
                                     duration={this.state.duration}
                                     amount={this.state.amount}/>
                             ) : console.log()
