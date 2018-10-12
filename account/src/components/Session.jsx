@@ -156,7 +156,6 @@ class Session extends Component {
     cancelConfirmationDialog = (state) => {
         let amt = this.CalculateAmount();
         //------//
-        console.log("True check",this.state);
         SessionFirebase.firebase.database().ref('sessions/session-' + this.state.sid).update({ "amount" : amt });
         //------//
         this.setState({ 
