@@ -37,14 +37,27 @@ class BookingLightbox extends Component {
         }
         else
         {
-            this.props.paramsHandler(this.state);
+            this.sessionAmount();
+            this.setState({
+                confirmBox:true
+            });
+           
         }
     }
 
-    confirmPromoSession = () =>{
-        this.props.paramsHandler(this.state);
-        RemovePromocode(this.state.promoCode,this.props.user);
+    confirmSessionBox = (promoValid) =>{
+        if(promoValid)
+        {
+            this.props.paramsHandler(this.state);
+            RemovePromocode(this.state.promoCode,this.props.user);
+        }
+        else
+        {
+            this.props.paramsHandler(this.state);
+        }   
     }
+    
+
 
 
     closeLightbox = () => {
@@ -151,11 +164,29 @@ class BookingLightbox extends Component {
             this.setState({
                 amount:amt
             });
-            resolve({
-                "success":true
-            });
+            resolve();
         });   
     } 
+
+    sessionAmount = () => {
+        var amt = 10;
+        var device = this.state.device;
+        var duration = this.state.duration;
+
+        return new Promise((resolve,reject)=>{
+            if(device==="iOS") {
+                if(duration < 50 ) amt = 30;
+                else amt = 40;
+            } else if (device==="microUSB" || device==="USB-C") {
+                if(duration < 50 ) amt = 20;
+                else amt = 30;
+            }
+            this.setState({
+                amount:amt
+            });
+            resolve();
+        }); 
+    }
 
     cancelConfirmLightbox = (state) => {
         this.setState({ 
@@ -231,7 +262,7 @@ class BookingLightbox extends Component {
                         {
                             (this.state.confirmBox) ? (
                                 <SessionConfirmLightbox 
-                                    confirm={()=>this.confirmPromoSession()} 
+                                    confirm={()=>this.confirmSessionBox(this.state.promoValid)} 
                                     decline={() => this.cancelConfirmLightbox(false)}
                                     duration={this.state.duration}
                                     amount={this.state.amount}/>
