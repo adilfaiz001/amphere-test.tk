@@ -8,9 +8,9 @@ class SessionConfirmLightbox extends Component {
                 <div className="confirm-lightbox">
                     <div className="confirm-container">
                         <h1>CONFIRM SESSION</h1>
-                        <p><b>Confirm to apply this Coupon</b></p>
+                        <p><b>Confirm to book this Coupon</b></p>
                         
-                        <p><b>Duration :</b>{this.props.duration}</p>
+                        <p><b>Duration :</b>{this.props.duration-2}</p>
                         <p><b>Amount :</b>{this.props.amount}</p>
 
                         <button className="button btn-thin" onClick={this.props.decline}>CLOSE</button>
