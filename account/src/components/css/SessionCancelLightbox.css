@@ -48,7 +48,9 @@
 } .confirm:active {
     background: linear-gradient(#d60000,#e42929);
 }
-
+button:focus{
+    outline:none;
+}
 @media (min-width: 600px){
     .cancel-lightbox {
         width: 500px;

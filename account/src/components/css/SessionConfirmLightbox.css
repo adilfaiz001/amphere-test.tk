@@ -39,16 +39,18 @@
 .confirm {
     color: #FFF;
     font-weight: 600;
-    background: linear-gradient(#ff0000,#ff2d2d);
-    border: 1px solid #ff0000;
+    background: linear-gradient(#12a112,#12a112);
+    border: 1px solid #12a112;
 
     -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
     -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
 } .confirm:active {
-    background: linear-gradient(#d60000,#e42929);
+    background: linear-gradient(#12a112,#12a112);
 }
-
+button:focus{
+    outline: none;
+}
 @media (min-width: 600px){
     .confirm-lightbox {
         width: 500px;
