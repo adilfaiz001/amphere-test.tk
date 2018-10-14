@@ -56,7 +56,7 @@ button:focus{
         width: 500px;
         left: 50%;
         top: 30vh;
-        margin-left: -250px;
+        margin-left: -241px;
         animation-name: pop-lightbox;
     }
     .textbox {
