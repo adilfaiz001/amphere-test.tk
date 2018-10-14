@@ -10,7 +10,7 @@ class SessionConfirmLightbox extends Component {
                         <h1>CONFIRM SESSION</h1>
                         <p><b>This is not a registered User,confirm to continue? </b></p>
                         
-                        <p><b>User</b>{this.props.user}</p>
+                        <p><b>User Phone No. : </b>{this.props.phone}</p>
 
                         <button className="button btn-thin" onClick={this.props.decline}>CLOSE</button>
                         <button className="button btn-thin confirm" onClick={this.props.confirm}>CONFIRM</button>
