@@ -20,7 +20,8 @@ class BookingLightbox extends Component {
             //------//
             promoValid:false,
             promoCode:null,
-            promoAmount:null
+            promoAmount:null,
+            phoneNoValid:false
             //------//
         };
     }
@@ -98,23 +99,26 @@ class BookingLightbox extends Component {
         } else if(_phone.target.value!=="" && /^\d+$/.test(_phone.target.value) && _phone.target.value.length === 10){
             console.log('Phone Validation Starts');
             PhoneValidation.ValidatePhone(_phone.target.value).then((result)=>{
+                console.log(result);
                 if(result.valid){
                     $(_phone.target).removeClass("error");
                     $(_phone.target).addClass("success");
                     this.setState({
                         phone:result.user,
                         phoneValid:true,
-                        username: result.username
+                        username: result.username,
+                        phonenoValid:true
                     });
                 }   
                 else
                 {
-                    $(_phone.target).removeClass('error');
-                    $(_phone.target).addClass('new');
+                    $(_phone.target).removeClass("error");
+                    $(_phone.target).addClass("new");
                     this.setState({
                         phone:_phone.target.value,
                         phoneValid:false,
-                        username:"Not Registered"
+                        username:"Not Registered",
+                        phoneNoValid:true
                     });
                 }
             });
@@ -203,7 +207,7 @@ class BookingLightbox extends Component {
                         </p>
 
                         {
-                            (this.state.phoneValid) ? (
+                            (this.state.phoneNoValid) ? (
                                 <button className="confirm-session-button" 
                                         onClick={() => this.confirmSession(this.state.phonevalid)}>CONFIRM SESSION</button>
                             ) : (
