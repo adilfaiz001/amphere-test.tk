@@ -1,4 +1,4 @@
-export default function PromoCodeValidate (code,user) {
+export default function ValidatePromoCode(code,user) {
     
     return new Promise((resolve,reject)=>{
         if (code!=="")
