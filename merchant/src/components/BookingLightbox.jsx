@@ -31,7 +31,6 @@ class BookingLightbox extends Component {
         {
             this.couponvalidate(this.state.phone).then(()=>{
                 this.props.paramsHandler(this.state);
-                console.log(this.state);
             });
         }
         else
@@ -72,6 +71,7 @@ class BookingLightbox extends Component {
         });
     }
 
+    /*
     addPhone = (_phone) => {
         if(_phone.target.value!=="" && /^\d+$/.test(_phone.target.value) && _phone.target.value.length === 10){
             $(_phone.target).removeClass('error');
@@ -87,7 +87,8 @@ class BookingLightbox extends Component {
             });
         }
     }
-
+    */
+   
     phoneValidator = (_phone) => {
         _phone.persist();
         if(_phone.target.value===""){
@@ -125,6 +126,7 @@ class BookingLightbox extends Component {
         } else 
         {
             $(_phone.target).removeClass("success");
+            $(_phone.target).removeClass("new");
             $(_phone.target).addClass("error");
             this.setState({
                 phoneValid:false,
