@@ -30,7 +30,7 @@ class BookingLightbox extends Component {
     confirmSession = (promoValid) => {
         if(promoValid)
         {
-            this.couponAmount(20);
+            this.couponAmount(this.state.promoAmount);
             this.setState({
                 confirmBox:true
             });
