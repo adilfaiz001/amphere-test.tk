@@ -4,6 +4,7 @@ import '../GlobalStyles.css';
 import { ButtonToolbar, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 import $ from 'jquery';
 
+import SessionConfirmLightbox from './SessionConfirmLightbox';
 import PhoneValidation from '../util/PhoneValidation'; 
 import CouponValidation from '../util/PhoneValidation';
 
@@ -24,11 +25,24 @@ class BookingLightbox extends Component {
         };
     }
 
-    confirmSession = () => {
-        this.couponvalidate(this.state.phone).then(()=>{
-            this.props.paramsHandler(this.state);
-            console.log(this.state);
-        });
+    confirmSession = (phoneValid) => {
+        if(phoneValid)
+        {
+            this.couponvalidate(this.state.phone).then(()=>{
+                this.props.paramsHandler(this.state);
+                console.log(this.state);
+            });
+        }
+        else
+        {
+            this.setState({
+                confirmBox:true
+            });
+        }
+    }
+
+    confirmSessionBox = () =>{
+        this.props.paramsHandler(this.state);
     }
 
     closeLightbox = () => {
@@ -93,16 +107,15 @@ class BookingLightbox extends Component {
                         username: result.username
                     });
                 }   
-                else {
-                    $(_phone.target).removeClass("success");
-                    $(_phone.target).addClass("error");
-                    console.log('Invalid Number');
+                else
+                {
+                    $(_phone.target).removeClass('error');
+                    $(_phone.target).addClass('new');
                     this.setState({
+                        phone:_phone.target.value,
                         phoneValid:false,
-                        phone:null
+                        username:"Not Registered"
                     });
-                    window.alert("User does not exist with this phone number");
-                    
                 }
             });
         } else 
@@ -143,6 +156,12 @@ class BookingLightbox extends Component {
                 }
             });
         });  
+    }
+
+    cancelConfirmLightbox = (state) =>{
+        this.setState({
+            confirmBox:state
+        });
     }
 
     render() {
@@ -186,12 +205,21 @@ class BookingLightbox extends Component {
                         {
                             (this.state.phoneValid) ? (
                                 <button className="confirm-session-button" 
-                                        onClick={this.confirmSession}>CONFIRM SESSION</button>
+                                        onClick={() => this.confirmSession(this.state.phonevalid)}>CONFIRM SESSION</button>
                             ) : (
                                 <button className="confirm-session-button button-disabled" 
-                                        onClick={this.confirmSession} 
+                                        onClick={() => this.confirmSession(this.state.phoneValid)} 
                                         disabled>CONFIRM SESSION</button>
                             )
+                        }
+                        {
+                            (this.state.confirmBox) ? (
+                                <SessionConfirmLightbox 
+                                    confirm={()=>this.confirmSessionBox(this.state.phoneValid)} 
+                                    decline={() => this.cancelConfirmLightbox(false)}
+                                    phone={this.state.phone}
+                                    username={this.state.username}/>
+                            ) : console.log()
                         }
                     </div>                        
                 </div>
