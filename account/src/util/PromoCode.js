@@ -1,7 +1,6 @@
 const firebaseLogin = require('./Database');
 
-export default function RemovePromoCode(code,phone)
-{
+exports.RemovePromoCode = (code,phone) => {
     const CouponData = firebaseLogin.firebase.database();
     const UserData = firebaseLogin.firebase.database();
 
