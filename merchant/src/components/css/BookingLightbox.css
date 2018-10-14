@@ -145,6 +145,10 @@
     border-color: green;
     color: green!important;
 }
+.new{
+    border-color: #ff7300;
+    color: #ff7300;
+}
 .textbox:focus
 {
     outline: none;
