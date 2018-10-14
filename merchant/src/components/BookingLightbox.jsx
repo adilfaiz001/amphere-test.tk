@@ -209,7 +209,7 @@ class BookingLightbox extends Component {
                         {
                             (this.state.phoneNoValid) ? (
                                 <button className="confirm-session-button" 
-                                        onClick={() => this.confirmSession(this.state.phonevalid)}>CONFIRM SESSION</button>
+                                        onClick={() => this.confirmSession(this.state.phoneValid)}>CONFIRM SESSION</button>
                             ) : (
                                 <button className="confirm-session-button button-disabled" 
                                         onClick={() => this.confirmSession(this.state.phoneValid)} 
