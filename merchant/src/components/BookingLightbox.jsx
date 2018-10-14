@@ -107,7 +107,7 @@ class BookingLightbox extends Component {
                         phone:result.user,
                         phoneValid:true,
                         username: result.username,
-                        phonenoValid:true
+                        phoneNoValid:true
                     });
                 }   
                 else
