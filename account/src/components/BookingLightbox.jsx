@@ -49,7 +49,7 @@ class BookingLightbox extends Component {
         if(promoValid)
         {
             this.props.paramsHandler(this.state);
-            PromoCode.RemovePromocode(this.state.promoCode,this.props.user);
+            PromoCode.RemovePromoCode(this.state.promoCode,this.props.user);
         }
         else
         {
