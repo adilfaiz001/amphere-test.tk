@@ -52,7 +52,7 @@ FUNCTIONS THAT GET DATA FROM THE        FIREBASE        DB AND RESPOND WITH DATA
 
 */
 
-exports.RemovePromoCode = (code,phone) => {
+exports.RemovePromoCode = (code,user) => {
     
     return new Promise((resolve,reject)=>{
         if (code!=="")
