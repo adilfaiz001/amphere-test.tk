@@ -240,7 +240,7 @@ class Session extends Component {
                         ( 
                             <div>
                                 <p className="session-detail-promocode"><b>Promo Code:</b>{this.state.promoCode}</p>
-                                <p className="session-detail-promoamount"><b>Promo Amount:</b>{this.state.promoAmount}</p>
+                                {/*<p className="session-detail-promoamount"><b>Promo Amount:</b>{this.state.promoAmount}</p>*/}
                             </div>             
                         ) : (console.log())
 
