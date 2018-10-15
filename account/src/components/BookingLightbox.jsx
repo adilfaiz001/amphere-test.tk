@@ -3,10 +3,9 @@ import './css/BookingLightbox.css';
 import '../GlobalStyles.css';
 import { ButtonToolbar, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 import $ from 'jquery';
-import SessionConfirmLightbox from './SessionConfirmLightbox';
 
+import SessionConfirmLightbox from './SessionConfirmLightbox';
 import LocationValidation from '../util/LocationValidation';
-//import PromoCodeValidation from '../util/PromoCodeValidation';
 import PromoCode from '../util/PromoCode';
 
 class BookingLightbox extends Component {
@@ -57,8 +56,6 @@ class BookingLightbox extends Component {
         }   
     }
     
-
-
 
     closeLightbox = () => {
         this.props.aborter();

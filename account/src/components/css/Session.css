@@ -45,6 +45,7 @@
     line-height: 1.125em;
     grid-row: 4/5;
 }
+/*
 .session-detail-promoamount{
     margin: 0;
     text-align: left;
@@ -52,7 +53,7 @@
     line-height: 1.125em;
     grid-row: 5/6;
 }
-
+*/
 .session-cancel-button {
     border: 1px solid #ff0000;
     width: fit-content;
