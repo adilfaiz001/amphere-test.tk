@@ -1,5 +1,3 @@
-const firebaseLogin = require('./Database');
-
 exports.ValidatePromoCode = (code,user) => {
     
     return new Promise((resolve,reject)=>{
