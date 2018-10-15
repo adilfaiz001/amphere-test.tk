@@ -321,6 +321,26 @@ account.post('/validatePromo',(req,res)=>{
     });
 });
 
+account.post('/removePromo',(req,res)=>{
+    CouponWorker.RemovePromoCode({
+        "code":decodeURI(req.query.code),
+        "phone":decodeURI(req.query.phone)
+    }).then((_res)=>{
+        if(_res.success === true)
+        {
+            res.status(200).json({
+                "state":"SUCCESS"
+            });
+        }
+        else
+        {
+            res.status(200).json({
+                "state": "ERROR"
+            });
+        }
+    });
+});
+
 
 //forget Password route//
 //--------------------------middleware------------------------------//

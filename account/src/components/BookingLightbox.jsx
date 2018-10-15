@@ -6,7 +6,7 @@ import $ from 'jquery';
 import SessionConfirmLightbox from './SessionConfirmLightbox';
 
 import LocationValidation from '../util/LocationValidation';
-import PromoCodeValidation from '../util/PromoCodeValidation';
+//import PromoCodeValidation from '../util/PromoCodeValidation';
 import PromoCode from '../util/PromoCode';
 
 class BookingLightbox extends Component {
@@ -125,7 +125,7 @@ class BookingLightbox extends Component {
                 promoValid:false
             });
         } else{
-            PromoCodeValidation.ValidatePromoCode(_code.target.value,this.props.user).then((result)=>{
+            PromoCode.ValidatePromoCode(_code.target.value,this.props.user).then((result)=>{
                 if(result.valid){
                     $(_code.target).addClass("success");
                         this.setState({
