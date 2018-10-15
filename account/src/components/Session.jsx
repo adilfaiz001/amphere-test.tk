@@ -93,7 +93,7 @@ class Session extends Component {
                         Timer.ref('time').on('value', (time) => this.TimingFunction(time.val()));
                     } else if(event==="EXPIRED"){
                         Timer.ref('time').off('value');
-                        this.setState({ timeRemain: 0, expired: true, amount: session.child('amount').val() });
+                        this.setState({ timeRemain: 0, activated:false, expired: true, amount: session.child('amount').val() });
                     } else if(event==="COMPLETED"){
                         SessionUpdates.ref().off();
                         this.props.complete();
@@ -109,6 +109,9 @@ class Session extends Component {
     expire = () => {
         Timer.ref('time').off('value');
         let amt = this.CalculateAmount();
+        //------//
+        SessionFirebase.firebase.database().ref('sessions/session-' + this.state.sid).update({ "amount" : amt });
+        //-------//
         this.setState({
             expired: true,
             timeRemain: 0,
@@ -156,7 +159,9 @@ class Session extends Component {
     cancelConfirmationDialog = (state) => {
         let amt = this.CalculateAmount();
         //------//
-        SessionFirebase.firebase.database().ref('sessions/session-' + this.state.sid).update({ "amount" : amt });
+        if(!state){
+            SessionFirebase.firebase.database().ref('sessions/session-' + this.state.sid).update({ "amount" : amt });
+        }
         //------//
         this.setState({ 
             cancelLightboxOpen: state,
