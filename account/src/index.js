@@ -7,8 +7,8 @@ import { Router, Route } from 'react-router-dom';
 import Forgot from './Forgot';
 
 ReactDOM.render(
-    <Super />,
     <Router>
+        <Super />
         <Route path="/forgot" component={Forgot} />
     </Router>, 
     document.getElementById('root'));
