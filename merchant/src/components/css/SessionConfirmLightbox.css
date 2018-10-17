@@ -15,7 +15,7 @@
     z-index: 20000;
   
     animation-name: pop-lightbox;
-    animation-duration: 0.5s;
+    animation-duration: 0.2s;
     animation-timing-function: ease-in-out;
 }
 @keyframes pop-lightbox {
