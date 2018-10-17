@@ -15,13 +15,13 @@ class BookingLightbox extends Component {
             duration: 42,
             phone: null,
             phoneValid: false,
-            username:null,
             device: "microUSB",
             //------//
             promoValid:false,
             promoCode:null,
             promoAmount:null,
-            phoneNoValid:false
+            phoneNoValid:false,
+            username:null
             //------//
         };
     }
@@ -88,7 +88,7 @@ class BookingLightbox extends Component {
         }
     }
     */
-   
+    //---------//
     phoneValidator = (_phone) => {
         _phone.persist();
         if(_phone.target.value===""){
@@ -169,6 +169,7 @@ class BookingLightbox extends Component {
             confirmBox:state
         });
     }
+    //-------//
 
     render() {
         return (
