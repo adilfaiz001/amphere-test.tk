@@ -3,7 +3,7 @@ import App from './App';
 import LoginPage from './LoginPage';
 import Login from './util/login';
 
-import {Route} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import Forgot from './Forgot';
 
 class Super extends Component {
@@ -73,11 +73,6 @@ class Super extends Component {
     }
 
     render() {
-        const ForgotRoute = () =>{
-            <div>
-                <Route exact path='/forgot' component={Forgot} />
-            </div>
-        }
         return (
             <div>
             {
@@ -88,7 +83,6 @@ class Super extends Component {
                      logoutWorker={this.logout}/> : 
                 <LoginPage onValidate={this.login}/>
             }
-            <ForgotRoute/>
             </div>
         );
     }
