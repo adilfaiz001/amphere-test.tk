@@ -3,13 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Super from './Super';
 import registerServiceWorker from './registerServiceWorker';
-import { Router, Route } from 'react-router-dom';
-import Forgot from './Forgot';
+import {BrowserRouter} from 'react-router-dom';
 
 ReactDOM.render(
-    <Router>
-        <Super />
-        <Route path="/forgot" component={Forgot} />
-    </Router>, 
+    <BrowserRouter>
+        <Super /> 
+    </BrowserRouter>,       
     document.getElementById('root'));
 registerServiceWorker();

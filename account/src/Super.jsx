@@ -3,6 +3,9 @@ import App from './App';
 import LoginPage from './LoginPage';
 import Login from './util/login';
 
+import {Route} from 'react-router-dom';
+import Forgot from './Forgot';
+
 class Super extends Component {
     constructor(){
         super();
@@ -70,6 +73,11 @@ class Super extends Component {
     }
 
     render() {
+        const ForgotRoute = () =>{
+            <div>
+                <Route exact path='/forgot' component={Forgot} />
+            </div>
+        }
         return (
             <div>
             {
@@ -80,6 +88,7 @@ class Super extends Component {
                      logoutWorker={this.logout}/> : 
                 <LoginPage onValidate={this.login}/>
             }
+            <ForgotRoute/>
             </div>
         );
     }

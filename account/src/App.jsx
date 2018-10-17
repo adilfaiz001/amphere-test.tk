@@ -9,6 +9,7 @@ import BookingLightbox from './components/BookingLightbox';
 import BookSession from './util/session';
 import UserData from './util/Database';
 
+
 class App extends Component {
   constructor(){
       super();
