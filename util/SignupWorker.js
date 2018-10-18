@@ -72,7 +72,6 @@ exports.CreateNewUser = function (params) {
                         CouponsData.ref().child('coupons').orderByChild('user').equalTo('general').on('value',(coupons)=>{
                             if(coupons.val() !== null)
                             {
-                                console.log(coupons.val());
                                 var Coupons = coupons.val();
                                 for(key in Coupons){
                                     var coupon = Coupons[key]['code'];
