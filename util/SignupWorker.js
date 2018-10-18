@@ -20,6 +20,8 @@ const CouponsData = require('./Database').firebase.database();
 const UsersData = require('./Database').firebase.database();
 const SpreadsheetWorker = require('./SpreadsheetWorker');
 const ssConfig = require('../config.json');
+const nodemailer = require('nodemailer');
+const async = require('async');
 
 exports.CreateNewUser = function (params) {
 
@@ -100,6 +102,46 @@ exports.CreateNewUser = function (params) {
             }
         });
     });
+}
+
+exports.EmailVerification = (params) =>{
+
+    return new Promise((resolve,reject)=>{
+        
+        let email = params.email;
+        let uid = params.uid;
+        let UserIdHash = Hasher.generateUserIdHash(uid);
+
+        UsersData.ref("users/user-" + uid).update({
+            "userIdToken" : UserIdHash
+        });
+
+        let url = `http://amphere-test.tk/confirm_email/${UserIdHash}`;
+
+        var smtpTransport = nodemailer.createTransport({
+            service: 'Gmail',
+            auth: {
+            user: 'amphere.solutions@gmail.com',
+            pass: 'ArpitGujjar@123'
+            }
+        });
+
+        var mailOptions = {
+            to: email,
+            from: 'amphere.solutions@gmail.com',
+            subject: 'amphere-solutions email verification',
+            text: 'You signed up for amphere solutions.\n\n' +
+            'Please click on the following link, or paste this into your browser to verify your identity of this email address:\n\n' +
+            url + '\n\n' +
+            'Thank Your.\n'
+        };
+        smtpTransport.sendMail(mailOptions,function(err){
+            console.log('mail sent');
+            req.flash('success','An email has been sent to '+email+' for verification.');
+        });
+        resolve();
+    })
+    
 }
 
 //==============================================================================================//

@@ -52,7 +52,6 @@ exports.ResetPassword = function(req,res,next){
           pass: 'ArpitGujjar@123'
         }
       });
-      console.log(smtpTransport);
       var mailOptions = {
         to: email,
         from: 'amphere.solutions@gmail.com',

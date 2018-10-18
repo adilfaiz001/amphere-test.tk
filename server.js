@@ -61,6 +61,20 @@ account.use(express.static(path.join(__dirname, 'account/build')));
 merchant.use(express.static(path.join(__dirname, 'merchant/build')));
 admin.use(express.static(path.join(__dirname, 'admin')));
 
+//-------------------------------------------------------------------//
+homepage.use(cookieParser('secret'));
+homepage.use(session({
+    secret: "Once again Rusty wins dog!",
+    resave: false,
+    saveUninitialized : false
+}));
+homepage.use(flash());
+homepage.use(function(req,res,next){
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+});
+
 //--------------------------------------------------------------------------//
 // R O U T E R ================ E X P R E S S ================= R O U T E R //
 //--------------------------------------------------------------------------//
@@ -184,14 +198,18 @@ homepage.post('/signupWorker', (req, res) => {
         "password" : params.password,
         "verify" : params.verify
     }).then( _res => {
-        console.log(_res);
         if(_res.success===true){
-            res.status(200).json({
-                "state" : "SUCCESS",
-                "uid" : _res.uid,
-                "hash" : params.hash
-            });
-            console.log(`\nNEW USER ADDED => \n\t- name: ${params.name} \n\t- phone: ${params.phone}`);
+            SignupWorker.EmailVerification({
+                "email":params.email,
+                "uid":_res.uid
+            }).then(()=>{
+                res.status(200).json({
+                    "state" : "SUCCESS",
+                    "uid" : _res.uid,
+                    "hash" : params.hash
+                });
+                console.log(`\nNEW USER ADDED => \n\t- name: ${params.name} \n\t- phone: ${params.phone}`);
+            });           
         } else {
             res.status(200).json({"state" : _res.error});
         }
