@@ -46,7 +46,7 @@ amphere.listen(PORT, () => {
 });
 
 homepage.set('views', path.join(__dirname, 'homepage'));
-homepage.set('view engine', 'hbs');
+
 homepage.engine('hbs', handle({
     defaultLayout: 'main',
     extname: 'hbs',
@@ -55,6 +55,7 @@ homepage.engine('hbs', handle({
         __dirname + '/homepage/partials',
     ]
 }));
+homepage.set('view engine', 'hbs');
 
 homepage.use(express.static(path.join(__dirname, 'homepage')));
 account.use(express.static(path.join(__dirname, 'account/build')));
@@ -85,7 +86,7 @@ homepage.use(function(req,res,next){
 //---------------------------- HOMEPAGE -----------------------------//
 
 homepage.get('/', (req,res)=> {
-    res.render('index', { title: 'Home | Amphere Solutions' });
+    res.render('index', { title: 'Home | Amphere Solutions', expressFlass: req.flash('success') });
 });
 homepage.get('/signup', (req,res)=> {
     res.render('signup', { title: 'Sign Up | Amphere Solutions' });
