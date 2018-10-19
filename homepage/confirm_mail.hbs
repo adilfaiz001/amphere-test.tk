@@ -11,9 +11,16 @@
     <div class="container">
         {{#if status}}
             <div class="success">
-                <p>You Have successfully verified your email address</p>
-                <p>Thank You.</p>
+                <p style="font-size:22px;">You have successfully verified your email address</p>
+                <p style="font-size: 22px; margin:10px;">Thank You.</p>
             </div>
         {{/if}}
+        <button id="login-btn" class="button">LOGIN</button>
     </div>
 </div>
+
+<script>
+    document.getElementById('login-btn').onclick = function() {
+        window.location = 'http://account.amphere-test.tk/';
+    }
+</script>

@@ -44,3 +44,13 @@ p {
     color: green;
     border-color: green;
 }
+.button
+{
+    width: 75%;
+    padding: 1em 0.75em;
+    margin: 1em 0 1rem 0;
+    font-weight: 600;
+    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
