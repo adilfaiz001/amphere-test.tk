@@ -63,7 +63,7 @@
                             //alert("Verification Email Sent to " + response.email);
                             var p = document.createElement('p');
                             var text = document.createTextNode('Verification email for ' + response.email + ' has been sent.');
-                            div.appendChild(text);
+                            p.appendChild(text);
                             document.getElementById('email-msg-box').appendChild(p);
                             document.getElementById('email-msg-box').classList.add('fade-out');
 
