@@ -68,9 +68,12 @@
                             document.getElementById('email-msg-box').classList.add('fade-out');
 
                         }
-                        /*createLoginToken(response).then(()=> {
-                            window.location = 'http://account.amphere-test.tk/';
-                        });*/
+                        setTimeout(function(){
+                            createLoginToken(response).then(()=> {
+                                window.location = 'http://account.amphere-test.tk/';
+                            });
+                        },3000);
+                        
                     } else if(response.state==="PHONE-EXISTS"){
                         $(phone).addClass('error');
                         alert("ERROR: An account with this phone number already exists!");

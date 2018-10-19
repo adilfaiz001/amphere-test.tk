@@ -87,11 +87,13 @@ p {
 {
     font-size: 18px;
     font-weight: 400;
-    background: #3ce13c;
+    background: #55da55;
     border-radius: 10px;
-    border: 2px solid;
-    border-color: #10e5ae;
+    border: 1px solid;
+    border-color: #3e9780;
     margin-bottom: 15px;
+    padding: 0 0.3px;
+    margin-top: 20px;
 }
 .fade-out
 {

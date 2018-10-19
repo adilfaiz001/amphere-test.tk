@@ -176,7 +176,8 @@ exports.EmailVerification = (req,res) =>{
 
 exports.ConfirmEmail = (params) => {
     let UserIdHash = params.UserIdHash;
-    return new Promise((resovle,reject)=>{
+    console.log("Confirm Mail");
+    return new Promise((resolve,reject)=>{
         UsersData.ref().child('users').orderByChild('userIdToken').equalTo(UserIdHash).limitToFirst(1).once('child_added',(userch)=>{
             if(userch.val() !== null)
             {

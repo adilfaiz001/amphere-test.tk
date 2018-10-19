@@ -220,6 +220,7 @@ homepage.post('/signupWorker', (req, res,next) => {
 //-------------------------------------------------------------------//
 homepage.get('/confirm_email/:hash',(req,res)=>{
     var UserIdHash = req.params.hash;
+    console.log(UserIdHash);
     SignupWorker.ConfirmEmail({
         "UserIdHash" : UserIdHash
     }).then((_res)=>{
