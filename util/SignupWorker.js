@@ -107,6 +107,7 @@ exports.EmailVerification = (req,res,next) =>{
     async.waterfall([
         function(done) {
             let uid;
+            let phone = getParameters(req).phone;
             UsersData.ref().child('users').orderByChild('phone').equalTo(phone).limitToFirst(1).once('child_added',(UserUid)=>{
                 uid = UserUid.child('uid').val();
             });
