@@ -19,7 +19,12 @@
             <input id="conf-password" type="password" class="textbox password" placeholder="Confirm Password" required  autocomplete="new-password"/>
 
             <button id="signup-btn" class="button">SIGN UP</button>
-
+            <div class="loading loading-none">
+                <div class="loading-bar"></div>
+                <div class="loading-bar"></div>
+                <div class="loading-bar"></div>
+                <div class="loading-bar"></div>
+            </div>
             <p>Already have an account? <a href="http://account.amphere-test.tk">Sign In</a></p>
         </div>
     </div>
@@ -41,6 +46,9 @@
             $(_name).removeClass('error');
             $(password).removeClass('error');
             $(confPassword).removeClass('error');
+            
+            document.getElementById('signup-btn').classList.add('button-fade');
+            document.getElementById('loading-bar').classList.remove('loading-none');
 
             const request = new XMLHttpRequest();
             let url = generateSignupQueryURL({
@@ -66,6 +74,9 @@
                             p.appendChild(text);
                             document.getElementById('email-msg-box').appendChild(p);
                             document.getElementById('email-msg-box').classList.add('fade-out');
+
+                            document.getElementById('signup-btn').classList.remove('button-fade');
+                            document.getElementById('loading-bar').classList.add('loading-none');
 
                         }
                         setTimeout(function(){
