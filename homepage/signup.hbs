@@ -9,7 +9,7 @@
 <!--=================== SIGN UP FORM ===================-->
 <div class="cover">
     <div class="login-container">
-        <!--{{> signupflash }} -->
+        <div class="email-msg"></div>
         <div>
             <p class="form-title">Sign Up</p>
             <input id="email" type="text" class="textbox" placeholder="Email" require autocomplete="email" spellcheck="false">
@@ -60,11 +60,16 @@
                     if(response.state==="SUCCESS"){
                         if(response.mailSent === true)
                         {
-                            alert("Verification Email Sent to " + response.email);
+                            //alert("Verification Email Sent to " + response.email);
+                            var div = document.createElement('div');
+                            var text = document.createTextNode('Verification email for ' + response.email + ' has been sent.');
+                            div.appendChild(text);
+                            document.getElementById('email-msg').appendChild(div);
+
                         }
-                        createLoginToken(response).then(()=> {
+                        /*createLoginToken(response).then(()=> {
                             window.location = 'http://account.amphere-test.tk/';
-                        });
+                        });*/
                     } else if(response.state==="PHONE-EXISTS"){
                         $(phone).addClass('error');
                         alert("ERROR: An account with this phone number already exists!");

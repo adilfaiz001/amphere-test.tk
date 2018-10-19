@@ -124,7 +124,7 @@ exports.EmailVerification = (req,res) =>{
                 console.log("Email:" + email);
                 done(null,email,UserIdHash);
             },
-            function(email,UserIdHash,done){
+            function(uid,email,UserIdHash,done){
                 console.log("Email and UserId:"+email+UserIdHash);
                 let url = `http://amphere-test.tk/confirm_email/${UserIdHash}`;
                 let params = getParameters(req);
@@ -153,14 +153,15 @@ exports.EmailVerification = (req,res) =>{
                     req.flash('success','An email has been sent to '+email+' for verification.');
                     console.log("Flash:"+req.flash('success'));
                     */     
-                    done(err,email);
+                    done(err,uid,email);
                 });
         },
         function(email,done){
+            let params = getParameters(req);
             res.status(200).json({
                 "state" : "SUCCESS",
-                //"uid" : params.uid,
-                //"hash" : params.hash,
+                "uid" : uid,
+                "hash" : params.hash,
                 "email" : email,
                 "mailSent":true
             });
