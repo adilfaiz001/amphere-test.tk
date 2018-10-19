@@ -122,7 +122,7 @@ exports.EmailVerification = (req,res) =>{
                 let params = getParameters(req);
                 let email = params.email;
                 console.log("Email:" + email);
-                done(null,email,UserIdHash);
+                done(null,uid,email,UserIdHash);
             },
             function(uid,email,UserIdHash,done){
                 console.log("Email and UserId:"+email+UserIdHash);
@@ -156,7 +156,7 @@ exports.EmailVerification = (req,res) =>{
                     done(err,uid,email);
                 });
         },
-        function(email,done){
+        function(uid,email,done){
             let params = getParameters(req);
             res.status(200).json({
                 "state" : "SUCCESS",
