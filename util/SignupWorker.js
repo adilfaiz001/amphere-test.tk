@@ -127,6 +127,7 @@ exports.EmailVerification = (req,res,next) =>{
         function(email,UserIdHash,done){
             console.log("Email and UserId:"+email+UserIdHash);
             let url = `http://amphere-test.tk/confirm_email/${UserIdHash}`;
+            let params = getParameters(req);
 
             var smtpTransport = nodemailer.createTransport({
                 service: 'Gmail',
@@ -155,53 +156,6 @@ exports.EmailVerification = (req,res,next) =>{
     ],function(err){
         res.redirect('/signup');
     });
-    /*
-    let params = getParameters(req);
-    return new Promise((resolve,reject)=>{
-        
-        console.log(params);
-
-        let email = params.email;
-        let phone = params.phone;
-        let uid;
-        UsersData.ref().child('users').orderByChild('phone').equalTo(phone).limitToFirst(1).once('child_added',(UserUid)=>{
-            uid = UserUid.child('uid').val();
-        });      
-        let UserIdHash = Hasher.generateUserIdHash(uid);
-
-        UsersData.ref("users/user-" + uid).update({
-            "userIdToken" : UserIdHash
-        });
-
-        let url = `http://amphere-test.tk/confirm_email/${UserIdHash}`;
-
-        var smtpTransport = nodemailer.createTransport({
-            service: 'Gmail',
-            auth: {
-            user: 'amphere.solutions@gmail.com',
-            pass: 'ArpitGujjar@123'
-            }
-        });
-
-        var mailOptions = {
-            to: email,
-            from: 'amphere.solutions@gmail.com',
-            subject: 'amphere-solutions email verification',
-            text: 'You signed up for amphere solutions.\n\n' +
-            'Please click on the following link, or paste this into your browser to verify your identity of this email address:\n\n' +
-            url + '\n\n' +
-            'Thank Your.\n'
-        };
-        smtpTransport.sendMail(mailOptions,function(err){
-            console.log('mail sent');
-            console.log(`\nNEW USER ADDED => \n\t- name: ${params.name} \n\t- phone: ${params.phone}`)
-            req.flash('success','An email has been sent to '+email+' for verification.');
-        });
-        res.redirect('/signup');
-        resolve();
-    })
-    */
-    
 }
 
 //==============================================================================================//
