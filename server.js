@@ -206,7 +206,7 @@ homepage.post('/signupWorker', (req, res,next) => {
                     "hash" : params.hash
                 });*/
                 console.log(req.flash('success'));
-                res.render('index',{title: 'Home | Amphere Solutions',success:req.flash('success')});
+                res.render('index',{title: 'Home | Amphere Solutions',success:"An email has been sent for verification."});
                 console.log(`\nNEW USER ADDED => \n\t- name: ${params.name} \n\t- phone: ${params.phone}`);
             });       
         } else {
