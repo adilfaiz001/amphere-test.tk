@@ -58,9 +58,9 @@
                     let response = JSON.parse(request.response);
                     if(response.state==="SUCCESS"){
                         console.log("SUCCESS");
-                        /*createLoginToken(response).then(()=> {
-                            window.location = 'http://account.amphere-test.tk/';
-                        });*/
+                        createLoginToken(response).then(()=> {
+                            window.location = 'http://amphere-test.tk/signup';
+                        });
                     } else if(response.state==="PHONE-EXISTS"){
                         $(phone).addClass('error');
                         alert("ERROR: An account with this phone number already exists!");
