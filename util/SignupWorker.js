@@ -155,13 +155,13 @@ exports.EmailVerification = (req,res,next) =>{
                 req.flash('success','An email has been sent to '+email+' for verification.');
                 console.log("Flash:"+req.flash('success'));
                 done(err,'done');
+                resolve();
             });
 
         }
     ],function(err){
         res.redirect('/signup');
     });
-    resolve();
 });
 }
 
