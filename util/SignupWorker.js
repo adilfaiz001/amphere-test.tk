@@ -104,7 +104,6 @@ exports.CreateNewUser = function (params) {
 }
 
 exports.EmailVerification = (req,res) =>{
-    return new Promise((resolve,reject)=>{
         async.waterfall([
             function(done) {
                 let uid;
@@ -154,14 +153,23 @@ exports.EmailVerification = (req,res) =>{
                     req.flash('success','An email has been sent to '+email+' for verification.');
                     console.log("Flash:"+req.flash('success'));
                     */     
-                    done(err,'done');
-                    resolve();
+                    done(err,email);
                 });
+        },
+        function(){
+            res.status(200).json({
+                "state" : "SUCCESS",
+                //"uid" : params.uid,
+                //"hash" : params.hash,
+                "email" : email,
+                "mailSent":true
+            });
+            console.log(`\nNEW USER ADDED => \n\t- name: ${params.name} \n\t- phone: ${params.phone}`); 
+            done(err,'done');
         }
     ],function(err){
         res.redirect('/signup');
     });
-});
 }
 
 //==============================================================================================//
