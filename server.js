@@ -202,11 +202,11 @@ homepage.post('/signupWorker', (req, res,next) => {
         if(_res.success===true){
             SignupWorker.EmailVerification(req,res,next).then(()=>{
                 console.log(req.flash('success'));
-                res.status(200).json({
+                /*res.status(200).json({
                     "state" : "SUCCESS",
                     "uid" : _res.uid,
                     "hash" : params.hash
-                });     
+                });*/
                 //res.render('index',{title: 'Home | Amphere Solutions',success:"An email has been sent for verification."});
                 //console.log(`\nNEW USER ADDED => \n\t- name: ${params.name} \n\t- phone: ${params.phone}`);
             });       

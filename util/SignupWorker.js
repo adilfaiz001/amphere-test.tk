@@ -154,6 +154,9 @@ exports.EmailVerification = (req,res,next) =>{
                 console.log(`\nNEW USER ADDED => \n\t- name: ${params.name} \n\t- phone: ${params.phone}`)
                 req.flash('success','An email has been sent to '+email+' for verification.');
                 console.log("Flash:"+req.flash('success'));
+                res.status(200).json({
+                    "state" : "SUCCESS"
+                });     
                 done(err,'done');
                 resolve();
             });
