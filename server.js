@@ -85,6 +85,7 @@ homepage.use(function(req,res,next){
 //---------------------------- HOMEPAGE -----------------------------//
 
 homepage.get('/', (req,res)=> {
+    console.log(req.flash('success'));
     res.render('index', { title: 'Home | Amphere Solutions'});
 });
 homepage.get('/signup', (req,res)=> {
