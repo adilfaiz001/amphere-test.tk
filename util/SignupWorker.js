@@ -104,6 +104,57 @@ exports.CreateNewUser = function (params) {
 }
 
 exports.EmailVerification = (req,res,next) =>{
+    async.waterfall([
+        function(done) {
+            let uid;
+            UsersData.ref().child('users').orderByChild('phone').equalTo(phone).limitToFirst(1).once('child_added',(UserUid)=>{
+                uid = UserUid.child('uid').val();
+            });
+            console.log("UID:" + uid);
+            let UserIdHash = Hasher.generateUserIdHash(uid);
+            done(uid,UserIdHash);
+        },
+        function(uid,UserIdHash,done){
+            UsersData.ref("users/user-" + uid).update({
+                "userIdToken" : UserIdHash
+            });
+            let params = getParameters(req);
+            let email = params.email;
+            console.log("Email:" + email);
+            done(email,UserIdHash);
+        },
+        function(email,UserIdHash){
+            console.log("Email and UserId:"+email+UserIdHash);
+            let url = `http://amphere-test.tk/confirm_email/${UserIdHash}`;
+
+            var smtpTransport = nodemailer.createTransport({
+                service: 'Gmail',
+                auth: {
+                user: 'amphere.solutions@gmail.com',
+                pass: 'ArpitGujjar@123'
+                }
+            });
+
+            var mailOptions = {
+                to: email,
+                from: 'amphere.solutions@gmail.com',
+                subject: 'amphere-solutions email verification',
+                text: 'You signed up for amphere solutions.\n\n' +
+                'Please click on the following link, or paste this into your browser to verify your identity of this email address:\n\n' +
+                url + '\n\n' +
+                'Thank Your.\n'
+            };
+            smtpTransport.sendMail(mailOptions,function(err){
+                console.log('mail sent');
+                console.log(`\nNEW USER ADDED => \n\t- name: ${params.name} \n\t- phone: ${params.phone}`)
+                req.flash('success','An email has been sent to '+email+' for verification.');
+                done(err,'done');
+            });
+        }
+    ],function(err){
+        res.redirect('/signup');
+    });
+    /*
     let params = getParameters(req);
     return new Promise((resolve,reject)=>{
         
@@ -148,6 +199,7 @@ exports.EmailVerification = (req,res,next) =>{
         res.redirect('/signup');
         resolve();
     })
+    */
     
 }
 
