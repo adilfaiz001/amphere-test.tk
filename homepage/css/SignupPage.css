@@ -78,6 +78,11 @@ p {
 } .error::placeholder {
     color: #ff0000 !important;
 }
+.email-msg
+{
+    opacity:0;
+    transition: opacity 0.3s ease-out;
+}
 .email-msg div
 {
     font-size: 18px;
@@ -87,7 +92,10 @@ p {
     border: 2px solid;
     border-color: #10e5ae;
     margin-bottom: 15px;
-    transition: all 0.3s ease-out;
+}
+.fade-out
+{
+    opacity: 1 !important;
 }
 
 /*===================   @MEDIA   ====================*/

@@ -176,24 +176,24 @@ exports.EmailVerification = (req,res) =>{
 
 exports.ConfirmEmail = (params) => {
     let UserIdHash = params.UserIdHash;
-
-    UsersData.ref().child('users').orderByChild('UserIdHash').equalTo(UserIdHash).limitToFirst(1).once('child_added',(userch)=>{
-        if(userch.val() !== null)
-        {
-            UsersData.ref('users/user-' + userch.child('uid').val()).update({
-                "UserIdHash" : null
-            }).then(()=>{
-                resolve({
-                    "success" : true
+    return new Promise((resovle,reject)=>{
+        UsersData.ref().child('users').orderByChild('userIdToken').equalTo(UserIdHash).limitToFirst(1).once('child_added',(userch)=>{
+            if(userch.val() !== null)
+            {
+                UsersData.ref('users/user-' + userch.child('uid').val()).update({
+                    "userIdToken" : null
+                }).then(()=>{
+                    resolve({
+                        "success" : true
+                    });
                 });
-            });
-        } else{
-            resolve({
-                "success" : false
-            });
-        }
-    })
-
+            } else{
+                resolve({
+                    "success" : false
+                });
+            }
+        });
+    });
 }
 
 //==============================================================================================//
