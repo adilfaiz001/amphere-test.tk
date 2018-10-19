@@ -113,7 +113,7 @@ exports.EmailVerification = (req,res,next) =>{
             });
             console.log("UID:" + uid);
             let UserIdHash = Hasher.generateUserIdHash(uid);
-            done(uid,UserIdHash);
+            done(null,uid,UserIdHash);
         },
         function(uid,UserIdHash,done){
             UsersData.ref("users/user-" + uid).update({
@@ -122,7 +122,7 @@ exports.EmailVerification = (req,res,next) =>{
             let params = getParameters(req);
             let email = params.email;
             console.log("Email:" + email);
-            done(email,UserIdHash);
+            done(null,email,UserIdHash);
         },
         function(email,UserIdHash,done){
             console.log("Email and UserId:"+email+UserIdHash);
