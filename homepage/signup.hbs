@@ -53,12 +53,13 @@
             request.open('POST', `/signupWorker?${url}`, true);
             request.send();
 
+            /*
             request.onreadystatechange = event => {
                 if (request.readyState === 4 && request.status === 200) {
                     let response = JSON.parse(request.response);
                     if(response.state==="SUCCESS"){
                         console.log("SUCCESS");
-                        createLoginToken(response).then(()=> {
+                        /*createLoginToken(response).then(()=> {
                             window.location = 'http://amphere-test.tk/signup';
                         });
                     } else if(response.state==="PHONE-EXISTS"){
@@ -69,7 +70,7 @@
                         alert("ERROR: An account with this email already exists");
                     }
                 }
-            }
+            }*/
         } else if(validityState==="confimpass"){
             $(password).addClass('error');
             $(confPassword).addClass('error');

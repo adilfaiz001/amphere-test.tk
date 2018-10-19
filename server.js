@@ -85,7 +85,6 @@ homepage.use(function(req,res,next){
 //---------------------------- HOMEPAGE -----------------------------//
 
 homepage.get('/', (req,res)=> {
-    console.log("Here Flash"+req.flash('success'));
     res.render('index', { title: 'Home | Amphere Solutions'});
 });
 homepage.get('/signup', (req,res)=> {
@@ -200,15 +199,16 @@ homepage.post('/signupWorker', (req, res,next) => {
         "verify" : params.verify
     }).then( _res => {
         if(_res.success===true){
-            SignupWorker.EmailVerification(req,res,next);
-            /*.then(()=>{
-                res.status(200).json({
+            SignupWorker.EmailVerification(req,res,next).then(()=>{
+                /*res.status(200).json({
                     "state" : "SUCCESS",
                     "uid" : _res.uid,
                     "hash" : params.hash
-                });
+                });*/
+                console.log(req.flash('success'));
+                res.render('index',{title: 'Home | Amphere Solutions',success:req.flash('success')});
                 console.log(`\nNEW USER ADDED => \n\t- name: ${params.name} \n\t- phone: ${params.phone}`);
-            }); */       
+            });       
         } else {
             res.status(200).json({"state" : _res.error});
         }
