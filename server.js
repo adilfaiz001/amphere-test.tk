@@ -65,7 +65,7 @@ admin.use(express.static(path.join(__dirname, 'admin')));
 //-------------------------------------------------------------------//
 homepage.use(cookieParser('secret'));
 homepage.use(session({
-    secret: "Once again Rusty wins dog!",
+    secret: "Homepage Flash",
     resave: false,
     saveUninitialized : false
 }));
