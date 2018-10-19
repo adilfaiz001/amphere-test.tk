@@ -124,7 +124,7 @@ exports.EmailVerification = (req,res,next) =>{
             console.log("Email:" + email);
             done(email,UserIdHash);
         },
-        function(email,UserIdHash){
+        function(email,UserIdHash,done){
             console.log("Email and UserId:"+email+UserIdHash);
             let url = `http://amphere-test.tk/confirm_email/${UserIdHash}`;
 
