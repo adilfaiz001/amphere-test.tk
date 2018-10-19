@@ -1,0 +1,46 @@
+header {
+    position: fixed;
+    z-index: 5000;
+    width: 100%;
+    background: transparent;
+    display: flex;
+} header .logo-text {
+    margin: auto;
+    padding: 2em;
+    max-height: 6.5em;
+    align-self: center;
+    justify-self: center;
+} header a {
+    margin: auto;
+    align-self: center;
+    justify-self: center;
+}
+
+p {
+    margin: 0;
+}
+
+.cover {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(#ffd800, #00ff73ab);
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    flex-flow: column;
+}
+
+.login-container{
+    height: fit-content;
+    max-width: 500px;
+    margin: auto;
+    font-weight: 300;
+    text-align: center;
+    padding: 2em 4em;
+}
+
+.success{
+    color: green;
+    border-color: green;
+}

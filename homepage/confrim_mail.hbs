@@ -1,0 +1,19 @@
+<script src="js/ConfirmMail.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/ConfirmMail.css" />
+
+<!--=================== HEADER AND SIDEBAR NAV MENU ===================-->
+<header>
+    <a href="/"><img class="logo-text" src="assets/amphere-text.svg"></a>
+</header>
+
+<!--=================== SIGN UP FORM ===================-->
+<div class="cover">
+    <div class="container">
+        {{#if status}}
+            <div class="success">
+                <p>You Have successfully verified your email address</p>
+                <p>Thank You.</p>
+            </div>
+        {{/if}}
+    </div>
+</div>

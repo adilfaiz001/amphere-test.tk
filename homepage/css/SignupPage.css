@@ -78,6 +78,17 @@ p {
 } .error::placeholder {
     color: #ff0000 !important;
 }
+.email-msg div
+{
+    font-size: 18px;
+    font-weight: 400;
+    background: #3ce13c;
+    border-radius: 10px;
+    border: 2px solid;
+    border-color: #10e5ae;
+    margin-bottom: 15px;
+    transition: all 0.3s ease-out;
+}
 
 /*===================   @MEDIA   ====================*/
 
