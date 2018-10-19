@@ -107,6 +107,8 @@ exports.EmailVerification = (req,res,next) =>{
     let params = getParameters(req);
     return new Promise((resolve,reject)=>{
         
+        console.log(params);
+
         let email = params.email;
         let uid = params.uid;
         let UserIdHash = Hasher.generateUserIdHash(uid);
@@ -136,6 +138,7 @@ exports.EmailVerification = (req,res,next) =>{
         };
         smtpTransport.sendMail(mailOptions,function(err){
             console.log('mail sent');
+            console.log(`\nNEW USER ADDED => \n\t- name: ${params.name} \n\t- phone: ${params.phone}`)
             req.flash('success','An email has been sent to '+email+' for verification.');
         });
         resolve();
