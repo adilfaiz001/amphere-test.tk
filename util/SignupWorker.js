@@ -156,7 +156,7 @@ exports.EmailVerification = (req,res) =>{
                     done(err,email);
                 });
         },
-        function(){
+        function(email,done){
             res.status(200).json({
                 "state" : "SUCCESS",
                 //"uid" : params.uid,
