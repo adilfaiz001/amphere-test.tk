@@ -3,6 +3,8 @@ import { Image } from 'react-bootstrap';
 import './css/Header.css';
 import $ from 'jquery';
 
+import UserWorker from '../util/UserWorker';
+
 class Header extends Component {
 
     constructor(){
