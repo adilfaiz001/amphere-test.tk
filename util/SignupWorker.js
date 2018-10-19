@@ -110,7 +110,11 @@ exports.EmailVerification = (req,res,next) =>{
         console.log(params);
 
         let email = params.email;
-        let uid = params.uid;
+        let phone = params.phone;
+        let uid;
+        UsersData.ref().child('users').orderByChild('phone').equalTo(phone).limitToFirst(1).once('child_added',(UserUid)=>{
+            uid = UserUid.child('uid').val();
+        });      
         let UserIdHash = Hasher.generateUserIdHash(uid);
 
         UsersData.ref("users/user-" + uid).update({
