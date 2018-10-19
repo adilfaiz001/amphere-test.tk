@@ -53,7 +53,7 @@
             request.open('POST', `/signupWorker?${url}`, true);
             request.send();
 
-            /*
+            
             request.onreadystatechange = event => {
                 if (request.readyState === 4 && request.status === 200) {
                     let response = JSON.parse(request.response);
@@ -70,7 +70,7 @@
                         alert("ERROR: An account with this email already exists");
                     }
                 }
-            }*/
+            }
         } else if(validityState==="confimpass"){
             $(password).addClass('error');
             $(confPassword).addClass('error');
