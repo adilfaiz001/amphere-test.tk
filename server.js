@@ -200,11 +200,12 @@ homepage.post('/signupWorker', (req, res,next) => {
     }).then( _res => {
         if(_res.success===true){
             SignupWorker.EmailVerification(req,res).then(()=>{
-                alert("Verification Email Sent to " + email);
                 res.status(200).json({
                     "state" : "SUCCESS",
                     "uid" : _res.uid,
-                    "hash" : params.hash
+                    "hash" : params.hash,
+                    "email" : params.email,
+                    "mailSent":true
                 });
                 console.log(`\nNEW USER ADDED => \n\t- name: ${params.name} \n\t- phone: ${params.phone}`);
             });       
