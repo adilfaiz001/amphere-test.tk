@@ -151,10 +151,12 @@ exports.EmailVerification = (req,res,next) =>{
             };
             smtpTransport.sendMail(mailOptions,function(err){
                 console.log('mail sent');
+                alert("Verification Email Sent to " + email);
+                /*
                 console.log(`\nNEW USER ADDED => \n\t- name: ${params.name} \n\t- phone: ${params.phone}`)
                 req.flash('success','An email has been sent to '+email+' for verification.');
                 console.log("Flash:"+req.flash('success'));
-                res.render('signup',{ title: 'Sign Up | Amphere Solutions', success : req.flash('success') });     
+                */     
                 done(err,'done');
                 resolve();
             });

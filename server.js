@@ -88,7 +88,6 @@ homepage.get('/', (req,res)=> {
     res.render('index', { title: 'Home | Amphere Solutions'});
 });
 homepage.get('/signup', (req,res)=> {
-    console.log('Here Flash'+req.flash('success'));
     res.render('signup', { title: 'Sign Up | Amphere Solutions' });
 });
 homepage.get('/about', (req,res)=> {
@@ -201,12 +200,11 @@ homepage.post('/signupWorker', (req, res,next) => {
     }).then( _res => {
         if(_res.success===true){
             SignupWorker.EmailVerification(req,res,next).then(()=>{
-                console.log(req.flash('success'));
-                /*res.status(200).json({
+                res.status(200).json({
                     "state" : "SUCCESS",
                     "uid" : _res.uid,
                     "hash" : params.hash
-                });*/
+                });
                 //res.render('index',{title: 'Home | Amphere Solutions',success:"An email has been sent for verification."});
                 //console.log(`\nNEW USER ADDED => \n\t- name: ${params.name} \n\t- phone: ${params.phone}`);
             });       
