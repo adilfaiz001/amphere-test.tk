@@ -103,8 +103,8 @@ exports.CreateNewUser = function (params) {
     });
 }
 
-exports.EmailVerification = (params) =>{
-
+exports.EmailVerification = (req,res,next) =>{
+    let params = getParameters(req);
     return new Promise((resolve,reject)=>{
         
         let email = params.email;
@@ -201,4 +201,21 @@ function generateSalt(length) {
         salt = salt + Math.floor(Math.random()*16).toString(16);
     }
     return salt;
+}
+
+function getParameters(request){
+    url = request.url.split('?');
+    var query = {
+        "action" : url[0]
+    };
+    if(url.length>=2){
+        url[1].split('&').forEach((q)=>{
+            try{
+                query[q.split('=')[0]] = q.split('=')[1];
+            } catch(e) {
+                query[q.split('=')[0]] = '';
+            }
+        })
+    }
+    return query;
 }

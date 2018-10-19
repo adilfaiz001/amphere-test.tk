@@ -188,7 +188,7 @@ homepage.post('/onboarding', (req, res) => {
         if(_res) res.status(200).json({"state" : "SUCCESS"});
     });
 });
-homepage.post('/signupWorker', (req, res) => {
+homepage.post('/signupWorker', (req, res,next) => {
     let params = getParameters(req);
     console.log(params);
     SignupWorker.CreateNewUser({
@@ -199,17 +199,15 @@ homepage.post('/signupWorker', (req, res) => {
         "verify" : params.verify
     }).then( _res => {
         if(_res.success===true){
-            SignupWorker.EmailVerification({
-                "email":params.email,
-                "uid":_res.uid
-            }).then(()=>{
+            SignupWorker.EmailVerification(req,res,next);
+            /*.then(()=>{
                 res.status(200).json({
                     "state" : "SUCCESS",
                     "uid" : _res.uid,
                     "hash" : params.hash
                 });
                 console.log(`\nNEW USER ADDED => \n\t- name: ${params.name} \n\t- phone: ${params.phone}`);
-            });           
+            }); */       
         } else {
             res.status(200).json({"state" : _res.error});
         }

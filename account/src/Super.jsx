@@ -13,7 +13,9 @@ class Super extends Component {
             uid: null,
             phone: null,
             name: null,
-            loginValidated: false
+            loginValidated: false,
+            email:null,
+            emailVerified:false
         }
     }
 
@@ -34,6 +36,8 @@ class Super extends Component {
                         uid: result.uid,
                         phone: result.phone,
                         name: result.name,
+                        email:result.email,
+                        emailVerified:result.emailVerified,
                         loginValidated: true
                     });
                 }
@@ -80,6 +84,8 @@ class Super extends Component {
                 <App phone={this.state.phone}
                      uid={this.state.uid}
                      name={this.state.name}
+                     email={this.state.email}
+                     emailVerified={this.state.emailVerified}
                      logoutWorker={this.logout}/> : 
                 <LoginPage onValidate={this.login}/>
             }

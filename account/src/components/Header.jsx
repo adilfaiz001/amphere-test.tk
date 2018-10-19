@@ -5,6 +5,13 @@ import $ from 'jquery';
 
 class Header extends Component {
 
+    constructor(){
+        super();
+        this.state = {
+            sentMail:false
+        };
+    }
+
     componentDidMount(){
         $(window).on("scroll", function() {
             if($(window).scrollTop() > 50) {
@@ -14,10 +21,34 @@ class Header extends Component {
             }
         });
     }
+
+    resendEmail = (phone) => {
+        UserWorker.ResendEmail({
+            "phone":phone
+        }).then((res)=>{
+            this.setState({
+                sentMail:true
+            });
+        });
+    }
     
     render() {
         return (
             <header>
+                {
+                    this.props.emailVerified ? 
+                        <div className="email-msg">
+                            {
+                                !this.state.sentmail ?
+                                <p>You have not verified your email address,<a onClick={this.resendEmail(this.props.phone)}>resend verification email</a></p>
+                                :
+                                <p>mail sent for verification,<a onClick={this.resendEmail(this.props.phone)}>resend verification email</a></p>
+                            }
+                            
+                        </div> : console.log()
+
+                }
+                
                 <Image className="logo-text" src="assets/amphere-text.svg" />
 
                 <input id="sidebar-toggle" type="checkbox" className="checkbox" />

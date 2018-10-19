@@ -18,6 +18,9 @@ class App extends Component {
           phone: null,
           name : null,
           lightboxOpen: false,
+          //-------//
+          email:null,
+          emailVerified:false
       };
   }
 
@@ -26,7 +29,10 @@ class App extends Component {
       uid: this.props.uid,
       phone: this.props.phone,
       name: this.props.name,
-      lightboxOpen: false
+      lightboxOpen: false,
+      //-------//
+      email:this.props.email,
+      emailVerified:this.props.emailVerified
     });
   }
 
