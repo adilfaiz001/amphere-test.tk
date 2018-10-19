@@ -157,6 +157,7 @@ exports.EmailVerification = (req,res) =>{
                 });
         },
         function(uid,email,done){
+            console.log("Last In Asyn")
             let params = getParameters(req);
             res.status(200).json({
                 "state" : "SUCCESS",
@@ -171,6 +172,28 @@ exports.EmailVerification = (req,res) =>{
     ],function(err){
         res.redirect('/signup');
     });
+}
+
+exports.ConfirmEmail = (params) => {
+    let UserIdHash = params.UserIdHash;
+
+    UsersData.ref().child('users').orderByChild('UserIdHash').equalTo(UserIdHash).limitToFirst(1).once('child_added',(userch)=>{
+        if(userch.val() !== null)
+        {
+            UsersData.ref('users/user-' + userch.child('uid').val()).update({
+                "UserIdHash" : null
+            }).then(()=>{
+                resolve({
+                    "success" : true
+                });
+            });
+        } else{
+            resolve({
+                "success" : false
+            });
+        }
+    })
+
 }
 
 //==============================================================================================//

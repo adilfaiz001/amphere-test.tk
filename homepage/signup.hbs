@@ -9,7 +9,7 @@
 <!--=================== SIGN UP FORM ===================-->
 <div class="cover">
     <div class="login-container">
-        <div class="email-msg"></div>
+        <div class="email-msg" id="email-msg-box"></div>
         <div>
             <p class="form-title">Sign Up</p>
             <input id="email" type="text" class="textbox" placeholder="Email" require autocomplete="email" spellcheck="false">
@@ -64,7 +64,7 @@
                             var div = document.createElement('div');
                             var text = document.createTextNode('Verification email for ' + response.email + ' has been sent.');
                             div.appendChild(text);
-                            document.getElementById('email-msg').appendChild(div);
+                            document.getElementById('email-msg-box').appendChild(div);
 
                         }
                         /*createLoginToken(response).then(()=> {
