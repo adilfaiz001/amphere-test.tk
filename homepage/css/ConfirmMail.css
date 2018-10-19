@@ -31,7 +31,7 @@ p {
     flex-flow: column;
 }
 
-.login-container{
+.container{
     height: fit-content;
     max-width: 500px;
     margin: auto;

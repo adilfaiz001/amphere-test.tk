@@ -183,6 +183,7 @@ exports.ConfirmEmail = (params) => {
             if(userch.val() !== null)
             {
                 UsersData.ref('users/user-' + userch.child('uid').val()).update({
+                    "emailVerify":true,
                     "userIdToken" : null
                 }).then(()=>{
                     resolve({

@@ -86,14 +86,17 @@ p {
 .email-msg p
 {
     font-size: 18px;
-    font-weight: 400;
-    background: #55da55;
+    background: #9aff71;
     border-radius: 10px;
     border: 1px solid;
-    border-color: #3e9780;
+    border-color: #23aa80;
     margin-bottom: 15px;
-    padding: 0 0.3px;
+    padding: 1px;
     margin-top: 20px;
+}
+.button:focus
+{
+    outline: none;
 }
 .fade-out
 {
