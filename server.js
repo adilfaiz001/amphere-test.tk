@@ -199,14 +199,14 @@ homepage.post('/signupWorker', (req, res,next) => {
         "verify" : params.verify
     }).then( _res => {
         if(_res.success===true){
-            SignupWorker.EmailVerification(req,res,next).then(()=>{
+            SignupWorker.EmailVerification(req,res).then(()=>{
+                alert("Verification Email Sent to " + email);
                 res.status(200).json({
                     "state" : "SUCCESS",
                     "uid" : _res.uid,
                     "hash" : params.hash
                 });
-                //res.render('index',{title: 'Home | Amphere Solutions',success:"An email has been sent for verification."});
-                //console.log(`\nNEW USER ADDED => \n\t- name: ${params.name} \n\t- phone: ${params.phone}`);
+                console.log(`\nNEW USER ADDED => \n\t- name: ${params.name} \n\t- phone: ${params.phone}`);
             });       
         } else {
             res.status(200).json({"state" : _res.error});
