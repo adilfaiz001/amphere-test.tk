@@ -59,7 +59,7 @@
                     let response = JSON.parse(request.response);
                     if(response.state==="SUCCESS"){
                         console.log("SUCCESS");
-                        /*createLoginToken(response).then(()=> {
+                        createLoginToken(response).then(()=> {
                             window.location = 'http://amphere-test.tk/signup';
                         });
                     } else if(response.state==="PHONE-EXISTS"){
