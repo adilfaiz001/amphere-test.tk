@@ -22,7 +22,7 @@ exports.ResetPassword = function(req,res,next){
         {
           console.log('No user account');
           req.flash('error','No account with '+req.body.email);
-          return res.redirect('/forget');
+          return res.redirect('/forgot');
         }
 
         else
@@ -68,7 +68,7 @@ exports.ResetPassword = function(req,res,next){
       });
     }
   ],function(err){
-        res.redirect('/forget');
+        res.redirect('/forgot');
   });
 }
 
@@ -89,7 +89,7 @@ exports.UpdatePassword = function(req,res)
         else if(userch.val().resetPasswordExpires<timestamp){
           console.log('Token Expires');
           req.flash('error','Password reset token expires');
-          return res.redirect('/forget');
+          return res.redirect('/forgot');
         }
         else if(req.body.password === req.body.confirm){
 
@@ -140,6 +140,6 @@ exports.UpdatePassword = function(req,res)
       });
     }
   ],function(err){
-    res.redirect('/forget');
+    res.redirect('/forgot');
   });
 }
