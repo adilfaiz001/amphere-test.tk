@@ -234,6 +234,48 @@ homepage.get('/confirm_email/:hash',(req,res)=>{
         }
     });
 });
+
+//------------------------------------------------------------------//
+//forgot password
+homepage.get('/forget',(req,res)=>{
+    res.render('forget');
+});
+
+homepage.post('/resetPassword',(req,res,next)=>{
+    PasswordWorker.ResetPassword(req,res,next);
+});
+
+homepage.get('/reset/:token',(req,res)=>{
+    const firebaseSignup = require('./util/Database');
+    var userData = firebaseSignup.firebase.database();
+    var timestamp = Date.now();
+
+    userData.ref().child('users').orderByChild('resetPasswordToken').equalTo(req.params.token).limitToFirst(1).once('value',(userch)=>{
+
+        if (userch.val()===null)
+        {
+            console.log("Invalid token");
+            req.flash('error', 'Password reset token is invalid or has expired.');
+            return res.redirect('/forget');
+        }
+        else if(userch.val().resetPasswordExpires<timestamp){
+            console.log('Token Expires');
+            req.flash('error','Password reset token expires');
+            return res.redirect('/forget');
+        }
+        else {
+            console.log("Success! Render to reset page");
+            res.render('reset', {token: req.params.token});
+        }
+        //console.log(userch.val().resetPasswordExpires+"   "+timestamp);
+    });
+});
+
+homepage.post('/reset/:token',(req,res)=>{
+    console.log(req.params.token);
+    console.log(req.body.password+'  '+req.body.confirm);
+    PasswordWorker.UpdatePassword(req,res);
+});
 //===================================================================//
 
 
@@ -378,7 +420,7 @@ account.post('/removePromo',(req,res)=>{
     });
 });
 
-
+/*
 //forget Password route//
 //--------------------------middleware------------------------------//
 account.set('views',path.join(__dirname,'account/account-view'));
@@ -439,7 +481,7 @@ account.post('/reset/:token',(req,res)=>{
     console.log(req.body.password+'  '+req.body.confirm);
     PasswordWorker.UpdatePassword(req,res);
 });
-
+*/
 //</adil>
 //-------------------------------------------------------------------//
 
