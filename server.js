@@ -241,7 +241,7 @@ homepage.get('/confirm_email/:hash',(req,res)=>{
 //------------------------------------------------------------------//
 //forgot password
 homepage.get('/forgot',(req,res)=>{
-    res.render('forgot');
+    res.render('forgot',{title: 'Forgot | Amphere Solutions'});
 });
 
 homepage.post('/resetPassword',urlencodedParser,(req,res,next)=>{
@@ -272,7 +272,7 @@ homepage.get('/reset/:token',(req,res)=>{
         }
         else {
             console.log("Success! Render to reset page");
-            res.render('reset', {token: req.params.token});
+            res.render('reset', { title:'Reset | Amphere Solutions', token: req.params.token});
         }
         //console.log(userch.val().resetPasswordExpires+"   "+timestamp);
     });
