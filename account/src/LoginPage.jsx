@@ -66,7 +66,7 @@ class LoginPage extends Component {
 
                     <input id="phoneInput" type="text" className="textbox" placeholder="Phone" onChange={this.setUserPhoneInput}/>
                     <input id="passwordInput" type="password" className="textbox password" placeholder="Password" onChange={this.setUserPasswordInput}/>
-                    <a id="forget-btn" href="http://amphere-test.tk/forget">Forgot Password?</a>
+                    <a id="forget-btn" href="http://amphere-test.tk/forgot">Forgot Password?</a>
                     {/*<Link to="/forgot"><button>Forgot Password?</button></Link>*/}
                     <button className="button" onClick={this.validateLogin.bind(this)}>SIGN IN</button>
 

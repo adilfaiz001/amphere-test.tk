@@ -237,8 +237,8 @@ homepage.get('/confirm_email/:hash',(req,res)=>{
 
 //------------------------------------------------------------------//
 //forgot password
-homepage.get('/forget',(req,res)=>{
-    res.render('forget');
+homepage.get('/forgot',(req,res)=>{
+    res.render('forgot');
 });
 
 homepage.post('/resetPassword',(req,res,next)=>{
