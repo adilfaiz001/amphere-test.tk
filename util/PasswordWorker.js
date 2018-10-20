@@ -73,7 +73,7 @@ exports.ResetPassword = function(req,res,next){
 }
 
 
-exports.UpdatePassword = function(req,res)
+exports.UpdatePassword = function(req,res,next)
 {
   async.waterfall([
     function(done){

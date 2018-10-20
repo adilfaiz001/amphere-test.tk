@@ -278,7 +278,7 @@ homepage.get('/reset/:token',(req,res)=>{
     });
 });
 
-homepage.post('/reset/:token',(req,res)=>{
+homepage.post('/reset/:token',(req,res,next)=>{
     console.log(req.params.token);
     console.log(req.body.password+'  '+req.body.confirm);
     PasswordWorker.UpdatePassword(req,res);
