@@ -62,18 +62,21 @@ account.use(express.static(path.join(__dirname, 'account/build')));
 merchant.use(express.static(path.join(__dirname, 'merchant/build')));
 admin.use(express.static(path.join(__dirname, 'admin')));
 
-//-------------------------------------------------------------------//
+//-------------------------------------------------------------------------//
+homepage.use(bodyParser.urlencoded({extended:true}));
 homepage.use(cookieParser('secret'));
 homepage.use(session({
-    secret: "Homepage Flash",
+    secret: "Once again Rusty wins dog!",
     resave: false,
     saveUninitialized : false
 }));
 homepage.use(flash());
 homepage.use(function(req,res,next){
     res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
     next();
 });
+
 
 //--------------------------------------------------------------------------//
 // R O U T E R ================ E X P R E S S ================= R O U T E R //
@@ -242,6 +245,10 @@ homepage.get('/forgot',(req,res)=>{
 });
 
 homepage.post('/resetPassword',(req,res,next)=>{
+    /*let params = getParameters(req);
+    PasswordWorker.ResetPassword({
+        "email":params.email
+    });*/
     PasswordWorker.ResetPassword(req,res,next);
 });
 

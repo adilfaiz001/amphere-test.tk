@@ -11,9 +11,48 @@
             <div>
                 <p class="reset">Enter your email to reset password</p>
                 <form class="form-group" action="/resetPassword" method="post">
-                    <input id="email" type="text" name="email" value="" placeholder="Email" autofocus spellcheck="false">
-                    <input id="reset-button" type="submit" name="reset" value="Reset Password">
-                </form>
+                  <input id="email" type="text" name="email" value="" placeholder="Email" autofocus spellcheck="false">
+                  <input id="reset-button" type="submit" name="reset" value="Reset Password">
+                </form>  
             </div>
         </div>
 </div>
+
+<!--
+<script>
+    var email = document.getElementById('email').value;
+
+    document.getElementById('reset.button').onclick = function() {
+        if (email !== "" && /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email))
+        {
+            const url = `email=${email}` 
+            
+            const request = new XMLHttpRequest();
+            request.open('POST',`/resetPassword?${url}`,true);
+            request.send();
+
+            request.onreadystatechange = event => {
+                if (request.readyState === 4 && request.status === 200) {
+                    let response = JSON.parse(request.response);
+                    if(response.state==="SUCCESS"){
+                        if(response.mailSent === true)
+                        {
+                            var p = document.createElement('p');
+                            var text = document.createTextNode('Email sent to' + response.email + ' for further instruction to reset password.');
+                            p.appendChild(text);
+                            document.getElementById('email-msg-box').appendChild(p);
+                        }
+                        else
+                        {
+                            var p = document.createElement('p');
+                            var text = document.createTextNode('');
+                            p.appendChild(text);
+                            document.getElementById('email-msg-box').appendChild(p);
+                        }
+                    }
+                }
+            }
+        }
+    }
+</script>
+-->
