@@ -39,7 +39,7 @@
     
     document.getElementById("signup-btn").onclick = function () {
         validityState = validateInputs(email.value,phone.value, _name.value, password.value, confPassword.value);
-        console.log("Validate",validityState);
+        
         if(validityState===true){
             $(email).removeClass('error');
             $(phone).removeClass('error');

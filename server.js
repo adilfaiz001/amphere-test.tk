@@ -63,7 +63,7 @@ merchant.use(express.static(path.join(__dirname, 'merchant/build')));
 admin.use(express.static(path.join(__dirname, 'admin')));
 
 //-------------------------------------------------------------------------//
-homepage.use(bodyParser.urlencoded({extended:true}));
+const urlencodedParser = bodyParser.urlencoded({extended : true});
 homepage.use(cookieParser('secret'));
 homepage.use(session({
     secret: "Once again Rusty wins dog!",
@@ -244,7 +244,7 @@ homepage.get('/forgot',(req,res)=>{
     res.render('forgot');
 });
 
-homepage.post('/resetPassword',(req,res,next)=>{
+homepage.post('/resetPassword',urlencodedParser,(req,res,next)=>{
     /*let params = getParameters(req);
     PasswordWorker.ResetPassword({
         "email":params.email
@@ -278,7 +278,7 @@ homepage.get('/reset/:token',(req,res)=>{
     });
 });
 
-homepage.post('/reset/:token',(req,res,next)=>{
+homepage.post('/reset/:token',urlencodedParser,(req,res,next)=>{
     console.log(req.params.token);
     console.log(req.body.password+'  '+req.body.confirm);
     PasswordWorker.UpdatePassword(req,res);
