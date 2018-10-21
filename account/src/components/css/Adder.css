@@ -1,29 +1,17 @@
 .container{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
 }
-.email-add
+.email-box
 {
     background: black;
     color: aliceblue;
 }
-.email-add p a{
+.email-box p a{
     text-decoration: none;
     cursor: pointer;
 }
-.email-add p a:hover{
+.email-box p a:hover{
     text-decoration: none;
-}
-.hid{
-    transform: translateY(-60px);
-    display: none;
-}
-.slide-up{
-    transform: translateY(-60px);
-    transition: transform 0.3s ease;
-}
-.slide-down{
-    transform: translateY(0px);
-    transition: transform 0.3s ease;
 }
