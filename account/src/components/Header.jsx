@@ -14,6 +14,7 @@ class Header extends Component {
         this.state = {
             sentMail:false,
             addEmail:false,
+            emailAdded:false,
             uid:null,
             email:null
         };
@@ -92,7 +93,8 @@ class Header extends Component {
                 if(res.success)
                 {
                     this.setState({
-                        addEmail : false
+                        addEmail : false,
+                        emailAdded:true
                     });
                 }
             });
@@ -144,7 +146,16 @@ class Header extends Component {
                             </div>
                         </div>
                         :
-                        console.log()
+                        <div>
+                            {
+                                this.emailAdded ? 
+                                    <div className="email-container">
+                                        <p>Thank you, your email will be used for resetting password</p>
+                                    </div>
+                                    :
+                                    console.log()
+                            }
+                        </div>
                     }
                     <nav className="sidebar-nav">
                         <ul>
