@@ -38,6 +38,13 @@ class Header extends Component {
             token = token.split('/');
             UserWorker.CheckForEmail({
                 "uid":token[0]
+            }).then((res) => {
+                if(res.addEmail){
+                    console.log('Setting addemail'+res.addEmail)
+                    this.setState({
+                        addEmail:true
+                    });
+                }
             });
         }
     }

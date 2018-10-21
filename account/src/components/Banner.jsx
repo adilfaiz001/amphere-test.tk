@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import './css/Banner.css';
 import '../GlobalStyles.css';
 
+
 class Banner extends Component {
+
     openLightbox = () => {
         this.props.lightboxOpener();
     }
