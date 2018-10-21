@@ -1,4 +1,6 @@
 header {
+	display: flex;
+	flex-direction: column;
     position: fixed;
     margin: 0;
     background: linear-gradient(#ffffffab,#ffffff00);
