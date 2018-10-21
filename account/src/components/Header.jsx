@@ -4,7 +4,6 @@ import './css/Header.css';
 import $ from 'jquery';
 
 import UserWorker from '../util/UserWorker';
-import Adder from './Adder';
 
 class Header extends Component {
 
@@ -93,9 +92,16 @@ class Header extends Component {
                         </div>
                         
                     </div>
+                    
                     {
                     this.state.addEmail ?
-                        <Adder />
+                        <div className="email-container">
+                            <div className="email-box">
+                                <p>Add email to your account</p>
+                                <input type="text" className="email-input" placeholder="Add your email"/>
+                                <input type="submit" className="email-submit" name="submit-email" id="submit-btn" placeholder="add"/>
+                            </div>
+                        </div>
                         :
                         console.log()
                     }

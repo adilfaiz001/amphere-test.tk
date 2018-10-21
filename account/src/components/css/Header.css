@@ -1,6 +1,4 @@
 header {
-	display: flex;
-	flex-direction: column;
     position: fixed;
     margin: 0;
     background: linear-gradient(#ffffffab,#ffffff00);
@@ -183,4 +181,24 @@ header .button {
     width: 20px;
 	background: #000;
 	transform: rotate(45deg);
+}
+
+/*---------------------------------------*/
+/*email-adder*/
+.email-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.email-box
+{
+    background: black;
+    color: aliceblue;
+}
+.email-box p a{
+    text-decoration: none;
+    cursor: pointer;
+}
+.email-box p a:hover{
+    text-decoration: none;
 }
