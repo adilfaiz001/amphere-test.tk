@@ -245,42 +245,14 @@ homepage.get('/forgot',(req,res)=>{
 });
 
 homepage.post('/resetPassword',urlencodedParser,(req,res,next)=>{
-    /*let params = getParameters(req);
-    PasswordWorker.ResetPassword({
-        "email":params.email
-    });*/
     PasswordWorker.ResetPassword(req,res,next);
 });
 
 homepage.get('/reset/:token',(req,res)=>{
-    const firebaseSignup = require('./util/Database');
-    var userData = firebaseSignup.firebase.database();
-    var timestamp = Date.now();
-
-    userData.ref().child('users').orderByChild('resetPasswordToken').equalTo(req.params.token).limitToFirst(1).once('value',(userch)=>{
-
-        if (userch.val()===null)
-        {
-            console.log("Invalid token");
-            req.flash('error', 'Password reset token is invalid or has expired.');
-            return res.redirect('/forget');
-        }
-        else if(userch.val().resetPasswordExpires<timestamp){
-            console.log('Token Expires');
-            req.flash('error','Password reset token expires');
-            return res.redirect('/forget');
-        }
-        else {
-            console.log("Success! Render to reset page");
-            res.render('reset', { title:'Reset | Amphere Solutions', token: req.params.token});
-        }
-        //console.log(userch.val().resetPasswordExpires+"   "+timestamp);
-    });
+    PasswordWorker.ResetPage(req,res);
 });
 
 homepage.post('/reset/:token',urlencodedParser,(req,res,next)=>{
-    console.log(req.params.token);
-    console.log(req.body.password+'  '+req.body.confirm);
     PasswordWorker.UpdatePassword(req,res);
 });
 //===================================================================//

@@ -4,13 +4,15 @@ import './css/Header.css';
 import $ from 'jquery';
 
 import UserWorker from '../util/UserWorker';
+import Adder from './Adder';
 
 class Header extends Component {
 
     constructor(){
         super();
         this.state = {
-            sentMail:false
+            sentMail:false,
+            addEmail:false
         };
     }
 
@@ -22,8 +24,15 @@ class Header extends Component {
                $("header").removeClass("active");
             }
         });
+
+        $(window).on("load",function(){
+            UserWorker.CheckForEmail(this.props.phone).then((res)=>{
+
+            });
+        });
     }
 
+    /*
     resendEmail = (phone) => {
         UserWorker.ResendEmail({
             "phone":phone
@@ -33,11 +42,13 @@ class Header extends Component {
             });
         });
     }
+    */
+
     
     render() {
         return (
             <header>
-                {
+                {/*
                     this.props.emailVerified ? 
                         <div className="email-msg">
                             {
@@ -48,8 +59,15 @@ class Header extends Component {
                             }
                             
                         </div> : console.log()
-
+                 */           
                 }
+                {
+                    this.state.addEmail ?
+                        <Adder />
+                        :
+                        console.log()
+                }
+
                 
                 <Image className="logo-text" src="assets/amphere-text.svg" />
 

@@ -143,3 +143,25 @@ exports.UpdatePassword = function(req,res,next)
     res.redirect('/forgot');
   });
 }
+
+exports.ResetPage = (req,res) => {
+    var timestamp = Date.now();
+
+    userData.ref().child('users').orderByChild('resetPasswordToken').equalTo(req.params.token).limitToFirst(1).once('value',(userch)=>{
+        if (userch.val()===null)
+        {
+            console.log("Invalid token");
+            req.flash('error', 'Password reset token is invalid or has expired.');
+            return res.redirect('/forgot');
+        }
+        else if(userch.val().resetPasswordExpires < timestamp){
+            console.log('Token Expires');
+            req.flash('error','Password reset token expires');
+            return res.redirect('/forgot');
+        }
+        else {
+            console.log("Success! Render to reset page");
+            res.render('reset', { title:'Reset | Amphere Solutions', token: req.params.token});
+        }
+    });
+} 
