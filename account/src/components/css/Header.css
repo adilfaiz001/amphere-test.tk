@@ -192,13 +192,11 @@ header .button {
 }
 .email-box
 {
-    background: black;
-    color: aliceblue;
+	margin: 10px;
+    font-size: 20px;
 }
-.email-box p a{
-    text-decoration: none;
-    cursor: pointer;
-}
-.email-box p a:hover{
-    text-decoration: none;
+.email-input{
+	height: 44px;
+    width: 95%;
+    margin: 10px 0px;
 }

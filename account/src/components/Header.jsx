@@ -3,6 +3,8 @@ import { Image } from 'react-bootstrap';
 import './css/Header.css';
 import $ from 'jquery';
 
+import { AwesomeButton } from 'react-awesome-button';
+import 'react-awesome-button/dist/styles.css';
 import UserWorker from '../util/UserWorker';
 
 class Header extends Component {
@@ -92,14 +94,14 @@ class Header extends Component {
                         </div>
                         
                     </div>
-                    
+
                     {
                     this.state.addEmail ?
                         <div className="email-container">
                             <div className="email-box">
                                 <p>Add email to your account</p>
                                 <input type="text" className="email-input" placeholder="Add your email"/>
-                                <input type="submit" className="email-submit" name="submit-email" id="submit-btn" placeholder="add"/>
+                                <AwesomeButton type="primary" >Add</AwesomeButton>
                             </div>
                         </div>
                         :
