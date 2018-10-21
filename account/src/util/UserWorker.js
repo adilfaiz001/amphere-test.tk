@@ -6,17 +6,18 @@ exports.ResendEmail = (phone) =>{
 
 exports.CheckForEmail = (phone) =>{
     const UserData = require('./Database').firebase.database();
+    return new Promise((resolve,reject)=>{
     UserData.ref().child('users').orderByChild('phone').equalTo(phone).limitToFirst(1).once('child_added',(userch,err)=>{
-        return new Promise((resolve,reject)=>{
+            console.log(userch.val());
             if(userch.val() !== null)
             {
                 var addEmail = (UserData.ref('users/user-' + userch.child('uid').val() + 'email').val() !== null )
                 console.log(addEmail);   
             }
             resolve();
+        });
         }).catch((err) => {
+            console.log("HERE IN ERROR");
             console.log(err);
         });
-        
-    })
 }
