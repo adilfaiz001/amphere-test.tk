@@ -11,7 +11,7 @@ exports.CheckForEmail = (params) =>{
                 console.log(userch.val());
                 if(userch.val() !== null)
                 {
-                    var addEmail = (UserData.ref('users/user-' + params.uid).child('email').val() === null )
+                    var addEmail = (userch.child('email').val() === null )
                     console.log(addEmail);   
                 }
                 resolve();
