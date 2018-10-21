@@ -13,7 +13,7 @@ class Header extends Component {
         this.state = {
             sentMail:false,
             addEmail:false,
-            phone:this.props.phone
+            phone:null
         };
     }
 
@@ -28,6 +28,9 @@ class Header extends Component {
     }
 
     componentWillMount(){
+        this.setState({
+            phone:this.props.phone
+        });
         $(window).on("load",function(){
             UserWorker.CheckForEmail(this.state.phone).then((res)=>{
 
