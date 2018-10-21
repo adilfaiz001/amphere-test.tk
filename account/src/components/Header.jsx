@@ -77,12 +77,6 @@ class Header extends Component {
                         </div> : console.log()
                  */           
                 }
-                {
-                    this.state.addEmail ?
-                        <Adder />
-                        :
-                        console.log()
-                }
 
                 
                 <Image className="logo-text" src="assets/amphere-text.svg" />
@@ -99,6 +93,12 @@ class Header extends Component {
                         </div>
                         
                     </div>
+                    {
+                    this.state.addEmail ?
+                        <Adder />
+                        :
+                        console.log()
+                    }
                     <nav className="sidebar-nav">
                         <ul>
                             <li><a href="http://amphere.in">HOME</a></li>
