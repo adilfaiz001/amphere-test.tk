@@ -82,17 +82,21 @@ class Header extends Component {
         }
     }
     AddEmail = () => {
-        UserWorker.AddEmail({
-            "email":this.state.email,
-            "uid" : this.state.uid
-        }).then((res) => {
-            if(res.success)
-            {
-                this.setState({
-                    addEmail : false
-                });
-            }
-        });
+        console.log("Adding Email");
+        if (this.state.email !== null)
+        {
+            UserWorker.AddEmail({
+                "email":this.state.email,
+                "uid" : this.state.uid
+            }).then((res) => {
+                if(res.success)
+                {
+                    this.setState({
+                        addEmail : false
+                    });
+                }
+            });
+        } 
     }
     
     render() {
@@ -133,7 +137,7 @@ class Header extends Component {
                         <div className="email-container">
                             <div className="email-box">
                                 <p>Add email to your account</p>
-                                <input type="text" className="email-input" placeholder="Add your email" onChange={this.ValidateEmail}/>
+                                <input type="text" className="email-input" placeholder="Add your email" onBlur={this.ValidateEmail}/>
                                 <AwesomeButton size="medium" type="primary" color="teal" onClick={this.AddEmail}>Add Email</AwesomeButton>
                             </div>
                         </div>
