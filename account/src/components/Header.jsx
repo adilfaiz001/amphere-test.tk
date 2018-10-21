@@ -78,7 +78,7 @@ class Header extends Component {
                 email:email.target.value
             });
         } else{
-            $(email.target).addBack('error');
+            $(email.target).addClass('error');
         }
     }
     AddEmail = () => {
@@ -86,9 +86,12 @@ class Header extends Component {
             "email":this.state.email,
             "uid" : this.state.uid
         }).then((res) => {
-            this.setState({
-                addEmail : false
-            });
+            if(res.success)
+            {
+                this.setState({
+                    addEmail : false
+                });
+            }
         });
     }
     

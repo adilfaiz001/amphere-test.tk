@@ -203,8 +203,14 @@ header .button {
     width: 95%;
 	margin: 10px 0px;
 	border-width: 0 0 1px 0;
-    background-color: #242424;
+	background-color: #242424;
+	color: #fff;
+	text-align: center;
 }
 .email-input::placeholder{
 	text-align: center;
+}
+.error{
+	border-color: red;
+	color: red;
 }
