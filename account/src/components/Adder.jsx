@@ -5,7 +5,7 @@ import $ from 'jquery';
 class Adder extends Component {
     componentDidMount(){
         $('#add-email').on('click',function(){
-            $('#add-email').addClass('slide-up');
+            $('.email-box').addClass('slide-up');
             $('.email-input').removeClass('hid');
             $('.email-input').addClass('slide-down');
         });
@@ -13,7 +13,7 @@ class Adder extends Component {
     render() {
         return (
             <div className="container">
-                <div className="email-add">
+                <div className="email-box">
                     <p><a id="add-email">Add email to your account</a></p>
                 </div>
                 <div className="email-input hid">
