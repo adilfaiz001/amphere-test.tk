@@ -23,8 +23,10 @@ class Header extends Component {
             } else {
                $("header").removeClass("active");
             }
-        });
+        });  
+    }
 
+    componentWillMount(){
         $(window).on("load",function(){
             UserWorker.CheckForEmail(this.props.phone).then((res)=>{
 
