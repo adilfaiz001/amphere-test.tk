@@ -31,9 +31,7 @@ class Header extends Component {
         this.setState({
             phone:this.props.phone
         });
-        UserWorker.CheckForEmail(this.state.phone).then((res)=>{
-
-        });
+        UserWorker.CheckForEmail(this.state.phone);
     }
 
     /*
