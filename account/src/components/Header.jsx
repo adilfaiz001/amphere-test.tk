@@ -138,10 +138,9 @@ class Header extends Component {
                             <div className="email-box">
                                 <p>Add email to your account</p>
                                 <input type="text" className="email-input" placeholder="Add your email" onBlur={this.ValidateEmail}/>
-                                <AwesomeButton size="medium" type="primary" color="teal" >
-                                    <button onClick={this.AddEmail}></button>
-                                    Add Email
-                                </AwesomeButton>
+                                <span onClick={this.AddEmail}>
+                                    <AwesomeButton size="medium" type="primary" color="teal" >Add Email</AwesomeButton>
+                                </span>
                             </div>
                         </div>
                         :

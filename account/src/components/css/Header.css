@@ -85,6 +85,9 @@ header .button {
 }
 
 /*--------------------NAV------------------*/
+.sidebar-nav{
+	transition: all 0.4s ease;
+}
 .sidebar-nav ul {
     padding: 0;
     margin-top: 2em;
@@ -187,7 +190,8 @@ header .button {
 /*email-adder*/
 .email-container{
     display: flex;
-    background-color: #242424;
+	background-color: #242424;
+	transition: all 0.3s ease;
 }
 .email-box
 {
