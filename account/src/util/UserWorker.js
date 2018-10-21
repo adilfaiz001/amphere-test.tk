@@ -4,10 +4,10 @@ exports.ResendEmail = (phone) =>{
     })
 }
 
-exports.CheckForEmail = (uid) =>{
+exports.CheckForEmail = (params) =>{
     const UserData = require('./Database').firebase.database();
     return new Promise((resolve,reject)=>{
-        UserData.ref().child('users').orderByChild('uid').equalTo(uid).limitToFirst(1).once('child_added',(userch,err)=>{
+        UserData.ref().child('users').orderByChild('uid').equalTo(params.uid).limitToFirst(1).once('child_added',(userch,err)=>{
                 console.log(userch.val());
                 if(userch.val() !== null)
                 {
