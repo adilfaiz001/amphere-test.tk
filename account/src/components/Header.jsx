@@ -101,7 +101,7 @@ class Header extends Component {
                             <div className="email-box">
                                 <p>Add email to your account</p>
                                 <input type="text" className="email-input" placeholder="Add your email"/>
-                                <AwesomeButton type="primary" >Add</AwesomeButton>
+                                <AwesomeButton size="medium" type="primary" color="teal" >Add Email</AwesomeButton>
                             </div>
                         </div>
                         :
