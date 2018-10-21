@@ -3,7 +3,26 @@
     flex-direction: column;
     justify-content: center;
 }
-.input-hidden
+#email-add
 {
-    display: none;
+    background: black;
+    color: aliceblue;
+}
+#email-add p a{
+    text-decoration: none;
+    cursor: pointer;
+}
+#email-add p a:hover{
+    text-decoration: none;
+}
+.hid{
+    transform: translateY(20px);
+}
+.slide-up{
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+.slide-down{
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
 }
