@@ -14,7 +14,8 @@ class Header extends Component {
         this.state = {
             sentMail:false,
             addEmail:false,
-            phone:null
+            uid:null,
+            email:null
         };
     }
 
@@ -43,7 +44,8 @@ class Header extends Component {
                 if(res.addEmail){
                     console.log('Setting addemail'+res.addEmail)
                     this.setState({
-                        addEmail:true
+                        addEmail:true,
+                        uid:token[0]
                     });
                 }
             });
@@ -61,6 +63,34 @@ class Header extends Component {
     }
     */
 
+    ValidateEmail = (email) => {
+        email.persist();
+        if(email.target.valuue === "")
+        {
+            $(email.target).removeClass('error');
+            this.setState({
+                email:null
+            });
+        }
+        else if (email.target.value !== "" && /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email.target.value)){
+            $(email.target).removeClass('error');
+            this.setState({
+                email:email.target.value
+            });
+        } else{
+            $(email.target).addBack('error');
+        }
+    }
+    AddEmail = () => {
+        UserWorker.AddEmail({
+            "email":this.state.email,
+            "uid" : this.state.uid
+        }).then((res) => {
+            this.setState({
+                addEmail : false
+            });
+        });
+    }
     
     render() {
         return (
@@ -100,8 +130,8 @@ class Header extends Component {
                         <div className="email-container">
                             <div className="email-box">
                                 <p>Add email to your account</p>
-                                <input type="text" className="email-input" placeholder="Add your email"/>
-                                <AwesomeButton size="medium" type="primary" color="teal" >Add Email</AwesomeButton>
+                                <input type="text" className="email-input" placeholder="Add your email" onChange={this.ValidateEmail}/>
+                                <AwesomeButton size="medium" type="primary" color="teal" onClick={this.AddEmail}>Add Email</AwesomeButton>
                             </div>
                         </div>
                         :
