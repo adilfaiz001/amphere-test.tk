@@ -28,12 +28,19 @@ class Header extends Component {
     }
 
     componentWillMount(){
-        this.setState({
-            phone:this.props.phone
-        });
-        UserWorker.CheckForEmail(this.state.phone);
+        this.checkToken();
     }
 
+    checkToken = () => {
+        let token = localStorage.getItem('AMP_TK');
+        console.log(token);
+        if(token !== null){
+            token = token.split('/');
+            UserWorker.CheckForEmail({
+                "uid":token[0]
+            });
+        }
+    }
     /*
     resendEmail = (phone) => {
         UserWorker.ResendEmail({
