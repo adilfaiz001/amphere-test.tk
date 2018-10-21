@@ -3,8 +3,6 @@ import App from './App';
 import LoginPage from './LoginPage';
 import Login from './util/login';
 
-import {Route, Switch} from 'react-router-dom';
-import Forgot from './Forgot';
 
 class Super extends Component {
     constructor(){
