@@ -48,6 +48,7 @@ class Header extends Component {
                         uid:token[0]
                     });
                 } else{
+                    console.log(res);
                     this.setState({
                         emailVerify:res.emailVerify
                     });
@@ -100,6 +101,7 @@ class Header extends Component {
                         emailVerify:true
                     });
                 }
+                console.log("State"+this.state);
             });
         } 
     }

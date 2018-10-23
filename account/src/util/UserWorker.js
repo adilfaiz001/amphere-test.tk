@@ -18,9 +18,12 @@ exports.CheckForEmail = (params) =>{
                         });
                     } else {
                         var emailVerify = (userch.child('emailVerify').val() === true)
-                        resolve({
-                            "emailVerify":emailVerify
-                        });
+                        if(!emailVerify)
+                        {
+                            resolve({
+                                "emailVerify":true
+                            });
+                        }
                     }
                       
                 }
