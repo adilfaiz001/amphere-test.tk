@@ -191,7 +191,11 @@ header .button {
 .email-container{
     display: flex;
 	background-color: #242424;
-	transition: all 0.3s ease;
+	height: 180px;
+}
+.email-container p{
+	font-size: 20px;
+	color: white;
 }
 .email-box
 {

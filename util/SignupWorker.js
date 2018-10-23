@@ -174,6 +174,60 @@ exports.EmailVerification = (req,res) =>{
     });
 }
 
+exports.AccountEmailVerification = (params) => {
+    let phone = params.phone;
+    let email = params.email;
+    async.waterfall([
+        function(done) {
+            let uid;
+            UsersData.ref().child('users').orderByChild('phone').equalTo(phone).limitToFirst(1).once('child_added',(UserUid)=>{
+                uid = UserUid.child('uid').val();
+            });
+            console.log("UID:" + uid);
+            let UserIdHash = Hasher.generateUserIdHash(uid);
+            done(null,uid,UserIdHash);
+        },
+        function(uid,UserIdHash,done){
+            UsersData.ref("users/user-" + uid).update({
+                "userIdToken" : UserIdHash
+            });
+            done(null,uid,email,UserIdHash);
+        },
+        function(uid,email,UserIdHash,done){
+            let url = `http://amphere-test.tk/confirm_email/${UserIdHash}`;
+            var smtpTransport = nodemailer.createTransport({
+                service: 'Gmail',
+                auth: {
+                user: 'amphere.solutions@gmail.com',
+                pass: 'ArpitGujjar@123'
+                }
+            });
+
+            var mailOptions = {
+                to: email,
+                from: 'amphere.solutions@gmail.com',
+                subject: 'amphere-solutions email verification',
+                text: 'This is email verification for amphere solutions.\n\n' +
+                'Please click on the following link, or paste this into your browser to verify your identity of this email address:\n\n' +
+                url + '\n\n' +
+                'Thank You.\n'
+            };
+            smtpTransport.sendMail(mailOptions,function(err){
+                console.log('mail sent');
+                res.status(200).json({
+                    "state" : "SUCCESS",
+                    "mailSent":true
+                });  
+                done(err,'done');
+            });
+        }
+    ],function(err){
+        res.status(200).json({
+            "state":"FAILED"
+        });
+    });
+}
+
 exports.ConfirmEmail = (params) => {
     let UserIdHash = params.UserIdHash;
     console.log("Confirm Mail");

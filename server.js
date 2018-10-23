@@ -398,7 +398,16 @@ account.post('/removePromo',(req,res)=>{
         }
     });
 });
-
+//---------------//
+//account email
+account.get('/verifyEmail',(req,res) => {
+    let params = getParameters(req);
+    console.log(params);
+    SignupWorker.AccountEmailVerification({
+        "phone":params.phone,
+        "email":params.email
+    });
+})
 /*
 //forget Password route//
 //--------------------------middleware------------------------------//

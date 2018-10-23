@@ -64,3 +64,32 @@ exports.AddEmail = (params) => {
             console.log(err);
     });
 }
+
+exports.SendEmail = (params) => {
+    let phone = params.phone;
+    let email = params.email;
+    return new Promise((resolve,reject) => {
+        const request = new XMLHttpRequest();
+        const url = `phone=${phone}&` +
+                    `email=${email}`;
+        request.open('POST', `/verifyEmail?${url}`, true);
+        request.send();
+
+        request.onreadystatechange = event => {
+            if (request.readyState === 4 && request.status === 200) {
+                let response = JSON.parse(request.response);
+                if(response.state === "SUCCESS")
+                {
+                    resolve({
+                        "state":true
+                    });
+                } else
+                {
+                    resolve({
+                        "state":false
+                    });
+                }
+            }
+        };
+    })
+}

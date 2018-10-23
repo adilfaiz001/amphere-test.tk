@@ -16,6 +16,7 @@ class Header extends Component {
             addEmail:false,
             addedEmail:false,
             emailVerify:false,
+            emailVerified:false,
             uid:null,
             email:null
         };
@@ -49,10 +50,16 @@ class Header extends Component {
                         uid:token[0]
                     });
                 } else{
-                    console.log(res);
-                    this.setState({
-                        emailVerify:res.emailVerify
-                    });
+                    if(res.emailVerify){
+                        this.setState({
+                            emailVerify:res.emailVerify
+                        });
+                    } else {
+                        this.setState({
+                            emailVerified:true,
+                        });
+                    }
+                    
                 }
             });
         }
@@ -100,7 +107,7 @@ class Header extends Component {
                     this.setState({
                         addEmail : false,
                         addedEmail:true,
-                        emailVerify:true
+                        emailVerify:false
                     });
                 }
                 this.SendEmail();
@@ -108,7 +115,17 @@ class Header extends Component {
         } 
     }
     SendEmail = () => {
-
+        let email = this.state.email;
+        UserWorker.SendEmail({
+            "phone":this.props.phone,
+            "email":this.state.email
+        }).then((res) => {
+            if(res.state){
+                this.setState({
+                    emailVerify:false
+                });
+            }
+        })
     }
     
     render() {
@@ -164,25 +181,32 @@ class Header extends Component {
                                         :
                                         <div>
                                             {
-
-                                            
                                                 this.state.emailVerify ? 
                                                     <div className="email-send-verify">
-                                                        <input type="text" className="email-input" placeholder="Add your email" onBlur={this.ValidateEmail}/>
+                                                        <p>Enter your email to verify</p>
+                                                        <input type="text" className="email-input" placeholder="email" onBlur={this.ValidateEmail}/>
                                                         <span onClick={this.SendEmail}>
                                                             <AwesomeButton size="medium" type="primary" color="teal" >Verify Email</AwesomeButton>
                                                         </span>
                                                     </div>
                                                     :
-                                                    <p>Thank you for verifying your email</p>
+                                                    <div>
+                                                        {
+                                                            this.state.emailVerified ? 
+                                                                <div className="email-final">
+                                                                    <p>Email Verification Done</p>
+                                                                </div>
+                                                                :
+                                                                <div className="email-sent">
+                                                                    <p>Email Sent for verification</p>
+                                                                </div>                        
+                                                        }
+                                                    </div>            
                                             }
                                         </div>
                                 }
                             </div>
-                            
-                            
                         }   
-                        
                     </div>
                     <nav className="sidebar-nav">
                         <ul>
