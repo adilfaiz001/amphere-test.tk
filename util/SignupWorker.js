@@ -174,9 +174,10 @@ exports.EmailVerification = (req,res) =>{
     });
 }
 
-exports.AccountEmailVerification = (params,res) => {
-    let uid = params.uid;
-    let email = params.email;
+exports.AccountEmailVerification = (req,res) => {
+    let params = getParameters(req);
+    let uid = decodeURI(params.uid);
+    let email = decodeURI(params.email);
     async.waterfall([
         function(done) {
             console.log("UID:" + uid);
@@ -218,9 +219,7 @@ exports.AccountEmailVerification = (params,res) => {
             });
         }
     ],function(err){
-        res.status(200).json({
-            "state":"FAILED"
-        });
+        console.log(err);
     });
 }
 

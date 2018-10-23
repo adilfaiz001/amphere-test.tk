@@ -403,11 +403,7 @@ account.post('/removePromo',(req,res)=>{
 account.post('/verifyEmail',(req,res) => {
     let params = getParameters(req);
     console.log(params);
-    SignupWorker.AccountEmailVerification({
-        "uid":decodeURI(params.uid),
-        "email":decodeURI(params.email),
-        res
-    });
+    SignupWorker.AccountEmailVerification(req,res);
 })
 /*
 //forget Password route//
