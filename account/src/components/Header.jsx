@@ -14,6 +14,7 @@ class Header extends Component {
         this.state = {
             sentMail:false,
             addEmail:false,
+            addedEmail:false,
             emailVerify:false,
             uid:null,
             email:null
@@ -98,12 +99,16 @@ class Header extends Component {
                 {
                     this.setState({
                         addEmail : false,
+                        addedEmail:true,
                         emailVerify:true
                     });
                 }
-                console.log("State"+this.state.emailVerify);
+                this.SendEmail();
             });
         } 
+    }
+    SendEmail = () => {
+
     }
     
     render() {
@@ -150,15 +155,34 @@ class Header extends Component {
                                     </span>
                                 </div>
                             : 
-                                <div>
-                                    this.state.emailVerify ? 
-                                    <div className="email-verify">
-                                        <p>Thank you, your email will be used for resetting password</p>
-                                    </div>
-                                    :
-                                    <p>Thank you for verifying your email</p>
-                                </div>
+                            <div>
+                                {
+                                    this.state.addedEmail ?
+                                        <div className="verify-email">
+                                            <p>Thank you for adding your email to your account.Email has been sent for verification</p>
+                                        </div> 
+                                        :
+                                        <div>
+                                            {
+
+                                            
+                                                this.state.emailVerify ? 
+                                                    <div className="email-send-verify">
+                                                        <input type="text" className="email-input" placeholder="Add your email" onBlur={this.ValidateEmail}/>
+                                                        <span onClick={this.SendEmail}>
+                                                            <AwesomeButton size="medium" type="primary" color="teal" >Verify Email</AwesomeButton>
+                                                        </span>
+                                                    </div>
+                                                    :
+                                                    <p>Thank you for verifying your email</p>
+                                            }
+                                        </div>
+                                }
+                            </div>
+                            
+                            
                         }   
+                        
                     </div>
                     <nav className="sidebar-nav">
                         <ul>

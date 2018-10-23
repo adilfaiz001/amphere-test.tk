@@ -215,11 +215,26 @@ header .button {
 .email-input::placeholder{
 	text-align: center;
 }
-.email-verify
+.verify-email
 {
 	animation-name: fadeIn;
 	animation-duration: 0.4s;
 	animation-timing-function: ease-out;
+}
+.verify-email p {
+	font-size: 20px;
+	color: white;
+}
+
+.email-send-verify
+{
+	animation-name: fadeIn;
+	animation-duration: 0.4s;
+	animation-timing-function: ease-out;
+}
+.email-send-verify p {
+	font-size: 20px;
+	color: white;
 }
 @keyframes fadeIn
 {
