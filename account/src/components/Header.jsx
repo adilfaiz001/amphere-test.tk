@@ -101,7 +101,7 @@ class Header extends Component {
                         emailVerify:true
                     });
                 }
-                console.log("State"+this.state);
+                console.log("State"+this.state.emailVerify);
             });
         } 
     }
