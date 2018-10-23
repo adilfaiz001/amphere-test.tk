@@ -189,7 +189,8 @@ header .button {
 /*---------------------------------------*/
 /*email-adder*/
 .email-container{
-    display: flex;
+	display: flex;
+	flex-flow: column;
 	background-color: #242424;
 	height: 180px;
 }
@@ -232,7 +233,7 @@ header .button {
 
 .email-send-verify
 {
-	margin:16px 0;
+	margin:36px 0;
 	animation-name: fadeIn;
 	animation-duration: 0.4s;
 	animation-timing-function: ease-out;
@@ -243,7 +244,7 @@ header .button {
 }
 .email-final
 {
-	margin: 16px 0;
+	margin: 65px 0;
 
 	animation-name: fadeIn;
 	animation-duration: 0.4s;

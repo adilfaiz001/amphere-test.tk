@@ -196,7 +196,7 @@ class Header extends Component {
                                                         <div className="email-send-verify">
                                                             <p>Send Email for verification</p>
                                                             <span onClick={this.SendEmail}>
-                                                                <AwesomeButton size="Large" type="primary" color="teal" >Send Email</AwesomeButton>
+                                                                <AwesomeButton size="large" type="primary" progress="true" >Send Email</AwesomeButton>
                                                             </span>
                                                         </div>
                                                         :
