@@ -176,7 +176,8 @@ class Header extends Component {
                                 {
                                     this.state.addedEmail ?
                                         <div className="verify-email">
-                                            <p>Thank you for adding your email to your account.Email has been sent for verification</p>
+                                            <p>Thank you for adding your email to your account.</p>
+                                            <p>Email has been sent for verification</p>
                                         </div> 
                                         :
                                         <div>

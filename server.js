@@ -400,7 +400,7 @@ account.post('/removePromo',(req,res)=>{
 });
 //---------------//
 //account email
-account.get('/verifyEmail',(req,res) => {
+account.post('/verifyEmail',(req,res) => {
     let params = getParameters(req);
     console.log(params);
     SignupWorker.AccountEmailVerification({
