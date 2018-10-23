@@ -101,6 +101,7 @@ class App extends Component {
       <div className="App">
         <Header phone={this.state.phone}
                 name={this.state.name}
+                emailVerified={this.state.emailVerified}
                 logoutWorker={this.props.logoutWorker}
                 button={true}/>
         

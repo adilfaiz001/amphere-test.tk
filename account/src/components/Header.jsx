@@ -34,15 +34,20 @@ class Header extends Component {
 
     componentWillMount(){
         this.checkToken();
+        this.setState({
+            emailVerified:this.props.emailVerified
+        });
     }
 
     checkToken = () => {
         let token = localStorage.getItem('AMP_TK');
+        console.log(this.state.emailVerified);
         if(token !== null){
             token = token.split('/');
             UserWorker.CheckForEmail({
                 "uid":token[0]
             }).then((res) => {
+                console.log(res)
                 if(res.addEmail){
                     console.log('Setting addemail '+ res.addEmail)
                     this.setState({
@@ -52,11 +57,13 @@ class Header extends Component {
                 } else{
                     if(res.emailVerify){
                         this.setState({
-                            emailVerify:res.emailVerify
+                            emailVerify:true,
+                            uid:token[0]
                         });
                     } else {
                         this.setState({
                             emailVerified:true,
+                            uid:token[0]
                         });
                     }
                     
@@ -115,7 +122,6 @@ class Header extends Component {
         } 
     }
     SendEmail = () => {
-        let email = this.state.email;
         UserWorker.SendEmail({
             "uid":this.state.uid,
             "email":this.state.email
@@ -198,7 +204,7 @@ class Header extends Component {
                                                                     <p>Email Verification Done</p>
                                                                 </div>
                                                                 :
-                                                                <div className="email-sent">
+                                                                <div className="email-final">
                                                                     <p>Email Sent for verification</p>
                                                                 </div>                        
                                                         }

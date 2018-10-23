@@ -220,6 +220,7 @@ header .button {
 }
 .verify-email
 {
+	margin:16px 0;
 	animation-name: fadeIn;
 	animation-duration: 0.4s;
 	animation-timing-function: ease-out;
@@ -239,6 +240,16 @@ header .button {
 .email-send-verify p {
 	font-size: 20px;
 	color: white;
+}
+.email-final
+{
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+
+	animation-name: fadeIn;
+	animation-duration: 0.4s;
+	animation-timing-function: ease-out;
 }
 @keyframes fadeIn
 {
