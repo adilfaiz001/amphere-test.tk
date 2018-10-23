@@ -83,12 +83,14 @@ exports.SendEmail = (params) => {
         request.onreadystatechange = event => {
             if (request.readyState === 4 && request.status === 200) {
                 let response = JSON.parse(request.response);
+                console.log(response);
                 if(response.state === "SUCCESS")
                 {
                     resolve({
                         "state":true
                     });
-                } else
+                } 
+                else
                 {
                     resolve({
                         "state":false

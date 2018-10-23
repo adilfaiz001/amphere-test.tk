@@ -126,6 +126,7 @@ class Header extends Component {
             "uid":this.state.uid,
             "email":this.state.email
         }).then((res) => {
+            console.log(res);
             if(res.state){
                 this.setState({
                     emailVerify:false
