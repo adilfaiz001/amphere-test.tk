@@ -58,12 +58,12 @@ class Header extends Component {
                     if(res.emailVerified){
                         this.setState({
                             emailVerified:true,
-                            uid:token[0]
+                            email:this.props.email
                         });
                     } else {
                         this.setState({
                             emailVerify:true,
-                            uid:token[0]
+                            email:this.props.email
                         });
                     }
                     
@@ -166,55 +166,59 @@ class Header extends Component {
                         </div>
                         
                     </div>
-
-                    <div className="email-container">
-                        {
-                        this.state.addEmail ?
-                                <div className="email-box">
-                                    <p>Add email to your account</p>
-                                    <input type="text" className="email-input" placeholder="Add your email" onBlur={this.ValidateEmail}/>
-                                    <span onClick={this.AddEmail}>
-                                        <AwesomeButton size="medium" type="primary" color="teal" >Add Email</AwesomeButton>
-                                    </span>
+                    {
+                        this.props.login ?
+                            <div className="email-container">
+                            {
+                            this.state.addEmail ?
+                                    <div className="email-box">
+                                        <p>Add email to your account</p>
+                                        <input type="text" className="email-input" placeholder="Add your email" onBlur={this.ValidateEmail}/>
+                                        <span onClick={this.AddEmail}>
+                                            <AwesomeButton size="medium" type="primary" color="teal" >Add Email</AwesomeButton>
+                                        </span>
+                                    </div>
+                                : 
+                                <div>
+                                    {
+                                        this.state.addedEmail ?
+                                            <div className="verify-email">
+                                                <p>Thank you for adding your email to your account.</p>
+                                                <p>Email has been sent for verification</p>
+                                            </div> 
+                                            :
+                                            <div>
+                                                {
+                                                    this.state.emailVerify ? 
+                                                        <div className="email-send-verify">
+                                                            <p>Send Email for verification</p>
+                                                            <span onClick={this.SendEmail}>
+                                                                <AwesomeButton size="Large" type="primary" color="teal" >Send Email</AwesomeButton>
+                                                            </span>
+                                                        </div>
+                                                        :
+                                                        <div>
+                                                            {
+                                                                this.state.emailVerified ? 
+                                                                    <div className="email-final">
+                                                                        <p>Email Verification Done</p>
+                                                                    </div>
+                                                                    :
+                                                                    <div className="email-final">
+                                                                        <p>Email Sent for verification</p>
+                                                                    </div>                        
+                                                            }
+                                                        </div>            
+                                                }
+                                            </div>
+                                    }
                                 </div>
-                            : 
-                            <div>
-                                {
-                                    this.state.addedEmail ?
-                                        <div className="verify-email">
-                                            <p>Thank you for adding your email to your account.</p>
-                                            <p>Email has been sent for verification</p>
-                                        </div> 
-                                        :
-                                        <div>
-                                            {
-                                                this.state.emailVerify ? 
-                                                    <div className="email-send-verify">
-                                                        <p>Enter your email to verify</p>
-                                                        <input type="text" className="email-input" placeholder="email" onBlur={this.ValidateEmail}/>
-                                                        <span onClick={this.SendEmail}>
-                                                            <AwesomeButton size="medium" type="primary" color="teal" >Verify Email</AwesomeButton>
-                                                        </span>
-                                                    </div>
-                                                    :
-                                                    <div>
-                                                        {
-                                                            this.state.emailVerified ? 
-                                                                <div className="email-final">
-                                                                    <p>Email Verification Done</p>
-                                                                </div>
-                                                                :
-                                                                <div className="email-final">
-                                                                    <p>Email Sent for verification</p>
-                                                                </div>                        
-                                                        }
-                                                    </div>            
-                                            }
-                                        </div>
-                                }
-                            </div>
-                        }   
-                    </div>
+                            }   
+                        </div>
+                        :
+                        console.log()
+                    }
+                    
                     <nav className="sidebar-nav">
                         <ul>
                             <li><a href="http://amphere.in">HOME</a></li>

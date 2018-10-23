@@ -243,13 +243,14 @@ header .button {
 }
 .email-final
 {
-	display: flex;
-	flex-flow: column;
-	justify-content: center;
+	margin: 16px 0;
 
 	animation-name: fadeIn;
 	animation-duration: 0.4s;
 	animation-timing-function: ease-out;
+}
+.email-final p{
+	text-align: center;
 }
 @keyframes fadeIn
 {

@@ -99,8 +99,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header phone={this.state.phone}
+        <Header login={true}
+                phone={this.state.phone}
                 name={this.state.name}
+                email={this.state.email}
                 emailVerified={this.state.emailVerified}
                 logoutWorker={this.props.logoutWorker}
                 button={true}/>

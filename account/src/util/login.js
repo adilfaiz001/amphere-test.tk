@@ -40,7 +40,9 @@ exports.ValidateToken = function (token) {
                         "validated": true,
                         "uid" : user.val().uid,
                         "phone" : user.val().phone,
-                        "name" : user.val().name
+                        "name" : user.val().name,
+                        "email": user.val().email,
+                        "emailVerified":user.val().emailVerify
                     });
                 } else {
                     resolve({
