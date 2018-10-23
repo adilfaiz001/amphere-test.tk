@@ -174,7 +174,7 @@ exports.EmailVerification = (req,res) =>{
     });
 }
 
-exports.AccountEmailVerification = (params) => {
+exports.AccountEmailVerification = (params,res) => {
     let uid = params.uid;
     let email = params.email;
     async.waterfall([
