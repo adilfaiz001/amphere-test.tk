@@ -11,10 +11,18 @@ exports.CheckForEmail = (params) =>{
                 if(userch.val() !== null)
                 {
                     var addEmail = (userch.child('email').val() === null )
-                    console.log(addEmail); 
-                    resolve({
-                        "addEmail":addEmail
-                    });  
+                    if(addEmail)
+                    {
+                        resolve({
+                            "addEmail":addEmail
+                        });
+                    } else {
+                        var emailVerify = (userch.child('emailVerify').val() === true)
+                        resolve({
+                            "emailVerify":emailVerify
+                        });
+                    }
+                      
                 }
                 
             });

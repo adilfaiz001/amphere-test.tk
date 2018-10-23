@@ -14,7 +14,7 @@ class Header extends Component {
         this.state = {
             sentMail:false,
             addEmail:false,
-            emailAdded:false,
+            emailVerify:false,
             uid:null,
             email:null
         };
@@ -36,7 +36,6 @@ class Header extends Component {
 
     checkToken = () => {
         let token = localStorage.getItem('AMP_TK');
-        console.log(token);
         if(token !== null){
             token = token.split('/');
             UserWorker.CheckForEmail({
@@ -47,6 +46,10 @@ class Header extends Component {
                     this.setState({
                         addEmail:true,
                         uid:token[0]
+                    });
+                } else{
+                    this.setState({
+                        emailVerify:res.emailVerify
                     });
                 }
             });
@@ -94,7 +97,7 @@ class Header extends Component {
                 {
                     this.setState({
                         addEmail : false,
-                        emailAdded:true
+                        emailVerify:true
                     });
                 }
             });
@@ -134,29 +137,29 @@ class Header extends Component {
                         
                     </div>
 
-                    {
-                    this.state.addEmail ?
-                        <div className="email-container">
-                            <div className="email-box">
-                                <p>Add email to your account</p>
-                                <input type="text" className="email-input" placeholder="Add your email" onBlur={this.ValidateEmail}/>
-                                <span onClick={this.AddEmail}>
-                                    <AwesomeButton size="medium" type="primary" color="teal" >Add Email</AwesomeButton>
-                                </span>
+                    <div className="email-container">
+                        {
+                        this.state.addEmail ?
+                                <div className="email-box">
+                                    <p>Add email to your account</p>
+                                    <input type="text" className="email-input" placeholder="Add your email" onBlur={this.ValidateEmail}/>
+                                    <span onClick={this.AddEmail}>
+                                        <AwesomeButton size="medium" type="primary" color="teal" >Add Email</AwesomeButton>
+                                    </span>
+                                </div>
+                            :
+                            <div>
+                                {
+                                    this.emailVerify ? 
+                                        <div className="email-verify">
+                                            <p>Thank you, your email will be used for resetting password</p>
+                                        </div>
+                                        :
+                                        console.log()
+                                }
                             </div>
-                        </div>
-                        :
-                        <div>
-                            {
-                                this.emailAdded ? 
-                                    <div className="email-container">
-                                        <p>Thank you, your email will be used for resetting password</p>
-                                    </div>
-                                    :
-                                    console.log()
-                            }
-                        </div>
-                    }
+                        }
+                    </div>
                     <nav className="sidebar-nav">
                         <ul>
                             <li><a href="http://amphere.in">HOME</a></li>

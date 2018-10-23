@@ -196,7 +196,8 @@ header .button {
 .email-box
 {
 	margin: 10px;
-    font-size: 20px;
+	font-size: 20px;
+	
 }
 .email-box p 
 {
@@ -213,6 +214,18 @@ header .button {
 }
 .email-input::placeholder{
 	text-align: center;
+}
+.email-verify
+{
+	animation-name: fadeIn;
+	animation-duration: 0.4s;
+	animation-timing-function: ease-out;
+}
+@keyframes fadeIn
+{
+	0%{ opacity: 0 }
+    90%{ opacity: 0.25 }
+    100%{ opacity: 1 }
 }
 .error{
 	border-color: red;
