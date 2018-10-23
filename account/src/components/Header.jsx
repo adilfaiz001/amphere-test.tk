@@ -55,14 +55,14 @@ class Header extends Component {
                         uid:token[0]
                     });
                 } else{
-                    if(res.emailVerify){
+                    if(res.emailVerified){
                         this.setState({
-                            emailVerify:true,
+                            emailVerified:true,
                             uid:token[0]
                         });
                     } else {
                         this.setState({
-                            emailVerified:true,
+                            emailVerify:true,
                             uid:token[0]
                         });
                     }

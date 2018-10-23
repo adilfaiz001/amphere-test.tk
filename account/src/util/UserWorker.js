@@ -17,11 +17,12 @@ exports.CheckForEmail = (params) =>{
                             "addEmail":addEmail
                         });
                     } else {
-                        var emailVerify = (userch.child('emailVerify').val() === true)
-                        if(!emailVerify)
+                        var emailVerified = (userch.child('emailVerify').val() === true)
+                        console.log(emailVerified);
+                        if(emailVerified)
                         {
                             resolve({
-                                "emailVerify":true
+                                "emailVerified":true
                             });
                         }
                     }
