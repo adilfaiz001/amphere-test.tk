@@ -149,18 +149,16 @@ class Header extends Component {
                                         <AwesomeButton size="medium" type="primary" color="teal" >Add Email</AwesomeButton>
                                     </span>
                                 </div>
-                            : console.log()
-                        }
-                        { 
-                            
-                            this.emailVerify ? 
-                                <div className="email-verify">
-                                    <p>Thank you, your email will be used for resetting password</p>
+                            : 
+                                <div>
+                                    this.state.emailVerify ? 
+                                    <div className="email-verify">
+                                        <p>Thank you, your email will be used for resetting password</p>
+                                    </div>
+                                    :
+                                    <p>Thank you for verifying your email</p>
                                 </div>
-                                :
-                                <p>Thank you for verifying your email</p>   
-                        }
-                            
+                        }   
                     </div>
                     <nav className="sidebar-nav">
                         <ul>
