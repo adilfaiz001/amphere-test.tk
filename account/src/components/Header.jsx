@@ -151,13 +151,16 @@ class Header extends Component {
                                 </div>
                             :
                             <div>
-                                {
+                                <p>Here I am</p>
+                                { 
+                                    /*
                                     this.emailVerify ? 
                                         <div className="email-verify">
                                             <p>Thank you, your email will be used for resetting password</p>
                                         </div>
                                         :
                                         console.log()
+                                        */
                                 }
                             </div>
                         }
