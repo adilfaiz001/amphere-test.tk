@@ -24,6 +24,10 @@ exports.CheckForEmail = (params) =>{
                             resolve({
                                 "emailVerified":true
                             });
+                        } else {
+                            resolve({
+                                "emailVerified":false
+                            });
                         }
                     }
                       
