@@ -66,12 +66,12 @@ exports.AddEmail = (params) => {
 }
 
 exports.SendEmail = (params) => {
-    let phone = params.phone;
+    let uid = params.uid;
     let email = params.email;
     return new Promise((resolve,reject) => {
         const request = new XMLHttpRequest();
-        const url = `phone=${phone}&` +
-                    `email=${email}`;
+        const url = `uid=${encodeURI(uid)}&` +
+                    `email=${encodeURI(email)}`;
         request.open('POST', `/verifyEmail?${url}`, true);
         request.send();
 

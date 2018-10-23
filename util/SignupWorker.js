@@ -175,14 +175,10 @@ exports.EmailVerification = (req,res) =>{
 }
 
 exports.AccountEmailVerification = (params) => {
-    let phone = params.phone;
+    let uid = params.uid;
     let email = params.email;
     async.waterfall([
         function(done) {
-            let uid;
-            UsersData.ref().child('users').orderByChild('phone').equalTo(phone).limitToFirst(1).once('child_added',(UserUid)=>{
-                uid = UserUid.child('uid').val();
-            });
             console.log("UID:" + uid);
             let UserIdHash = Hasher.generateUserIdHash(uid);
             done(null,uid,UserIdHash);

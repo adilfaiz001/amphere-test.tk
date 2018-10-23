@@ -404,8 +404,8 @@ account.post('/verifyEmail',(req,res) => {
     let params = getParameters(req);
     console.log(params);
     SignupWorker.AccountEmailVerification({
-        "phone":params.phone,
-        "email":params.email
+        "uid":decodeURI(params.uid),
+        "email":decodeURI(params.email)
     });
 })
 /*

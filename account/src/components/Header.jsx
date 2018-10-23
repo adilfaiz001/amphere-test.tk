@@ -117,7 +117,7 @@ class Header extends Component {
     SendEmail = () => {
         let email = this.state.email;
         UserWorker.SendEmail({
-            "phone":this.props.phone,
+            "uid":this.state.uid,
             "email":this.state.email
         }).then((res) => {
             if(res.state){
