@@ -42,7 +42,7 @@ class Header extends Component {
                 "uid":token[0]
             }).then((res) => {
                 if(res.addEmail){
-                    console.log('Setting addemail'+res.addEmail)
+                    console.log('Setting addemail '+ res.addEmail)
                     this.setState({
                         addEmail:true,
                         uid:token[0]
@@ -149,21 +149,18 @@ class Header extends Component {
                                         <AwesomeButton size="medium" type="primary" color="teal" >Add Email</AwesomeButton>
                                     </span>
                                 </div>
-                            :
-                            <div>
-                                <p>Here I am</p>
-                                { 
-                                    /*
-                                    this.emailVerify ? 
-                                        <div className="email-verify">
-                                            <p>Thank you, your email will be used for resetting password</p>
-                                        </div>
-                                        :
-                                        console.log()
-                                        */
-                                }
-                            </div>
+                            : console.log()
                         }
+                        { 
+                            
+                            this.emailVerify ? 
+                                <div className="email-verify">
+                                    <p>Thank you, your email will be used for resetting password</p>
+                                </div>
+                                :
+                                <p>Thank you for verifying your email</p>   
+                        }
+                            
                     </div>
                     <nav className="sidebar-nav">
                         <ul>
