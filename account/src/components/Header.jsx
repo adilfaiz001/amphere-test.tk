@@ -18,7 +18,8 @@ class Header extends Component {
             emailVerify:false,
             emailVerified:false,
             uid:null,
-            email:null
+            email:null,
+            sidebarOpened:false
         };
     }
 
@@ -136,6 +137,8 @@ class Header extends Component {
             }
         })
     }
+    sidebarOpener = () => { this.setState({sidebarOpened:true});}
+    sidebarAborter = () => {this.setState({sidebarOpened:false});}
     
     render() {
         return (
@@ -196,7 +199,7 @@ class Header extends Component {
                                                         <div className="email-send-verify">
                                                             <p>Send Email for verification</p>
                                                             <span onClick={this.SendEmail}>
-                                                                <AwesomeButton size="large" type="primary" progress="true" loadingLabel="Sending" errorLabel="Not Sent" successLabel="Sent">Send Email</AwesomeButton>
+                                                                <AwesomeButton size="large" type="primary-progress" progress="true" loadingLabel="Sending" errorLabel="Not Sent" successLabel="Sent">Send Email</AwesomeButton>
                                                             </span>
                                                         </div>
                                                         :
@@ -230,7 +233,17 @@ class Header extends Component {
                         </ul>
                     </nav>
                 </div>
-                <label htmlFor="sidebar-toggle" className="hamburger"></label>
+                <label htmlFor="sidebar-toggle" className="hamburger" onClick={this.sidebarOpener}>
+                    {
+                        this.state.emailVerified ?
+                            !this.state.sidebarOpened ?
+                                <label htmlFor="sidebar-toogle" className="notify"></label>
+                                :
+                                console.log()
+                            :
+                            console.log()
+                    }
+                </label>
                 {
                     this.props.button ? 
                         <button className="button btn-small btn-noborder" 
