@@ -3,7 +3,7 @@ import { Image } from 'react-bootstrap';
 import './css/Header.css';
 import $ from 'jquery';
 
-import { AwesomeButton } from 'react-awesome-button';
+import { AwesomeButton,AwesomeButtonProgress} from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css';
 import UserWorker from '../util/UserWorker';
 
@@ -137,16 +137,22 @@ class Header extends Component {
             }
         })
     }
-    sidebarOpener = () => { 
-        this.setState({sidebarOpened:true});
-        console.log("Opener");
-        console.log(this.state.emailVerified);
-        console.log(this.state.sidebarOpened);
+    sidebarOpener = (_state) => { 
+        if(_state)
+        {
+            this.sidebarAborter;
+        }
+        else
+        {
+            this.setState({sidebarOpened:true});
+            console.log("Opener");
+            console.log(this.state.sidebarOpened);
+        }
+        
     }
     sidebarAborter = () => {
         this.setState({sidebarOpened:false});
         console.log("Aborter");
-        console.log(this.state.emailVerified);
         console.log(this.state.sidebarOpened);
     }
     
@@ -155,7 +161,7 @@ class Header extends Component {
             <header>
                 <Image className="logo-text" src="assets/amphere-text.svg" />
 
-                <input id="sidebar-toggle" type="checkbox" className="checkbox" onClick={this.sidebarAborter} />
+                <input id="sidebar-toggle" type="checkbox" className="checkbox" />
                 
                 <div className="sidebar-shadow"></div>
                 <div className="sidebar">
@@ -194,7 +200,7 @@ class Header extends Component {
                                                     this.state.emailVerify ? 
                                                         <div className="email-send-verify">
                                                             <p>Send Email for verification</p>
-                                                            <AwesomeButton size="large" progress="true" onPress={() => { this.SendEmail();}}>Send Email</AwesomeButton>
+                                                            <AwesomeButtonProgress type="primary" size="large" action={(element,next) => this.SendEmail(next)}>Send Email</AwesomeButtonProgress>
                                                         </div>
                                                         :
                                                         <div>
@@ -227,11 +233,14 @@ class Header extends Component {
                         </ul>
                     </nav>
                 </div>
-                <label htmlFor="sidebar-toggle" className="hamburger" onClick={this.sidebarOpener}>
+                <label htmlFor="sidebar-toggle" className="hamburger" onClick={() => this.sidebarOpener(this.state.sidebarOpened)}>
                     {
-                        !this.state.emailVerified ?
-                            !this.state.sidebarOpened ?
-                                <label htmlFor="sidebar-toogle" className="notify"></label>
+                        this.props.login ?
+                            !this.state.emailVerified ?
+                                !this.state.sidebarOpened ?
+                                    <label className="notify"></label>
+                                    :
+                                    console.log()
                                 :
                                 console.log()
                             :

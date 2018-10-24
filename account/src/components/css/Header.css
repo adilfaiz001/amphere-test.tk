@@ -271,8 +271,5 @@ header .button {
     height: 16px;
     width: 16px;
     border-radius: 16px;
-    background-color: #4169e1;
-}
-.hamburger-box:hover{
-	cursor: pointer;
+    background-color: #a31313;
 }
