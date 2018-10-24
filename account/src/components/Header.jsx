@@ -229,7 +229,7 @@ class Header extends Component {
                 </div>
                 <label htmlFor="sidebar-toggle" className="hamburger" onClick={this.sidebarOpener}>
                     {
-                        this.state.emailVerified ?
+                        !this.state.emailVerified ?
                             !this.state.sidebarOpened ?
                                 <label htmlFor="sidebar-toogle" className="notify"></label>
                                 :
