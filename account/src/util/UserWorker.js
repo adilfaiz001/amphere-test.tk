@@ -100,3 +100,20 @@ exports.SendEmail = (params) => {
         };
     })
 }
+
+
+exports.ListenVerification = (email,uid) => {
+    const UserData = require('./Database').firebase.database();
+    return new Promise((resolve,reject) => {
+        UserData.ref('users/user-' + uid + 'emailVerify').onUpdate((change) => {
+            const state = change.after;
+            console.log("State update"+state);
+            if(state)
+            {
+                resolve({
+                    "res":true
+                });
+            }
+        });
+    })
+}

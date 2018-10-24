@@ -127,6 +127,16 @@ class Header extends Component {
                     });
                 }
                 this.SendEmail();
+            }).then(() => {
+                console.log("Inside Listener");
+                UserWorker.ListenVerification(this.state.email,this.state.uid).then((res) =>{
+                    if(res)
+                    {
+                        this.setState({
+                            emailVerified:true
+                        });
+                    }
+                });
             });
         } 
     }
@@ -212,7 +222,7 @@ class Header extends Component {
                                                             {
                                                                 this.state.emailVerified ? 
                                                                     <div className="email-final">
-                                                                        <p className="complete">Email Verification Done</p>
+                                                                        <p>Email Verification Done</p>
                                                                     </div>
                                                                     :
                                                                     <div className="email-final">
