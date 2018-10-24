@@ -222,7 +222,7 @@ header .button {
 .verify-email
 {
 	margin:16px 0;
-	animation-name: fadeIn;
+	animation-name: fade-In;
 	animation-duration: 0.4s;
 	animation-timing-function: ease-out;
 }
@@ -234,7 +234,7 @@ header .button {
 .email-send-verify
 {
 	margin:36px 0;
-	animation-name: fadeIn;
+	animation-name: fade-In;
 	animation-duration: 0.4s;
 	animation-timing-function: ease-out;
 }
@@ -246,14 +246,14 @@ header .button {
 {
 	margin: 65px 0;
 
-	animation-name: fadeIn;
+	animation-name: fade-In;
 	animation-duration: 0.4s;
 	animation-timing-function: ease-out;
 }
 .email-final p{
 	text-align: center;
 }
-@keyframes fadeIn
+@keyframes fade-In
 {
 	0%{ opacity: 0 }
     90%{ opacity: 0.25 }
@@ -271,5 +271,5 @@ header .button {
     height: 16px;
     width: 16px;
     border-radius: 16px;
-    background-color: #a31313;
+    background-color: #e41d1d;
 }

@@ -146,14 +146,12 @@ class Header extends Component {
         {
             this.setState({sidebarOpened:true});
             console.log("Opener");
-            console.log(this.state.sidebarOpened);
         }
         
     }
     sidebarAborter = () => {
         this.setState({sidebarOpened:false});
         console.log("Aborter");
-        console.log(this.state.sidebarOpened);
     }
     
     render() {
@@ -161,7 +159,7 @@ class Header extends Component {
             <header>
                 <Image className="logo-text" src="assets/amphere-text.svg" />
 
-                <input id="sidebar-toggle" type="checkbox" className="checkbox" />
+                <input id="sidebar-toggle" type="checkbox" className="checkbox" onClick={() => this.sidebarOpener(this.state.sidebarOpened)}/>
                 
                 <div className="sidebar-shadow"></div>
                 <div className="sidebar">
@@ -233,7 +231,7 @@ class Header extends Component {
                         </ul>
                     </nav>
                 </div>
-                <label htmlFor="sidebar-toggle" className="hamburger" onClick={() => this.sidebarOpener(this.state.sidebarOpened)}>
+                <label htmlFor="sidebar-toggle" className="hamburger">
                     {
                         this.props.login ?
                             !this.state.emailVerified ?
