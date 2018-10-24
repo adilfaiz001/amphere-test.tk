@@ -139,11 +139,13 @@ class Header extends Component {
     }
     sidebarOpener = () => { 
         this.setState({sidebarOpened:true});
+        console.log("Opener");
         console.log(this.state.emailVerified);
         console.log(this.state.sidebarOpened);
     }
     sidebarAborter = () => {
         this.setState({sidebarOpened:false});
+        console.log("Aborter");
         console.log(this.state.emailVerified);
         console.log(this.state.sidebarOpened);
     }
@@ -153,7 +155,9 @@ class Header extends Component {
             <header>
                 <Image className="logo-text" src="assets/amphere-text.svg" />
 
-                <input id="sidebar-toggle" type="checkbox" className="checkbox" onClick={this.sidebarAborter} />
+                <div className="hamburger-box">
+                    <input id="sidebar-toggle" type="checkbox" className="checkbox" onClick={this.sidebarAborter} />
+                </div>
                 <div className="sidebar-shadow"></div>
                 <div className="sidebar">
                     <div className="sidebar-banner">
@@ -191,10 +195,7 @@ class Header extends Component {
                                                     this.state.emailVerify ? 
                                                         <div className="email-send-verify">
                                                             <p>Send Email for verification</p>
-                                                            <AwesomeButton size="large" progress onPress={(next) => {
-                                                                this.SendEmail();
-                                                                next();
-                                                            }}>Send Email</AwesomeButton>
+                                                            <AwesomeButton size="large" progress="true" onPress={() => { this.SendEmail();}}>Send Email</AwesomeButton>
                                                         </div>
                                                         :
                                                         <div>

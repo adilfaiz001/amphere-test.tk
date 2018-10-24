@@ -265,11 +265,14 @@ header .button {
 }
 
 .notify{
-	height:20px;
-	width: 20px;
-	border-radius: 20px;
-	background-color: royalblue;
+	position: relative;
+    bottom: 14px;
+    left: 8px;
+    height: 16px;
+    width: 16px;
+    border-radius: 16px;
+    background-color: #4169e1;
 }
-.hamburger:hover,.checkbox:hover{
+.hamburger-box:hover{
 	cursor: pointer;
 }
