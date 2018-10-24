@@ -253,7 +253,7 @@ exports.ListenVerification = (params) => {
     let uid = params.uid;
     return new Promise((resolve,reject) => {
         console.log(params);
-        const state = functions.database().ref('users/user-'+uid+'emailVerify').onUpdate((change,context)=>{
+        const state = functions.database.ref('users/user-'+uid+'emailVerify').onUpdate((change,context)=>{
             return change.after.val();
         });
         console.log(state);
