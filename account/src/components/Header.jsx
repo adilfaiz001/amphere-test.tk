@@ -155,9 +155,8 @@ class Header extends Component {
             <header>
                 <Image className="logo-text" src="assets/amphere-text.svg" />
 
-                <div className="hamburger-box">
-                    <input id="sidebar-toggle" type="checkbox" className="checkbox" onClick={this.sidebarAborter} />
-                </div>
+                <input id="sidebar-toggle" type="checkbox" className="checkbox" onClick={this.sidebarAborter} />
+                
                 <div className="sidebar-shadow"></div>
                 <div className="sidebar">
                     <div className="sidebar-banner">
