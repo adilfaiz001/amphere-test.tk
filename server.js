@@ -223,19 +223,24 @@ homepage.post('/signupWorker', (req, res,next) => {
 //-------------------------------------------------------------------//
 homepage.get('/confirm_email/:hash',(req,res)=>{
     var UserIdHash = req.params.hash;
-    console.log(UserIdHash);
-    SignupWorker.ConfirmEmail({
-        "UserIdHash" : UserIdHash
-    }).then((_res)=>{
-        if(_res.success)
-        {
-            res.render('confirm_mail',{title: 'Confirm Mail | Amphere Solutions' , status : true});
-        }
-        else
-        {
-            res.render('confirm_mail',{title: 'Confirm Mail | Amphere Solutions' , status : false});
-        }
-    });
+    if(UserIdHash !== null)
+    {
+        SignupWorker.ConfirmEmail({
+            "UserIdHash" : UserIdHash
+        }).then((_res)=>{
+            if(_res.success)
+            {
+                res.render('confirm_mail',{title: 'Confirm Mail | Amphere Solutions' , status : true});
+            }
+            else
+            {
+                res.render('confirm_mail',{title: 'Confirm Mail | Amphere Solutions' , status : false});
+            }
+        });
+    } else {
+        res.render('confirm_mail',{title:'Confirm Mail | Amphere Solutions',status:false});
+    }
+    
 });
 
 //------------------------------------------------------------------//

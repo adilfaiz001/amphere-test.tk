@@ -14,6 +14,11 @@
                 <p style="font-size:22px;">You have successfully verified your email address</p>
                 <p style="font-size: 22px; margin:10px;">Thank You.</p>
             </div>
+        {{else}}
+            <div class="fail">
+                <p style="font-size:22px;">You have already verified your account via this token</p>
+                <p style="font-size: 22px; margin:10px;">Thank You.</p>
+            </div>
         {{/if}}
         <button id="login-btn" class="button">LOGIN</button>
     </div>
