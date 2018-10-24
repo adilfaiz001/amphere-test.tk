@@ -22,6 +22,7 @@ const SpreadsheetWorker = require('./SpreadsheetWorker');
 const ssConfig = require('../config.json');
 const nodemailer = require('nodemailer');
 const async = require('async');
+const functions = require('firebase-functions');
 
 exports.CreateNewUser = function (params) {
 
@@ -245,6 +246,25 @@ exports.ConfirmEmail = (params) => {
                 });
             }
         });
+    });
+}
+
+exports.ListenVerification = (params) => {
+    let uid = params.uid;
+    return new Promise((resolve,reject) => {
+        const state = functions.database().ref('users/user-'+uid+'emailVerify').onUpdate((change,context)=>{
+            return change.after.val();
+        });
+        if(state)
+        {
+            resolve({
+                "success":true
+            });
+        } else {
+            resolve({
+                "success":false
+            });
+        }
     });
 }
 

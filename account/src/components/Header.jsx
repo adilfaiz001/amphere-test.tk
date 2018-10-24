@@ -129,8 +129,9 @@ class Header extends Component {
                 this.SendEmail();
             }).then(() => {
                 console.log("Inside Listener");
-                UserWorker.ListenVerification(this.state.email,this.state.uid).then((res) =>{
-                    if(res)
+                UserWorker.ListenVerification(this.state.uid).then((res) =>{
+                    console.log("Res on update"+res);
+                    if(res.state)
                     {
                         this.setState({
                             emailVerified:true

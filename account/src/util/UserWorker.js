@@ -102,18 +102,33 @@ exports.SendEmail = (params) => {
 }
 
 
-exports.ListenVerification = (email,uid) => {
-    const UserData = require('./Database').firebase.database();
+exports.ListenVerification = (uid) => {
+    console.log("On Update"); 
     return new Promise((resolve,reject) => {
-        UserData.ref('users/user-' + uid + 'emailVerify').onUpdate((change) => {
-            const state = change.after;
-            console.log("State update"+state);
-            if(state)
-            {
-                resolve({
-                    "res":true
-                });
+       const request = new XMLHttpRequest();
+       const url = `uid=${encodeURI(uid)}`;
+       request.open('POST',`/listenVerification?${url}`,true);
+       request.send();
+        
+       request.onreadystatechange = event => {
+            if (request.readyState === 4 && request.status === 200) {
+                let response = JSON.parse(request.response);
+                console.log(response);
+                if(response.state === "SUCCESS")
+                {
+                    resolve({
+                        "state":true
+                    });
+                } 
+                else
+                {
+                    resolve({
+                        "state":false
+                    });
+                }
             }
-        });
-    })
+        };
+
+    });
+    
 }

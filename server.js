@@ -404,7 +404,24 @@ account.post('/verifyEmail',(req,res) => {
     let params = getParameters(req);
     console.log(params);
     SignupWorker.AccountEmailVerification(req,res);
-})
+});
+account.post('/listenVerification',(req,res) => {
+    let params = getParameters(req);
+    SignupWorker.ListenVerification({
+        "uid":decodeURI(params.uid)
+    }).then(_res => {
+        if(_res.success)
+        {
+            res.status(200).json({
+                "state":"SUCCESS"
+            });
+        } else {
+            res.status(200).json({
+                "state":"NOT VERIFIED"
+            });
+        }
+    });
+});
 /*
 //forget Password route//
 //--------------------------middleware------------------------------//
