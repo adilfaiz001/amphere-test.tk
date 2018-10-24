@@ -137,30 +137,23 @@ class Header extends Component {
             }
         })
     }
-    sidebarOpener = () => { this.setState({sidebarOpened:true});}
-    sidebarAborter = () => {this.setState({sidebarOpened:false});}
+    sidebarOpener = () => { 
+        this.setState({sidebarOpened:true});
+        console.log(this.state.emailVerified);
+        console.log(this.state.sidebarOpened);
+    }
+    sidebarAborter = () => {
+        this.setState({sidebarOpened:false});
+        console.log(this.state.emailVerified);
+        console.log(this.state.sidebarOpened);
+    }
     
     render() {
         return (
             <header>
-                {/*
-                    this.props.emailVerified ? 
-                        <div className="email-msg">
-                            {
-                                !this.state.sentmail ?
-                                <p>You have not verified your email address,<a onClick={this.resendEmail(this.props.phone)}>resend verification email</a></p>
-                                :
-                                <p>mail sent for verification,<a onClick={this.resendEmail(this.props.phone)}>resend verification email</a></p>
-                            }
-                            
-                        </div> : console.log()
-                 */           
-                }
-
-                
                 <Image className="logo-text" src="assets/amphere-text.svg" />
 
-                <input id="sidebar-toggle" type="checkbox" className="checkbox" />
+                <input id="sidebar-toggle" type="checkbox" className="checkbox" onClick={this.sidebarAborter} />
                 <div className="sidebar-shadow"></div>
                 <div className="sidebar">
                     <div className="sidebar-banner">
@@ -198,9 +191,10 @@ class Header extends Component {
                                                     this.state.emailVerify ? 
                                                         <div className="email-send-verify">
                                                             <p>Send Email for verification</p>
-                                                            <span onClick={this.SendEmail}>
-                                                                <AwesomeButton size="large" type="primary-progress" progress="true" loadingLabel="Sending" errorLabel="Not Sent" successLabel="Sent">Send Email</AwesomeButton>
-                                                            </span>
+                                                            <AwesomeButton size="large" progress onPress={(next) => {
+                                                                this.SendEmail();
+                                                                next();
+                                                            }}>Send Email</AwesomeButton>
                                                         </div>
                                                         :
                                                         <div>

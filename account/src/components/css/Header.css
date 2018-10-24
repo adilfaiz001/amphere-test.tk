@@ -263,3 +263,13 @@ header .button {
 	border-color: red;
 	color: red;
 }
+
+.notify{
+	height:20px;
+	width: 20px;
+	border-radius: 20px;
+	background-color: royalblue;
+}
+.hamburger:hover,.checkbox:hover{
+	cursor: pointer;
+}
