@@ -263,7 +263,18 @@ header .button {
 	border-color: red;
 	color: red;
 }
-
+.non-verified
+{
+	border: solid 3px;
+	border-radius: 5px;
+	border-color: #cc5858;
+}
+.verified
+{
+	border: solid 3px;
+	border-radius:5px;
+	border-color: green;
+}
 .notify{
 	position: relative;
     bottom: 14px;
@@ -272,4 +283,8 @@ header .button {
     width: 16px;
     border-radius: 16px;
     background-color: #e41d1d;
+}
+.email-final .complete 
+{
+	color: green;
 }

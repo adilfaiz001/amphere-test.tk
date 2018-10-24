@@ -30,7 +30,13 @@ class Header extends Component {
             } else {
                $("header").removeClass("active");
             }
-        });  
+        });
+        
+        if(this.state.emailVerified)
+        {
+            $('.email-container').removeClass('non-verified');
+            $('.email-container').addClass('verified');
+        }
     }
 
     componentWillMount(){
@@ -175,7 +181,7 @@ class Header extends Component {
                     </div>
                     {
                         this.props.login ?
-                            <div className="email-container">
+                            <div className="email-container non-verified">
                             {
                             this.state.addEmail ?
                                     <div className="email-box">
@@ -199,14 +205,14 @@ class Header extends Component {
                                                     this.state.emailVerify ? 
                                                         <div className="email-send-verify">
                                                             <p>Send Email for verification</p>
-                                                            <AwesomeButtonProgress type="primary" size="large" action={(element,next) => this.SendEmail(next)}>Send Email</AwesomeButtonProgress>
+                                                            <AwesomeButtonProgress type="primary" size="large" loadingLabel="Sending.." action={(element,next) => this.SendEmail(next)}>Send Email</AwesomeButtonProgress>
                                                         </div>
                                                         :
                                                         <div>
                                                             {
                                                                 this.state.emailVerified ? 
                                                                     <div className="email-final">
-                                                                        <p>Email Verification Done</p>
+                                                                        <p className="complete">Email Verification Done</p>
                                                                     </div>
                                                                     :
                                                                     <div className="email-final">
