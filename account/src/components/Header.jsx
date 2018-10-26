@@ -31,12 +31,6 @@ class Header extends Component {
                $("header").removeClass("active");
             }
         });
-        
-        if(this.state.emailVerified)
-        {
-            $('.email-container').removeClass('non-verified');
-            $('.email-container').css("height","55px");
-        }
     }
 
     componentWillMount(){
@@ -48,13 +42,11 @@ class Header extends Component {
 
     checkToken = () => {
         let token = localStorage.getItem('AMP_TK');
-        console.log(this.state.emailVerified);
         if(token !== null){
             token = token.split('/');
             UserWorker.CheckForEmail({
                 "uid":token[0]
             }).then((res) => {
-                console.log(res)
                 if(res.addEmail){
                     console.log('Setting addemail '+ res.addEmail)
                     this.setState({
@@ -77,8 +69,15 @@ class Header extends Component {
                     }
                     
                 }
+            }).then(()=>{
+                if(this.state.emailVerified)
+                {
+                    $('.email-container').removeClass('non-verified');
+                    $('.email-container').css("height","55px");
+                }
             });
         }
+        
     }
     /*
     resendEmail = (phone) => {
