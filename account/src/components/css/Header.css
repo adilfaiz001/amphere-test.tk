@@ -245,7 +245,8 @@ header .button {
 .email-final
 {
 	margin: 14px 0;
-
+	display: flex;
+	flex-flow: row;
 	animation-name: fade-In;
 	animation-duration: 0.4s;
 	animation-timing-function: ease-out;
@@ -300,7 +301,7 @@ header .button {
 	stroke-width: 6;
 	stroke: #fff;
 	stroke-miterlimit: 10;
-	margin: 10% auto;
+	margin: 0 0 0 10px;
 	box-shadow: inset 0px 0px 0px green;
 	animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
   }
