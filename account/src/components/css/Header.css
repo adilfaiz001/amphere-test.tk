@@ -244,14 +244,27 @@ header .button {
 }
 .email-final
 {
-	margin: 14px 0;
 	display: flex;
-	flex-flow: row;
+    flex-flow: row;
+    margin-top: 14px;
 	animation-name: fade-In;
 	animation-duration: 0.4s;
 	animation-timing-function: ease-out;
 }
 .email-final p{
+	text-align: left;
+    margin-bottom: 0;
+    margin-left: 28px;
+}
+.email-sent{
+	display: flex;
+    flex-flow: row;
+    margin-top: 14px;
+	animation-name: fade-In;
+	animation-duration: 0.4s;
+	animation-timing-function: ease-out;
+}
+.email-sent p{
 	text-align: left;
     margin-bottom: 0;
     margin-left: 28px;
@@ -285,15 +298,13 @@ header .button {
 /*==============checkmark================*/
   
   .checkemail {
-	width: 30px;
-	height: 30px;
-	border-radius: 50%;
-	display: block;
-	stroke-width: 6;
-	stroke:green;
-	stroke-miterlimit: 10;
-	margin: 0 0 0 10px;
-	box-shadow: inset 0px 0px 0px green;
+	width: 40px;
+    height: 40px;
+    stroke-width: 6;
+    stroke: green;
+    position: relative;
+    bottom: 7px;
+    left: 4px;
   }
   
   .checkemail__check {
