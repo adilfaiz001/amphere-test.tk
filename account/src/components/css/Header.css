@@ -244,14 +244,16 @@ header .button {
 }
 .email-final
 {
-	margin: 65px 0;
+	margin: 14px 0;
 
 	animation-name: fade-In;
 	animation-duration: 0.4s;
 	animation-timing-function: ease-out;
 }
 .email-final p{
-	text-align: center;
+	text-align: left;
+    margin-bottom: 0;
+    margin-left: 28px;
 }
 @keyframes fade-In
 {
@@ -280,7 +282,7 @@ header .button {
 }
 
 /*==============checkmark================*/
-.checkmark__circle {
+.checkemail__circle {
 	stroke-dasharray: 166;
 	stroke-dashoffset: 166;
 	stroke-width: 2;
@@ -290,12 +292,12 @@ header .button {
 	animation: stroke .6s cubic-bezier(0.650, 0.000, 0.450, 1.000) forwards;
   }
   
-  .checkmark {
-	width: 56px;
-	height: 56px;
+  .checkemail {
+	width: 30px;
+	height: 30px;
 	border-radius: 50%;
 	display: block;
-	stroke-width: 2;
+	stroke-width: 6;
 	stroke: #fff;
 	stroke-miterlimit: 10;
 	margin: 10% auto;
@@ -303,7 +305,7 @@ header .button {
 	animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
   }
   
-  .checkmark__check {
+  .checkemail__check {
 	transform-origin: 50% 50%;
 	stroke-dasharray: 48;
 	stroke-dashoffset: 48;
