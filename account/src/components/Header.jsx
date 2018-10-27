@@ -16,7 +16,7 @@ class Header extends Component {
             addEmail:false,
             addedEmail:false,
             emailVerify:false,
-            emailVerified:false,
+            emailVerified:true,
             uid:null,
             email:null,
             sidebarOpened:false
