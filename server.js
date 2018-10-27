@@ -23,6 +23,7 @@ const homepage = express();         // EXPRESS FOR MULTIPLE SUBDOMAINS
 const account = express();          // EXPRESS FOR MULTIPLE SUBDOMAINS
 const merchant = express();         // EXPRESS FOR MULTIPLE SUBDOMAINS
 const admin = express();            // EXPRESS FOR MULTIPLE SUBDOMAINS
+const android = express();          //EXPRESS FOR MULTIPLE SUBDOMAINS
 
 const SignupWorker = require('./util/SignupWorker');
 const SessionsWorker = require('./util/SessionsWorker');
@@ -805,6 +806,18 @@ admin.post('/u/coupons',(req,res)=>{
 
 //===================================================================//
 
+//===================================================================//
+//----------------------------- ANDROID -----------------------------//
+android.get('/',(req,res)=> {
+    res.status(200).json({
+        "SUCESS":"ANDROID"
+    });
+});
+
+
+
+
+
 
 //===================================================================//
 //------------------------- VIRTUAL HOST ----------------------------//
@@ -821,6 +834,7 @@ amphere.use(vhost('www.amphere-test.tk', homepage));
 amphere.use(vhost('account.amphere-test.tk', account));
 amphere.use(vhost('merchant.amphere-test.tk', merchant));
 amphere.use(vhost('admin.amphere-test.tk', admin));
+amphere.use(vhost('android.amphere-test.tk',android));
 //------------------------------------------------------------------------------------------------------//
 // S E R V E R =============================== L E G A C Y ================================ S E R V E R //
 //------------------------------------------------------------------------------------------------------//

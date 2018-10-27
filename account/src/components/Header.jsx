@@ -22,6 +22,10 @@ class Header extends Component {
             sidebarOpened:false
         };
     }
+    
+    //set emailVerified as true in constructor then check the emailVerifid in each response to set it to false.It will prevent
+    //login bug of marking notification mark and then removing it afterwards.
+
 
     componentDidMount(){
         $(window).on("scroll", function() {
@@ -48,7 +52,6 @@ class Header extends Component {
                 "uid":token[0]
             }).then((res) => {
                 if(res.addEmail){
-                    console.log('Setting addemail '+ res.addEmail)
                     this.setState({
                         addEmail:true,
                         uid:token[0]
@@ -154,7 +157,6 @@ class Header extends Component {
         })
     }
     sidebarOpener = (_state) => { 
-        console.log(_state);
         if(_state)
         {
             this.sidebarAborter();
@@ -162,13 +164,11 @@ class Header extends Component {
         else
         {
             this.setState({sidebarOpened:true});
-            console.log("Opener");
         }
         
     }
     sidebarAborter = () => {
         this.setState({sidebarOpened:false});
-        console.log("Aborter");
     }
     
     render() {
