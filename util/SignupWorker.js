@@ -228,7 +228,7 @@ exports.ConfirmEmail = (params) => {
     let UserIdHash = params.UserIdHash;
     console.log("Confirm Mail");
     return new Promise((resolve,reject)=>{
-        UsersData.ref().child('users').orderByChild('userIdToken').equalTo(UserIdHash).limitToFirst(1).once('child_added',(userch)=>{
+        UsersData.ref().child('users').orderByChild('userIdToken').equalTo(UserIdHash).limitToFirst(1).once('value',(userch)=>{
             console.log(userch.val());
             console.log(userch.child('userIdToken').val())
             if(userch.child('emailVerify').val() !== true)
