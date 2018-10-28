@@ -9,12 +9,13 @@
 <!--=================== CONFIRM ===================-->
 <div class="cover">
     <div class="container">
-        {{#if status}}
+        {{#if success}}
             <div class="success">
                 <p style="font-size:22px;">You have successfully verified your email address</p>
                 <p style="font-size: 22px; margin:10px;">Thank You.</p>
             </div>
-        {{else}}
+        {{/if}}
+        {{#if fail}}
             <div class="fail">
                 <p style="font-size:22px;">You have already verified your account via this token</p>
                 <p style="font-size: 22px; margin:10px;">Thank You.</p>

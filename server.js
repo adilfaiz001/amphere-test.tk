@@ -231,11 +231,11 @@ homepage.get('/confirm_email/:hash',(req,res)=>{
         }).then((_res)=>{
             if(_res.success)
             {
-                res.render('confirm_mail',{title: 'Confirm Mail | Amphere Solutions' , status : true});
+                res.render('confirm_mail',{title: 'Confirm Mail | Amphere Solutions' , success : true});
             }
             else
             {
-                res.render('confirm_mail',{title: 'Confirm Mail | Amphere Solutions' , status : false});
+                res.render('confirm_mail',{title: 'Confirm Mail | Amphere Solutions' , fail : false});
             }
         });
     } else {
