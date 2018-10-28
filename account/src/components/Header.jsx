@@ -4,8 +4,7 @@ import './css/Header.css';
 import $ from 'jquery';
 
 import { AwesomeButton,AwesomeButtonProgress} from 'react-awesome-button';
-//import 'react-awesome-button/dist/styles.css';
-import 'react-awesome-button/dist/themes/theme-orange.css';
+import 'react-awesome-button/dist/styles.css';
 import UserWorker from '../util/UserWorker';
 
 class Header extends Component {
