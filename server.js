@@ -229,7 +229,7 @@ homepage.get('/confirm_email/:hash',(req,res)=>{
         SignupWorker.ConfirmEmail({
             "UserIdHash" : UserIdHash
         }).then((_res)=>{
-            console.log(res);
+            console.log(_res);
             if(_res.success)
             {
                 res.render('confirm_mail',{title: 'Confirm Mail | Amphere Solutions' , success : true});
