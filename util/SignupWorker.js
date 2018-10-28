@@ -230,7 +230,7 @@ exports.ConfirmEmail = (params) => {
     return new Promise((resolve,reject)=>{
         UsersData.ref().child('users').orderByChild('userIdToken').equalTo(UserIdHash).limitToFirst(1).once('value',(userch)=>{
             console.log(userch.val());
-            if(userch.val() !== null)
+            if(userch.child('userIdToken').val() !== null)
             {
                 UsersData.ref('users/user-' + userch.child('uid').val()).update({
                     "emailVerify":true,
