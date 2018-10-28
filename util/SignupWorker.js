@@ -231,7 +231,7 @@ exports.ConfirmEmail = (params) => {
         UsersData.ref().child('users').orderByChild('userIdToken').equalTo(UserIdHash).limitToFirst(1).once('child_added',(userch)=>{
             console.log(userch.val());
             console.log(userch.child('userIdToken').val())
-            if(userch.child('userIdToken').val() !== null)
+            if(userch.child('emailVerify').val() !== true)
             {
                 UsersData.ref('users/user-' + userch.child('uid').val()).update({
                     "emailVerify":true,
