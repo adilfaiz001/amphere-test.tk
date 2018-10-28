@@ -4,8 +4,8 @@ import './css/Header.css';
 import $ from 'jquery';
 
 import { AwesomeButton,AwesomeButtonProgress} from 'react-awesome-button';
-import styles from 'react-awesome-button/src/styles/themes/theme-cartman';
-
+//import 'react-awesome-button/dist/styles.css';
+import 'react-awesome-button/dist/themes/theme-amber.css';
 import UserWorker from '../util/UserWorker';
 
 class Header extends Component {
@@ -199,7 +199,7 @@ class Header extends Component {
                                         <p>Add email to your account</p>
                                         <input type="text" className="email-input" placeholder="Add your email" onBlur={this.ValidateEmail}/>
                                         <span onClick={this.AddEmail}>
-                                            <AwesomeButton cssModule={styles}  size="medium" type="primary" color="teal" >Add Email</AwesomeButton>
+                                            <AwesomeButton size="medium" type="primary" color="teal" >Add Email</AwesomeButton>
                                         </span>
                                     </div>
                                 : 
@@ -216,7 +216,7 @@ class Header extends Component {
                                                     this.state.emailVerify ? 
                                                         <div className="email-send-verify">
                                                             <p>Send Email for verification</p>
-                                                            <AwesomeButtonProgress cssModule={styles} type="primary" size="large" loadingLabel="Sending.." action={(element,next) => this.SendEmail(next)}>Send Email</AwesomeButtonProgress>
+                                                            <AwesomeButtonProgress type="primary" size="large" loadingLabel="Sending.." action={(element,next) => this.SendEmail(next)}>Send Email</AwesomeButtonProgress>
                                                         </div>
                                                         :
                                                         <div>
