@@ -229,11 +229,16 @@ exports.ConfirmEmail = (params) => {
     console.log("Confirm Mail");
     return new Promise((resolve,reject)=>{
         UsersData.ref().child('users').orderByChild('userIdToken').equalTo(UserIdHash).limitToFirst(1).once('value',(userch)=>{
-            console.log(userch.val());
-            console.log(userch.child('userIdToken').val())
             if(userch.val() !== null)
             {
-                UsersData.ref('users/user-' + userch.child('uid').val()).update({
+                user = userch.val();
+                let key;
+                for(k in user)
+                {
+                    key = k;
+                }
+                let uid = user[key]['uid'];
+                UsersData.ref('users/user-' + uid).update({
                     "emailVerify":true,
                     "userIdToken" : null
                 }).then(()=>{
